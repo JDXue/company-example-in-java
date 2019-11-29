@@ -23,7 +23,6 @@ public class HRApplication {
         double workingHoursBonus = 0.05;
 
         if (employee.getExtraHoursWorked() >= 50.0 ) {
-
             bonusCalculated = employee.getSalary().getAmount() + (employee.getSalary().getAmount() * employee.getBonus()) + (employee.getSalary().getAmount() * workingHoursBonus);
             System.out.println(bonusCalculated);
             return bonusCalculated;
@@ -53,19 +52,12 @@ public class HRApplication {
     }
 
     public Map<Employee, List<String>> showWhatCoursesMyEmployeesAreEnrolledIn(Manager manager){
-
         Map<Employee, List<String>> employeesEnrolledToCourses = new HashMap<>();
-
         for (  Employee employee : manager.getEmployeesManaging() ){
             employeesEnrolledToCourses.put(employee, employee.getCoursesEnrolledOn());
         }
 
-        System.out.println(employeesEnrolledToCourses);
-
         return employeesEnrolledToCourses;
-
-
-
     }
 
 
