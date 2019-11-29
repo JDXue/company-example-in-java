@@ -1,6 +1,4 @@
-package com.starling.companyexampletesting;
-
-import org.junit.jupiter.api.Test;
+package com.starlingbank.company.entities;
 
 class SalaryTest {
 //

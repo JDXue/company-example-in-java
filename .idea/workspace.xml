@@ -11,6 +11,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -23,6 +24,7 @@
     </option>
   </component>
   <component name="ProjectId" id="1UCLsGVYjg5MEnueNLM5gJ5N7r3" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -31,6 +33,15 @@
     <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.starlingbank.company.services" />
+      <recent name="com.starlingbank.company.entities" />
+      <recent name="com.starlingbank.company" />
+      <recent name="com.starling.companyexampletesting" />
+    </key>
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.starlingbank.externalservices" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/java" />
     </key>
@@ -47,51 +58,82 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.BonusTest.whenEmployeePassed_shouldGetReturnExpectedDouble">
-    <configuration name="BonusTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.EmployeeTest.ifManagerRequestsCourseEmployeesEnrolledIn_thenShouldReturnMapOfEmployeesAndCourses">
+    <configuration name="CourseServiceTest.ifPersonEnrollsOnCourseAgain_thenShouldThrowException" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="companyexampletesting" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="BonusTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="BonusTest.whenEmployeePassed_shouldGetReturnExpectedDouble" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="companyexampletesting" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="BonusTest" />
-      <option name="METHOD_NAME" value="whenEmployeePassed_shouldGetReturnExpectedDouble" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.starlingbank.externalservices.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.starlingbank.externalservices" />
+      <option name="MAIN_CLASS_NAME" value="com.starlingbank.externalservices.CourseServiceTest" />
+      <option name="METHOD_NAME" value="ifPersonEnrollsOnCourseAgain_thenShouldThrowException" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="BonusTest.whenManagerPassed_shouldGetReturnedExpectedDouble" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="EmployeeTest.ifEmployeeEnrollsToCourse_thenShouldShowTheCourseInTheirListOfEnrolledCourses" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="companyexampletesting" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="BonusTest" />
-      <option name="METHOD_NAME" value="whenManagerPassed_shouldGetReturnedExpectedDouble" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.starlingbank.company.entities.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.starlingbank.company.entities" />
+      <option name="MAIN_CLASS_NAME" value="com.starlingbank.company.entities.EmployeeTest" />
+      <option name="METHOD_NAME" value="ifEmployeeEnrollsToCourse_thenShouldShowTheCourseInTheirListOfEnrolledCourses" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="BonusTest.whenProgrammerPassed_shouldGetReturnedDouble" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="EmployeeTest.ifManagerDoesNotManageEmployeeAndRequestsCourseEmployeeEnrolledIn_thenShouldThrowError" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="companyexampletesting" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="BonusTest" />
-      <option name="METHOD_NAME" value="whenProgrammerPassed_shouldGetReturnedDouble" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.starlingbank.company.entities.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.starlingbank.company.entities" />
+      <option name="MAIN_CLASS_NAME" value="com.starlingbank.company.entities.EmployeeTest" />
+      <option name="METHOD_NAME" value="ifManagerDoesNotManageEmployeeAndRequestsCourseEmployeeEnrolledIn_thenShouldThrowError" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="BonusTest.whenProgrammerPassed_shouldGetReturnedExpectedDouble" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="EmployeeTest.ifManagerRequestsCourseEmployeeEnrolledIn_thenShouldReturnListOfCourses" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="companyexampletesting" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="BonusTest" />
-      <option name="METHOD_NAME" value="whenProgrammerPassed_shouldGetReturnedExpectedDouble" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.starlingbank.company.entities.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.starlingbank.company.entities" />
+      <option name="MAIN_CLASS_NAME" value="com.starlingbank.company.entities.EmployeeTest" />
+      <option name="METHOD_NAME" value="ifManagerRequestsCourseEmployeeEnrolledIn_thenShouldReturnListOfCourses" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EmployeeTest.ifManagerRequestsCourseEmployeesEnrolledIn_thenShouldReturnMapOfEmployeesAndCourses" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="companyexampletesting" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.starlingbank.company.entities.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.starlingbank.company.entities" />
+      <option name="MAIN_CLASS_NAME" value="com.starlingbank.company.entities.EmployeeTest" />
+      <option name="METHOD_NAME" value="ifManagerRequestsCourseEmployeesEnrolledIn_thenShouldReturnMapOfEmployeesAndCourses" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -99,11 +141,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.BonusTest.whenEmployeePassed_shouldGetReturnExpectedDouble" />
-        <item itemvalue="JUnit.BonusTest.whenProgrammerPassed_shouldGetReturnedDouble" />
-        <item itemvalue="JUnit.BonusTest" />
-        <item itemvalue="JUnit.BonusTest.whenProgrammerPassed_shouldGetReturnedExpectedDouble" />
-        <item itemvalue="JUnit.BonusTest.whenManagerPassed_shouldGetReturnedExpectedDouble" />
+        <item itemvalue="JUnit.EmployeeTest.ifManagerRequestsCourseEmployeesEnrolledIn_thenShouldReturnMapOfEmployeesAndCourses" />
+        <item itemvalue="JUnit.EmployeeTest.ifManagerDoesNotManageEmployeeAndRequestsCourseEmployeeEnrolledIn_thenShouldThrowError" />
+        <item itemvalue="JUnit.EmployeeTest.ifManagerRequestsCourseEmployeeEnrolledIn_thenShouldReturnListOfCourses" />
+        <item itemvalue="JUnit.EmployeeTest.ifEmployeeEnrollsToCourse_thenShouldShowTheCourseInTheirListOfEnrolledCourses" />
+        <item itemvalue="JUnit.CourseServiceTest.ifPersonEnrollsOnCourseAgain_thenShouldThrowException" />
       </list>
     </recent_temporary>
   </component>
@@ -119,5 +161,31 @@
       <updated>1574855835068</updated>
     </task>
     <servers />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/com/starlingbank/company/entities/ManagerTest.java</url>
+          <line>47</line>
+          <option name="timeStamp" value="64" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/com/starlingbank/company/entities/ManagerTest.java</url>
+          <line>54</line>
+          <option name="timeStamp" value="65" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/com/starlingbank/company/entities/ManagerTest.java</url>
+          <line>55</line>
+          <option name="timeStamp" value="67" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/companyexampletesting$CourseServiceTest.ic" NAME="CourseServiceTest Coverage Results" MODIFIED="1574959813006" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.starlingbank.externalservices.*</FILTER>
+    </SUITE>
   </component>
 </project>

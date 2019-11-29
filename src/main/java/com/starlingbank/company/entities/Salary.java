@@ -1,4 +1,6 @@
-class Salary {
+package com.starlingbank.company.entities;
+
+public class Salary {
     private double amount;
     private String currency;
 

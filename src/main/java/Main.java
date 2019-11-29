@@ -1,3 +1,7 @@
+import com.starlingbank.company.entities.*;
+import com.starlingbank.company.services.HRApplication;
+import com.starlingbank.externalservices.CourseService;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -5,7 +9,7 @@ import java.util.List;
 public class Main {
     public static void main(String[] args){
         Salary newSalary = new Salary(20000, "GBP");
-//        Employee e1 = new Employee("bob", "12/12/1988", newSalary);
+//        com.starlingbank.company.entities.Employee e1 = new com.starlingbank.company.entities.Employee("bob", "12/12/1988", newSalary);
 //
 ////        System.out.println("Hi I am " + e1.getName() + ", I was born " + e1.getDateOfBirth() + " my salary is " + e1.getSalary());
 
@@ -17,7 +21,7 @@ public class Main {
 
 //
 //
-        Programmer jeff = new Programmer("Jeff", "20/11/1984", newSalary, 0.2);
+        Programmer jeff = new Programmer("Jeff", "20/11/1984", newSalary);
         System.out.println(jeff);
 
         jeff.programApplication();
@@ -30,7 +34,9 @@ public class Main {
 
             System.out.println(myCompany);
 
-            Bonus bonus = new Bonus();
+        CourseService courseService = new CourseService();
+
+            HRApplication bonus = new HRApplication(courseService);
 
             bonus.bonusCalculator(bob);
             bonus.bonusCalculator(jeff);
