@@ -15,16 +15,15 @@ public class ManagerTest {
     private Programmer jeff;
 
 
-
     @BeforeEach
-    void setUp(){
+    void setUp() {
         salary = new Salary(20000, "GBP");
         jeff = new Programmer("Jeff", "20/11/1984", salary);
         bob = new Manager("Bob", "20/12/1984", salary);
     }
 
     @Test
-    void whenAddNewEmployeeToManage_thenShouldHaveEmployeeInManagingList(){
+    void whenAddNewEmployeeToManage_thenShouldHaveEmployeeInManagingList() {
         //Given
 
         //When
@@ -35,24 +34,17 @@ public class ManagerTest {
 
         //Then
         assertThat(bob.getEmployeesManaging()).isEqualTo(expectedEmployees);
-
     }
 
     @Test
-    void whenEmployeeIsAddedTwiceTeEmployeeManagerList_thenShouldThrowException(){
+    void whenEmployeeIsAddedTwiceTeEmployeeManagerList_thenShouldThrowException() {
         //Given
         bob.addNewEmployeeToManage(jeff);
-
-        //When
-
 
         //Then
         assertThatThrownBy(() -> bob.addNewEmployeeToManage(jeff))
                 .isInstanceOf(IllegalStateException.class)
                 .hasMessageContaining("Bob is already managing Jeff");
-
-
-
-
     }
+
 }

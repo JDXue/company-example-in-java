@@ -38,8 +38,8 @@ public class Main {
 
             HRApplication bonus = new HRApplication(courseService);
 
-            bonus.bonusCalculator(bob);
-            bonus.bonusCalculator(jeff);
+            bonus.calculateBonus(bob);
+            bonus.calculateBonus(jeff);
 
     }
 }
