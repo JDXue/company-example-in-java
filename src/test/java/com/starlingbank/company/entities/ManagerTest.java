@@ -10,21 +10,20 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class ManagerTest {
-    private Salary salary;
-    private Manager bob;
-    private Programmer jeff;
+    private static final Salary SALARY_DEFAULT = new Salary(20000, "GBP");
+
 
 
     @BeforeEach
     void setUp() {
-        salary = new Salary(20000, "GBP");
-        jeff = new Programmer("Jeff", "20/11/1984", salary);
-        bob = new Manager("Bob", "20/12/1984", salary);
+
     }
 
     @Test
     void whenAddNewEmployeeToManage_thenShouldHaveEmployeeInManagingList() {
         //Given
+        Employee jeff = new Programmer("Jeff", "20/11/1984", SALARY_DEFAULT);
+        Manager bob = new Manager("Bob", "20/12/1984", SALARY_DEFAULT);
 
         //When
         bob.addNewEmployeeToManage(jeff);
@@ -37,14 +36,20 @@ public class ManagerTest {
     }
 
     @Test
-    void whenEmployeeIsAddedTwiceTeEmployeeManagerList_thenShouldThrowException() {
+    void whenEmployeeIsAddedMoreThanOnceToEmployeeManagerList_thenShouldOnlyExistOnceInEmployeeList() {
         //Given
+        Employee jeff = new Programmer("Jeff", "20/11/1984", SALARY_DEFAULT);
+        Manager bob = new Manager("Bob", "20/12/1984", SALARY_DEFAULT);
+
+        //When
+        bob.addNewEmployeeToManage(jeff);
         bob.addNewEmployeeToManage(jeff);
 
         //Then
-        assertThatThrownBy(() -> bob.addNewEmployeeToManage(jeff))
-                .isInstanceOf(IllegalStateException.class)
-                .hasMessageContaining("Bob is already managing Jeff");
+        List<Employee> expectedEmployees = new ArrayList<>();
+        expectedEmployees.add(jeff);
+
+        assertThat(bob.getEmployeesManaging()).isEqualTo(expectedEmployees);
     }
 
 }
