@@ -58,8 +58,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.EmployeeTest.ifManagerRequestsCourseEmployeesEnrolledIn_thenShouldReturnMapOfEmployeesAndCourses">
-    <configuration name="CourseServiceTest.ifPersonEnrollsOnCourseAgain_thenShouldThrowException" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.CourseServiceTest">
+    <configuration name="CourseServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="companyexampletesting" />
       <extension name="coverage">
         <pattern>
@@ -69,13 +69,12 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.starlingbank.externalservices" />
       <option name="MAIN_CLASS_NAME" value="com.starlingbank.externalservices.CourseServiceTest" />
-      <option name="METHOD_NAME" value="ifPersonEnrollsOnCourseAgain_thenShouldThrowException" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="EmployeeTest.ifEmployeeEnrollsToCourse_thenShouldShowTheCourseInTheirListOfEnrolledCourses" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="EmployeeTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="companyexampletesting" />
       <extension name="coverage">
         <pattern>
@@ -85,67 +84,64 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.starlingbank.company.entities" />
       <option name="MAIN_CLASS_NAME" value="com.starlingbank.company.entities.EmployeeTest" />
-      <option name="METHOD_NAME" value="ifEmployeeEnrollsToCourse_thenShouldShowTheCourseInTheirListOfEnrolledCourses" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="EmployeeTest.ifManagerDoesNotManageEmployeeAndRequestsCourseEmployeeEnrolledIn_thenShouldThrowError" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="HRApplicationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="companyexampletesting" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.starlingbank.company.entities.*" />
+          <option name="PATTERN" value="com.starlingbank.company.services.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.starlingbank.company.entities" />
-      <option name="MAIN_CLASS_NAME" value="com.starlingbank.company.entities.EmployeeTest" />
-      <option name="METHOD_NAME" value="ifManagerDoesNotManageEmployeeAndRequestsCourseEmployeeEnrolledIn_thenShouldThrowError" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="PACKAGE_NAME" value="com.starlingbank.company.services" />
+      <option name="MAIN_CLASS_NAME" value="com.starlingbank.company.services.HRApplicationTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="EmployeeTest.ifManagerRequestsCourseEmployeeEnrolledIn_thenShouldReturnListOfCourses" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="HRApplicationTest.ifManagerRequestsCourseEmployeesEnrolledIn_thenShouldReturnMapOfEmployeesAndCourses" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="companyexampletesting" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.starlingbank.company.entities.*" />
+          <option name="PATTERN" value="com.starlingbank.company.services.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.starlingbank.company.entities" />
-      <option name="MAIN_CLASS_NAME" value="com.starlingbank.company.entities.EmployeeTest" />
-      <option name="METHOD_NAME" value="ifManagerRequestsCourseEmployeeEnrolledIn_thenShouldReturnListOfCourses" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="EmployeeTest.ifManagerRequestsCourseEmployeesEnrolledIn_thenShouldReturnMapOfEmployeesAndCourses" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="companyexampletesting" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.starlingbank.company.entities.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.starlingbank.company.entities" />
-      <option name="MAIN_CLASS_NAME" value="com.starlingbank.company.entities.EmployeeTest" />
+      <option name="PACKAGE_NAME" value="com.starlingbank.company.services" />
+      <option name="MAIN_CLASS_NAME" value="com.starlingbank.company.services.HRApplicationTest" />
       <option name="METHOD_NAME" value="ifManagerRequestsCourseEmployeesEnrolledIn_thenShouldReturnMapOfEmployeesAndCourses" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ManagerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="companyexampletesting" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.starlingbank.company.entities.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.starlingbank.company.entities" />
+      <option name="MAIN_CLASS_NAME" value="com.starlingbank.company.entities.ManagerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.EmployeeTest.ifManagerRequestsCourseEmployeesEnrolledIn_thenShouldReturnMapOfEmployeesAndCourses" />
-        <item itemvalue="JUnit.EmployeeTest.ifManagerDoesNotManageEmployeeAndRequestsCourseEmployeeEnrolledIn_thenShouldThrowError" />
-        <item itemvalue="JUnit.EmployeeTest.ifManagerRequestsCourseEmployeeEnrolledIn_thenShouldReturnListOfCourses" />
-        <item itemvalue="JUnit.EmployeeTest.ifEmployeeEnrollsToCourse_thenShouldShowTheCourseInTheirListOfEnrolledCourses" />
-        <item itemvalue="JUnit.CourseServiceTest.ifPersonEnrollsOnCourseAgain_thenShouldThrowException" />
+        <item itemvalue="JUnit.CourseServiceTest" />
+        <item itemvalue="JUnit.HRApplicationTest" />
+        <item itemvalue="JUnit.ManagerTest" />
+        <item itemvalue="JUnit.EmployeeTest" />
+        <item itemvalue="JUnit.HRApplicationTest.ifManagerRequestsCourseEmployeesEnrolledIn_thenShouldReturnMapOfEmployeesAndCourses" />
       </list>
     </recent_temporary>
   </component>

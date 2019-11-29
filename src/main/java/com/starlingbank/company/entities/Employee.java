@@ -8,29 +8,18 @@ public abstract class Employee {
     private String name;
     private String dateOfBirth;
     private Salary salary;
-    protected double bonus;
+    protected double bonusPercentage;
     private boolean hasHadAnnualMeeting;
     private double extraHoursWorked;
     private List<String> coursesEnrolledOn;
 
 
-
-    public Employee (String name, String dateOfBirth, Salary salary){
+    public Employee(String name, String dateOfBirth, Salary salary) {
 //        this.employeeId =
-        this.name =  name;
-        this.dateOfBirth= dateOfBirth;
+        this.name = name;
+        this.dateOfBirth = dateOfBirth;
         this.salary = salary;
-        this.bonus = 0.0;
-        this.hasHadAnnualMeeting = false;
-        this.extraHoursWorked = 0.0;
-        this.coursesEnrolledOn = new ArrayList<>();
-    }
-
-    public Employee(String name, String dateOfBirth, Salary salary, double bonus){
-        this.name =  name;
-        this.dateOfBirth= dateOfBirth;
-        this.salary = salary;
-        this.bonus = bonus;
+        this.bonusPercentage = 0.0;
         this.hasHadAnnualMeeting = false;
         this.extraHoursWorked = 0.0;
         this.coursesEnrolledOn = new ArrayList<>();
@@ -48,30 +37,29 @@ public abstract class Employee {
         return salary;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setDateOfBirth(String dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
-
     public void setSalary(Salary salary) {
         this.salary = salary;
     }
 
+    public double getBonusPercentage() {
+        return bonusPercentage;
+    }
 
-    public double getBonus() { return bonus; }
+    public void setBonusPercentage(double bonusPercentage) {
+        this.bonusPercentage = bonusPercentage;
+    }
 
-    public void setBonus(double bonus) { this.bonus = bonus; }
-
-    public boolean isHasHadAnnualMeeting() { return hasHadAnnualMeeting; }
+    public boolean hasHadAnnualReview() {
+        return hasHadAnnualMeeting;
+    }
 
     public void setHasHadAnnualMeeting(boolean hasHadAnnualMeeting) {
         this.hasHadAnnualMeeting = hasHadAnnualMeeting;
     }
 
-    public double getExtraHoursWorked() { return extraHoursWorked; }
+    public double getExtraHoursWorked() {
+        return extraHoursWorked;
+    }
 
     public void setExtraHoursWorked(double extraHoursWorked) {
         this.extraHoursWorked = extraHoursWorked;
@@ -85,18 +73,11 @@ public abstract class Employee {
         this.coursesEnrolledOn = coursesEnrolledOn;
     }
 
+
     @Override
-    public String toString(){
-        return  name + ": " + " Born: " + dateOfBirth + " com.starlingbank.company.entities.Salary: " + salary + " com.starlingbank.company.Bonus of: " + bonus;
+    public String toString() {
+        return name + ": " + " Born: " + dateOfBirth + " Salary: " + salary + " Bonus of: " + bonusPercentage;
     }
 
-    public void haveAnnualReview(double bonusUpdate){
-        if (!hasHadAnnualMeeting){
-            setHasHadAnnualMeeting(true);
-            setBonus(getBonus() + bonusUpdate);
-        } else {
-            System.out.println(name + " has had an annual review already");
-        }
 
-    }
 }

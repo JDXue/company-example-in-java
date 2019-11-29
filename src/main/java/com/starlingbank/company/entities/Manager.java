@@ -7,14 +7,10 @@ public class Manager extends Employee {
 
     public Manager(String name, String dateOfBirth, Salary salary){
         super(name, dateOfBirth, salary);
-        bonus = 0.3;
+        bonusPercentage = 0.3;
         employeesManaging = new ArrayList<>();
     }
 
-    public Manager(String name, String dateOfBirth, Salary salary, double bonus){
-
-        super(name, dateOfBirth, salary, bonus);
-    }
 
     public void manageProgram(){
         System.out.println("I am managing a cool application");

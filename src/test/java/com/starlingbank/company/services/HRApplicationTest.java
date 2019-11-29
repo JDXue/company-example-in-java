@@ -4,164 +4,136 @@ import com.starlingbank.company.entities.*;
 import com.starlingbank.externalservices.CourseService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 
 class HRApplicationTest {
 
-    private Salary salary;
-    private HRApplication bonus;
-    private Manager bob;
-    private Programmer jeff;
+    private static Salary SALARY_DEFAULT = new Salary(20000, "GBP");
+
+    private HRApplication hrApplication;
+
+    @Mock
+    private CourseService courseService;
 
     @BeforeEach
-    void bonusCalculatorTestSetup(){
-        CourseService courseService = new CourseService();
-        salary = new Salary(20000, "GBP");
-        bonus = new HRApplication(courseService);
-
-        jeff = new Programmer("Jeff", "20/11/1984", salary);
-        bob = new Manager("Bob", "20/12/1984", salary);
-
-
+    void setUp() {
+        hrApplication = new HRApplication(courseService);
     }
 
     @Test
-    void whenManagerPassed_shouldGetReturnedDouble(){
+    void givenManagerWithDefaultSalary_whenCalculateBonus_thenShouldReturnAManagerBonus() {
         //Given
-        System.out.println(bob);
-        Manager bob = new Manager("Bob", "20/12/1984", salary);
-
+        Employee employee = new Manager("Bob", "20/12/1984", SALARY_DEFAULT);
 
         //When
-        double salaryWithBonus = bonus.bonusCalculator(bob);
-        System.out.println(salaryWithBonus);
+        double bonusAmount = hrApplication.calculateBonus(employee);
 
         //Then
-        assertNotNull( salaryWithBonus );
-
+        double expectedBonus = 6000.0;
+        assertEquals(expectedBonus, bonusAmount, 0.01);
     }
 
     @Test
-    void whenProgrammerPassed_shouldGetReturnedDouble(){
+    void whenProgrammerPassed_shouldGetReturnedProgrammerEmployeeBonus() {
         //Given
-
+        Employee employee = new Programmer("Jeff", "20/11/1984", SALARY_DEFAULT);
 
         //When
-        double salaryWithBonus = bonus.bonusCalculator(jeff);
-        System.out.println(salaryWithBonus);
+        double bonusAmount = hrApplication.calculateBonus(employee);
 
         //Then
-        assertNotNull( salaryWithBonus );
-
+        double expectedBonus = 4000.0;
+        assertEquals(expectedBonus, bonusAmount, 0.01);
     }
 
     @Test
-    void whenManagerPassed_shouldGetReturnedExpectedDouble(){
+    void whenEmployeeHasAnnualReview_TheirBonusIsUpdated() {
         //Given
-        System.out.println(bob);
+        Programmer jeff = new Programmer("Jeff", "20/11/1984", SALARY_DEFAULT);
 
         //When
-        double expectedSalary = 26000.0;
-        double salaryWithBonus = bonus.bonusCalculator(bob);
-        System.out.println(salaryWithBonus);
+        hrApplication.annualReviewBonusUpdate(jeff, 0.01); //already has 0.2 bonus
 
         //Then
-        assertEquals( expectedSalary, salaryWithBonus, 0.01);
-
+        double expectedBonusPercentage = 0.21;
+        assertEquals(expectedBonusPercentage, jeff.getBonusPercentage(), 0.01);
     }
 
     @Test
-    void whenProgrammerPassed_shouldGetReturnedExpectedDouble(){
+    void whenEmployeeHasAlreadyHadAnnualReview_shouldNotUpdateBonusPercentage() {
         //Given
+        Programmer jeff = new Programmer("Jeff", "20/11/1984", SALARY_DEFAULT);
+        jeff.setHasHadAnnualMeeting(true);
 
         //When
-        double expectedSalary = 24000.0;
-        double salaryWithBonus = bonus.bonusCalculator(jeff);
-        System.out.println(salaryWithBonus);
+        hrApplication.annualReviewBonusUpdate(jeff, 0.01); //already has 0.2 bonus
 
         //Then
-        assertEquals( expectedSalary, salaryWithBonus, 0.01);
-
-    }
-
-
-//    @Disabled
-    @Test
-    void whenEmployeeHasAnnualReview_TheirBonusIsUpdated(){
-        //Given
-        Programmer jeff = new Programmer("Jeff", "20/11/1984", salary);
-
-        //When
-        double expectedSalary = 24200.0;
-        jeff.haveAnnualReview(0.01); //already has 0.2 bonus
-
-
-        double salaryWithBonus = bonus.bonusCalculator(jeff); //check bonus calculator after the annual review
-        System.out.println(salaryWithBonus);
-
-        //Then
-        assertEquals(expectedSalary, salaryWithBonus);
-
-
-
+        assertThat(jeff.getBonusPercentage()).isEqualTo(0.2);
     }
 
     @Test
-    void whenEmployeeHasWorkedMoreThanFiftyHours_bonusShouldIncrease(){
+    void whenEmployeeHasWorkedMoreThanFiftyHours_bonusShouldIncrease() {
         //Given
-        Programmer jeff = new Programmer("Jeff", "20/11/1984", salary);
-
-        //When
-        double expectedSalary = 25000.0;
-//        double salaryWithBonus = bonus.bonusCalculator(jeff);
+        Programmer jeff = new Programmer("Jeff", "20/11/1984", SALARY_DEFAULT);
         jeff.setExtraHoursWorked(50.0);
 
-        double salaryWithBonus = bonus.bonusCalculator(jeff);
-
-        System.out.println(salaryWithBonus);
+        //When
+        double bonusAmount = hrApplication.calculateBonus(jeff);
 
         //Then
-        assertEquals( expectedSalary , salaryWithBonus);
-
+        double expectedBonusAmount = 5000.0;
+        assertEquals(expectedBonusAmount, bonusAmount);
     }
 
     @Test
-    void whenEmployeeIsGivenHighestSalary_shouldGetUpdatedWithExpectedValue(){
+    void whenEmployeeIsGivenHighestSalary_shouldGetUpdatedWithExpectedValue() {
         //Given
-        Programmer jeff = new Programmer("Jeff", "20/11/1984", salary);
-        Manager bob = new Manager("Bob", "20/12/1984", salary);
+        Salary higherSalary = new Salary(300000, "GBP");
+        Programmer jeff = new Programmer("Jeff", "20/11/1984", SALARY_DEFAULT);
+        Manager bob = new Manager("Bob", "20/12/1984", higherSalary);
 
         List<Employee> myEmployees = new ArrayList();
         myEmployees.add(jeff);
         myEmployees.add(bob);
 
-        Company myCompany = new Company(myEmployees);
-
-        System.out.println(myCompany);
-
-
         //When
-        double expectedSalary = 20001.0;
-        myCompany.giveEmployeeHighestSalary(jeff);
 
-//        double actualHighestSalary = bonus.bonusCalculator(jeff);
-        double actualHighestSalary = jeff.getSalary().getAmount();
-//        System.out.println(actualHighestSalary);
 
         //Then
-        assertEquals( expectedSalary , actualHighestSalary);
+        List<Employee> expectedListOfEmployees = new ArrayList<>();
+        expectedListOfEmployees.add(bob);
 
+        assertEquals(expectedListOfEmployees, hrApplication.getEmployeesWithHighestSalary(myEmployees));
     }
 
+    @Test
+    void ifManagerRequestsCourseEmployeesEnrolledIn_thenShouldReturnMapOfEmployeesAndCourses() {
+        //Given
+        HRApplication hr = new HRApplication(courseService);
+        Programmer ada = new Programmer("Ada", "10/12/1815", SALARY_DEFAULT);
+        Manager michelle = new Manager("Michelle", "17/01/1964", SALARY_DEFAULT);
+        michelle.addNewEmployeeToManage(ada);
 
+        List<String> expectedCourses = new ArrayList<>();
+        expectedCourses.add("first aid");
+        ada.setCoursesEnrolledOn(expectedCourses);
 
+        Map<Employee, List<String>> expectedReturnedMapOfEmployees = new HashMap<>();
+        expectedReturnedMapOfEmployees.put(ada, expectedCourses);
 
-
+        //When & Then
+        assertThat(hr.showWhatCoursesEmployeesAreEnrolledIn(michelle)).isEqualTo(expectedReturnedMapOfEmployees);
+    }
 
 
 }

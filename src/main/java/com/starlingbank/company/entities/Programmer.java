@@ -4,14 +4,10 @@ public class Programmer extends Employee {
 
     public Programmer(String name, String dateOfBirth, Salary salary){
         super(name, dateOfBirth, salary);
-        bonus = 0.2;
+        bonusPercentage = 0.2;
 
     }
 
-    public Programmer(String name, String dateOfBirth, Salary salary, double bonus){
-        super(name, dateOfBirth, salary, bonus);
-
-    }
 
     public void programApplication(){
         System.out.println("I am programming a cool application");
