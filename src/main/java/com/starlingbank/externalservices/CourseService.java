@@ -9,35 +9,29 @@ import java.util.List;
 import java.util.Map;
 
 public class CourseService {
-    private List<Course> courses;
-    private Map<Integer, List<Integer>> courseEnrollment;
     private CoursePersistenceService coursePersistenceService;
 
-    public CourseService() {
-        this.courseEnrollment = new HashMap<>();
-        this.courses = new ArrayList<>();
-        this.coursePersistenceService = new CoursePersistenceService();
+    public CourseService(CoursePersistenceService coursePersistenceService) {
+        this.coursePersistenceService = coursePersistenceService;
     }
 
     public void enroll(int employeeId, int courseId) {
         coursePersistenceService.enroll(employeeId,courseId);
     }
 
+//    public void enroll(Employee employee, Course course) {
+//        coursePersistenceService.enroll(employee.getEmployeeId(), course.getId());
+//    }
+
     public void addCourse(Course newCourse) {
         coursePersistenceService.addCourse(newCourse);
     }
 
     public List<Course> getCourses() {
-        return courses;
-    }
-
-    public Map<Integer, List<Integer>> getCourseEnrollment() {
-        return courseEnrollment;
+        return coursePersistenceService.listCourses();
     }
 
     public List<String> showWhatCoursesPersonIsEnrolledIn(Employee person){
-        List<String> arrOfCoursesSignedUpTo = coursePersistenceService.showWhatCoursesPersonIsEnrolledIn(person.getEmployeeId());
-
-        return arrOfCoursesSignedUpTo;
+        return coursePersistenceService.showWhatCoursesPersonIsEnrolledIn(person.getEmployeeId());
     }
 }

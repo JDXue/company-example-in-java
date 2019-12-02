@@ -9,6 +9,10 @@ public class Course {
         this.id = id;
     }
 
+    public Course(String name){
+        this.name = name;
+    }
+
     public String getName() {
         return name;
     }

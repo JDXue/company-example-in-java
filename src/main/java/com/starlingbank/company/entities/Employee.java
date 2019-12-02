@@ -25,7 +25,7 @@ public abstract class Employee {
         this.coursesEnrolledOn = new ArrayList<>();
     }
 
-    public static int getEmployeeId() { return employeeId; }
+    public int getEmployeeId() { return employeeId; }
 
     public String getName() {
         return name;

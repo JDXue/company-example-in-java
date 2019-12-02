@@ -36,12 +36,12 @@ public class Main {
 
             System.out.println(myCompany);
 
-        CourseService courseService = new CourseService();
-
-            HRApplication bonus = new HRApplication(courseService);
-
-            bonus.calculateBonus(bob);
-            bonus.calculateBonus(jeff);
+//        CourseService courseService = new CourseService();
+//
+//            HRApplication bonus = new HRApplication(courseService);
+//
+//            bonus.calculateBonus(bob);
+//            bonus.calculateBonus(jeff);
 
     }
 }
