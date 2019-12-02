@@ -11,55 +11,52 @@ import java.util.stream.Collectors;
 
 public class CoursePersistenceService {
     private int nextFreeCourseId = 0;
-    private List<Course> courses;
-    private Map<Integer, List<Integer>> courseEnrollment;
+    private Map<Integer, Course> courses;
+    private Map<Integer, List<Integer>> courseEnrollment; // employee, List<courseId>
 
     public CoursePersistenceService() {
         this.courseEnrollment = new HashMap<>();
-        this.courses = new ArrayList<>();
+        this.courses = new HashMap<>();
     }
 
     public void addCourse(Course newCourse) {
-        if (courses.contains(newCourse)) {
+        if (courses.containsValue(newCourse)) {
             throw new IllegalStateException("Course " + newCourse.getName() + " is already in this course list");
         } else {
-            courses.add(newCourse);
+            courses.put(getNextFreeCourseId(),newCourse);
             courseEnrollment.put(newCourse.getId(), new ArrayList<>());
         }
     }
 
+    public int getNextFreeCourseId() {
+        return nextFreeCourseId++;
+    }
+
     public void enroll(int employeeId, int courseId) {
 
-        if (!courseEnrollment.containsKey(courseId)) {
+        if (!courses.containsKey(courseId)) {
             throw new IllegalStateException("Course ID " + courseId + " not found");
         }
 
-        if (courseEnrollment.get(courseId).contains(employeeId)) {
-            throw new IllegalStateException("You have already signed up to this course");
-        }
-
-        List<Integer> peopleEnrolled = courseEnrollment.get(courseId);
-        peopleEnrolled.add(employeeId);
-
+        List<Integer> employeeCourses = courseEnrollment.computeIfAbsent(employeeId, list -> new ArrayList<>());
+        employeeCourses.add(courseId);
     }
 
     public List<Course> listCourses(){
-        List<Course> availableCourses = courses
-                .entrySet() //Set<Map.Entry>
-                .stream()
-                .map(Map.Entry::getValue)
-                .collect(Collectors.toList());
-        return courses;
+        return new ArrayList<>(courses.values());
     }
 
     public List<String> showWhatCoursesPersonIsEnrolledIn(int employeeId){
         List<String> arrOfCoursesSignedUpTo = new ArrayList<>();
 
-        for ( Course course : courses) {
-            if (courseEnrollment.get(course.getId()).contains(employeeId)) {
-                arrOfCoursesSignedUpTo.add(course.getName());
-            }
-        }
+
+        List<Integer> employeeCourses = courseEnrollment.get(employeeId);
+
+        employeeCourses
+                .stream()
+                .map(courseId -> courses.get(courseId))
+                .map(course -> course.getName())
+                .collect(Collectors.toList());
 
         return arrOfCoursesSignedUpTo;
     }

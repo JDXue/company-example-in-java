@@ -1,6 +1,7 @@
 package com.starlingbank.externalservices;
 
 import com.starlingbank.company.entities.Employee;
+import com.starlingbank.persistence.CoursePersistenceService;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,36 +11,20 @@ import java.util.Map;
 public class CourseService {
     private List<Course> courses;
     private Map<Integer, List<Integer>> courseEnrollment;
+    private CoursePersistenceService coursePersistenceService;
 
     public CourseService() {
         this.courseEnrollment = new HashMap<>();
         this.courses = new ArrayList<>();
+        this.coursePersistenceService = new CoursePersistenceService();
     }
 
     public void enroll(int employeeId, int courseId) {
-
-        if (!courseEnrollment.containsKey(courseId)) {
-            throw new IllegalStateException("Course ID " + courseId + " not found");
-        }
-
-        if (courseEnrollment.get(courseId).contains(employeeId)) {
-            throw new IllegalStateException("You have already signed up to this course");
-        }
-
-        List<Integer> peopleEnrolled = courseEnrollment.get(courseId);
-        peopleEnrolled.add(employeeId);
-
+        coursePersistenceService.enroll(employeeId,courseId);
     }
 
     public void addCourse(Course newCourse) {
-        if (courses.contains(newCourse)) {
-            throw new IllegalStateException("Course " + newCourse.getName() + " is already in this course list");
-        } else {
-            courses.add(newCourse);
-            courseEnrollment.put(newCourse.getId(), new ArrayList<>());
-        }
-
-
+        coursePersistenceService.addCourse(newCourse);
     }
 
     public List<Course> getCourses() {
@@ -51,13 +36,7 @@ public class CourseService {
     }
 
     public List<String> showWhatCoursesPersonIsEnrolledIn(Employee person){
-        List<String> arrOfCoursesSignedUpTo = new ArrayList<>();
-
-        for ( Course course : courses) {
-            if (courseEnrollment.get(course.getId()).contains(person.getEmployeeId())) {
-                arrOfCoursesSignedUpTo.add(course.getName());
-            }
-        }
+        List<String> arrOfCoursesSignedUpTo = coursePersistenceService.showWhatCoursesPersonIsEnrolledIn(person.getEmployeeId());
 
         return arrOfCoursesSignedUpTo;
     }
