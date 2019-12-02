@@ -4,26 +4,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Employee {
-    private int employeeId;
+    private static int employeeId;
     private String name;
     private String dateOfBirth;
     private Salary salary;
     protected double bonusPercentage;
-    private boolean hasHadAnnualMeeting;
+    private boolean hasHadAnnualReview;
     private double extraHoursWorked;
     private List<String> coursesEnrolledOn;
 
 
     public Employee(String name, String dateOfBirth, Salary salary) {
-//        this.employeeId =
+        this.employeeId += 1;
         this.name = name;
         this.dateOfBirth = dateOfBirth;
         this.salary = salary;
         this.bonusPercentage = 0.0;
-        this.hasHadAnnualMeeting = false;
+        this.hasHadAnnualReview = false;
         this.extraHoursWorked = 0.0;
         this.coursesEnrolledOn = new ArrayList<>();
     }
+
+    public static int getEmployeeId() { return employeeId; }
 
     public String getName() {
         return name;
@@ -50,11 +52,11 @@ public abstract class Employee {
     }
 
     public boolean hasHadAnnualReview() {
-        return hasHadAnnualMeeting;
+        return hasHadAnnualReview;
     }
 
-    public void setHasHadAnnualMeeting(boolean hasHadAnnualMeeting) {
-        this.hasHadAnnualMeeting = hasHadAnnualMeeting;
+    public void setHasHadAnnualReview(boolean hasHadAnnualReview) {
+        this.hasHadAnnualReview = hasHadAnnualReview;
     }
 
     public double getExtraHoursWorked() {
@@ -76,7 +78,7 @@ public abstract class Employee {
 
     @Override
     public String toString() {
-        return name + ": " + " Born: " + dateOfBirth + " Salary: " + salary + " Bonus of: " + bonusPercentage;
+        return employeeId + " " + name + ": " + " Born: " + dateOfBirth + " Salary: " + salary + " Bonus of: " + bonusPercentage;
     }
 
 

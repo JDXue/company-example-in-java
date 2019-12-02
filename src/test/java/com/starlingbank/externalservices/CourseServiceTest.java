@@ -60,7 +60,7 @@ public class CourseServiceTest {
     @Test
     void whenCourseNotFound_thenShouldThrowException() {
         //When & Then
-        assertThatThrownBy(() -> courseService.enroll("alice", 33))
+        assertThatThrownBy(() -> courseService.enroll(1, 33))
                 .isInstanceOf(IllegalStateException.class)
                 .hasMessageContaining("Course ID 33 not found");
 
@@ -72,11 +72,11 @@ public class CourseServiceTest {
         //Given
         Course firstAid = new Course("firstAid", courseService.getCourses().size());
         courseService.addCourse(firstAid);
-        courseService.enroll(bob.getName(), 0);
+        courseService.enroll(bob.getEmployeeId(), 0);
 
 
         //When
-        List<String> courses = courseService.getCourseEnrollment().get(0);
+        List<Integer> courses = courseService.getCourseEnrollment().get(0);
 
         //Then
 
@@ -91,11 +91,11 @@ public class CourseServiceTest {
         //Given
         Course firstAid = new Course("firstAid", courseService.getCourses().size());
         courseService.addCourse(firstAid);
-        courseService.enroll(bob.getName(), 0);
+        courseService.enroll(bob.getEmployeeId(), 0);
 
 
         //Then
-        assertThatThrownBy(() -> courseService.enroll(bob.getName(), 0))
+        assertThatThrownBy(() -> courseService.enroll(bob.getEmployeeId(), 0))
                 .isInstanceOf(IllegalStateException.class)
                 .hasMessageContaining("You have already signed up to this course");
 
@@ -121,7 +121,7 @@ public class CourseServiceTest {
         //Given
         Course firstAid = new Course("firstAid", courseService.getCourses().size());
         courseService.addCourse(firstAid);
-        courseService.enroll(bob.getName(), 0);
+        courseService.enroll(bob.getEmployeeId(), 0);
 
         //When
         List <String> expectedCourses = new ArrayList<>();

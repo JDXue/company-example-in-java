@@ -72,7 +72,7 @@ class HRApplicationTest {
     void whenEmployeeHasAlreadyHadAnnualReview_shouldNotUpdateBonusPercentage() {
         //Given
         Programmer jeff = new Programmer("Jeff", "20/11/1984", SALARY_DEFAULT);
-        jeff.setHasHadAnnualMeeting(true);
+        jeff.setHasHadAnnualReview(true);
 
         //When
         hrApplication.annualReviewBonusUpdate(jeff, 0.01); //already has 0.2 bonus

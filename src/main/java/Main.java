@@ -17,6 +17,8 @@ public class Main {
         Manager bob = new Manager("Bob", "20/12/1984", newSalary);
 //        System.out.println("Hi I am " + m1.getName() + " I was born " + m1.getDateOfBirth());
 
+        System.out.println(bob);
+
 
 
 //

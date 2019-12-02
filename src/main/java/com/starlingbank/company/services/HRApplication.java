@@ -40,7 +40,7 @@ public class HRApplication {
     }
 
     public void enrollEmployeeToCourse(Employee employee, int courseId) {
-        courseService.enroll(employee.getName(), courseId);
+        courseService.enroll(employee.getEmployeeId(), courseId);
 
         List<String> coursesEnrolledIn = new ArrayList<>();
         coursesEnrolledIn = courseService.showWhatCoursesPersonIsEnrolledIn(employee);
@@ -65,7 +65,7 @@ public class HRApplication {
             return;
         }
 
-        employee.setHasHadAnnualMeeting(true);
+        employee.setHasHadAnnualReview(true);
         employee.setBonusPercentage(employee.getBonusPercentage() + bonusPercentageIncrement);
     }
 

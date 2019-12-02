@@ -42,7 +42,7 @@ public class EmployeeTest {
         hr.enrollEmployeeToCourse(ada, 0);
 
         //Then
-        verify(courseService).enroll(ada.getName(), 0);
+        verify(courseService).enroll(ada.getEmployeeId(), 0);
         assertThat(ada.getCoursesEnrolledOn()).isEqualTo(expectedCourses);
     }
 

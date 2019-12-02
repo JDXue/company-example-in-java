@@ -1,7 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< Updated upstream
     <list default="true" id="627cb76a-d992-4b29-adad-fdfc76b5ba1b" name="Default Changelist" comment="" />
+=======
+    <list default="true" id="627cb76a-d992-4b29-adad-fdfc76b5ba1b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/starlingbank/persistence/CompanyPersistenceService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/starlingbank/persistence/CoursePersistenceService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/starlingbank/persistence/EmployeePersistenceService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/starlingbank/persistence/HRApplicationPersistanceService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/starlingbank/company/entities/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/starlingbank/company/entities/Employee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/starlingbank/company/services/HRApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/starlingbank/company/services/HRApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/starlingbank/externalservices/CourseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/starlingbank/externalservices/CourseService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/starlingbank/company/entities/EmployeeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/starlingbank/company/entities/EmployeeTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/starlingbank/company/services/HRApplicationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/starlingbank/company/services/HRApplicationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/starlingbank/externalservices/CourseServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/starlingbank/externalservices/CourseServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Main.class" afterDir="false" />
+    </list>
+>>>>>>> Stashed changes
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +44,7 @@
   <component name="ProjectId" id="1UCLsGVYjg5MEnueNLM5gJ5N7r3" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
+    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="TEXT" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -59,6 +78,17 @@
     </option>
   </component>
   <component name="RunManager" selected="JUnit.CourseServiceTest">
+<<<<<<< Updated upstream
+    <configuration name="CourseServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+=======
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+>>>>>>> Stashed changes
+      <module name="companyexampletesting" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="CourseServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="companyexampletesting" />
       <extension name="coverage">
@@ -69,21 +99,6 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.starlingbank.externalservices" />
       <option name="MAIN_CLASS_NAME" value="com.starlingbank.externalservices.CourseServiceTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="EmployeeTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="companyexampletesting" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.starlingbank.company.entities.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.starlingbank.company.entities" />
-      <option name="MAIN_CLASS_NAME" value="com.starlingbank.company.entities.EmployeeTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -138,10 +153,15 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.CourseServiceTest" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.ManagerTest.whenEmployeeIsAddedMoreThanOnceToEmployeeManagerList_thenShouldOnlyExistOnceInEmployeeList" />
         <item itemvalue="JUnit.HRApplicationTest" />
         <item itemvalue="JUnit.ManagerTest" />
+<<<<<<< Updated upstream
         <item itemvalue="JUnit.EmployeeTest" />
         <item itemvalue="JUnit.HRApplicationTest.ifManagerRequestsCourseEmployeesEnrolledIn_thenShouldReturnMapOfEmployeesAndCourses" />
+=======
+>>>>>>> Stashed changes
       </list>
     </recent_temporary>
   </component>
