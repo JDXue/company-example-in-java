@@ -58,7 +58,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.CourseServiceTest">
+  <component name="RunManager" selected="JUnit.ManagerTest.whenEmployeeIsAddedMoreThanOnceToEmployeeManagerList_thenShouldOnlyExistOnceInEmployeeList">
     <configuration name="CourseServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="companyexampletesting" />
       <extension name="coverage">
@@ -104,22 +104,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="HRApplicationTest.ifManagerRequestsCourseEmployeesEnrolledIn_thenShouldReturnMapOfEmployeesAndCourses" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="companyexampletesting" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.starlingbank.company.services.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.starlingbank.company.services" />
-      <option name="MAIN_CLASS_NAME" value="com.starlingbank.company.services.HRApplicationTest" />
-      <option name="METHOD_NAME" value="ifManagerRequestsCourseEmployeesEnrolledIn_thenShouldReturnMapOfEmployeesAndCourses" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="ManagerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="companyexampletesting" />
       <extension name="coverage">
@@ -135,13 +119,29 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ManagerTest.whenEmployeeIsAddedMoreThanOnceToEmployeeManagerList_thenShouldOnlyExistOnceInEmployeeList" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="companyexampletesting" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.starlingbank.company.entities.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.starlingbank.company.entities" />
+      <option name="MAIN_CLASS_NAME" value="com.starlingbank.company.entities.ManagerTest" />
+      <option name="METHOD_NAME" value="whenEmployeeIsAddedMoreThanOnceToEmployeeManagerList_thenShouldOnlyExistOnceInEmployeeList" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ManagerTest.whenEmployeeIsAddedMoreThanOnceToEmployeeManagerList_thenShouldOnlyExistOnceInEmployeeList" />
         <item itemvalue="JUnit.CourseServiceTest" />
         <item itemvalue="JUnit.HRApplicationTest" />
         <item itemvalue="JUnit.ManagerTest" />
         <item itemvalue="JUnit.EmployeeTest" />
-        <item itemvalue="JUnit.HRApplicationTest.ifManagerRequestsCourseEmployeesEnrolledIn_thenShouldReturnMapOfEmployeesAndCourses" />
       </list>
     </recent_temporary>
   </component>
