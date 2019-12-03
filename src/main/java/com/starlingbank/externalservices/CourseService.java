@@ -15,13 +15,9 @@ public class CourseService {
         this.coursePersistenceService = coursePersistenceService;
     }
 
-    public void enroll(int employeeId, int courseId) {
-        coursePersistenceService.enroll(employeeId,courseId);
+    public void enroll(Employee employee, Course course) {
+        coursePersistenceService.enroll(employee.getEmployeeId(), course.getId());
     }
-
-//    public void enroll(Employee employee, Course course) {
-//        coursePersistenceService.enroll(employee.getEmployeeId(), course.getId());
-//    }
 
     public void addCourse(Course newCourse) {
         coursePersistenceService.addCourse(newCourse);

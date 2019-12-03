@@ -3,14 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="29fe327a-03e1-47ca-88b6-66fb8c76717a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/starlingbank/company/entities/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/starlingbank/company/entities/Employee.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/starlingbank/externalservices/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/starlingbank/externalservices/Course.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/starlingbank/company/services/HRApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/starlingbank/company/services/HRApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/starlingbank/externalservices/CourseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/starlingbank/externalservices/CourseService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/starlingbank/persistence/CoursePersistenceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/starlingbank/persistence/CoursePersistenceService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/starlingbank/persistence/EmployeePersistenceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/starlingbank/persistence/EmployeePersistenceService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/starlingbank/externalservices/CourseServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/starlingbank/externalservices/CoursePersistenceServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/starlingbank/company/entities/EmployeeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/starlingbank/company/entities/EmployeeTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/starlingbank/company/services/HRApplicationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/starlingbank/company/services/HRApplicationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/starlingbank/externalservices/CoursePersistenceServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/starlingbank/externalservices/CoursePersistenceServiceTest.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -72,7 +70,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.CoursePersistenceServiceTest.whenCourseNotFound_thenShouldThrowException">
+  <component name="RunManager" selected="JUnit.HRApplicationTest.whenEnrollEmployeeToCourse_thenShouldHaveCourseAddedToEmployeeInCoursesAndCourseInEmployeeList">
     <configuration name="CoursePersistenceServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="companyexampletesting" />
       <extension name="coverage">
@@ -88,65 +86,65 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CoursePersistenceServiceTest.ifPersonEnrollsOnCourseAgain_thenShouldThrowException" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="HRApplicationTest.ifManagerRequestsCourseEmployeesEnrolledIn_thenShouldReturnMapOfEmployeesAndCourses" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="companyexampletesting" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.starlingbank.externalservices.*" />
+          <option name="PATTERN" value="com.starlingbank.company.services.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.starlingbank.externalservices" />
-      <option name="MAIN_CLASS_NAME" value="com.starlingbank.externalservices.CoursePersistenceServiceTest" />
-      <option name="METHOD_NAME" value="ifPersonEnrollsOnCourseAgain_thenShouldThrowException" />
+      <option name="PACKAGE_NAME" value="com.starlingbank.company.services" />
+      <option name="MAIN_CLASS_NAME" value="com.starlingbank.company.services.HRApplicationTest" />
+      <option name="METHOD_NAME" value="ifManagerRequestsCourseEmployeesEnrolledIn_thenShouldReturnMapOfEmployeesAndCourses" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CoursePersistenceServiceTest.whenCourseNotFound_thenShouldThrowException" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="HRApplicationTest.whenEnrollEmployeeToCourse_thenShouldHaveCourseAddedToEmployeeInCourses" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="companyexampletesting" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.starlingbank.externalservices.*" />
+          <option name="PATTERN" value="com.starlingbank.company.services.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.starlingbank.externalservices" />
-      <option name="MAIN_CLASS_NAME" value="com.starlingbank.externalservices.CoursePersistenceServiceTest" />
-      <option name="METHOD_NAME" value="whenCourseNotFound_thenShouldThrowException" />
+      <option name="PACKAGE_NAME" value="com.starlingbank.company.services" />
+      <option name="MAIN_CLASS_NAME" value="com.starlingbank.company.services.HRApplicationTest" />
+      <option name="METHOD_NAME" value="whenEnrollEmployeeToCourse_thenShouldHaveCourseAddedToEmployeeInCourses" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CoursePersistenceServiceTest.whenGetCourses_thenShouldHaveListOfCourses" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="HRApplicationTest.whenEnrollEmployeeToCourse_thenShouldHaveCourseAddedToEmployeeInCoursesAndCourseInEmployeeList" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="companyexampletesting" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.starlingbank.externalservices.*" />
+          <option name="PATTERN" value="com.starlingbank.company.services.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.starlingbank.externalservices" />
-      <option name="MAIN_CLASS_NAME" value="com.starlingbank.externalservices.CoursePersistenceServiceTest" />
-      <option name="METHOD_NAME" value="whenGetCourses_thenShouldHaveListOfCourses" />
+      <option name="PACKAGE_NAME" value="com.starlingbank.company.services" />
+      <option name="MAIN_CLASS_NAME" value="com.starlingbank.company.services.HRApplicationTest" />
+      <option name="METHOD_NAME" value="whenEnrollEmployeeToCourse_thenShouldHaveCourseAddedToEmployeeInCoursesAndCourseInEmployeeList" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CoursePersistenceServiceTest.whenShowWhatCoursesEmployeesAreEnrolledIn_thenGetArrayOfCoursesTheyAreIn" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="HRApplicationTest.whenEnrollEmployeeToCourse_thenShouldHaveCourseInEmployeeList" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="companyexampletesting" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.starlingbank.externalservices.*" />
+          <option name="PATTERN" value="com.starlingbank.company.services.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.starlingbank.externalservices" />
-      <option name="MAIN_CLASS_NAME" value="com.starlingbank.externalservices.CoursePersistenceServiceTest" />
-      <option name="METHOD_NAME" value="whenShowWhatCoursesEmployeesAreEnrolledIn_thenGetArrayOfCoursesTheyAreIn" />
+      <option name="PACKAGE_NAME" value="com.starlingbank.company.services" />
+      <option name="MAIN_CLASS_NAME" value="com.starlingbank.company.services.HRApplicationTest" />
+      <option name="METHOD_NAME" value="whenEnrollEmployeeToCourse_thenShouldHaveCourseInEmployeeList" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -154,11 +152,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.CoursePersistenceServiceTest.whenCourseNotFound_thenShouldThrowException" />
+        <item itemvalue="JUnit.HRApplicationTest.whenEnrollEmployeeToCourse_thenShouldHaveCourseAddedToEmployeeInCoursesAndCourseInEmployeeList" />
+        <item itemvalue="JUnit.HRApplicationTest.whenEnrollEmployeeToCourse_thenShouldHaveCourseAddedToEmployeeInCourses" />
+        <item itemvalue="JUnit.HRApplicationTest.whenEnrollEmployeeToCourse_thenShouldHaveCourseInEmployeeList" />
+        <item itemvalue="JUnit.HRApplicationTest.ifManagerRequestsCourseEmployeesEnrolledIn_thenShouldReturnMapOfEmployeesAndCourses" />
         <item itemvalue="JUnit.CoursePersistenceServiceTest" />
-        <item itemvalue="JUnit.CoursePersistenceServiceTest.ifPersonEnrollsOnCourseAgain_thenShouldThrowException" />
-        <item itemvalue="JUnit.CoursePersistenceServiceTest.whenGetCourses_thenShouldHaveListOfCourses" />
-        <item itemvalue="JUnit.CoursePersistenceServiceTest.whenShowWhatCoursesEmployeesAreEnrolledIn_thenGetArrayOfCoursesTheyAreIn" />
       </list>
     </recent_temporary>
   </component>

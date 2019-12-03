@@ -15,12 +15,10 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 
 public class CoursePersistenceServiceTest {
-
-
     private Salary SALARY_DEFAULT = new Salary(20000, "GBP");
     private Manager bob;
     private CoursePersistenceService coursePersistanceService = new CoursePersistenceService();
-    
+
 //    @BeforeEach
 //    void setUp() {
 //        coursePersistenceService = new CoursePersistenceService();

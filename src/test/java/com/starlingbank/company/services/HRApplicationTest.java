@@ -1,10 +1,13 @@
 package com.starlingbank.company.services;
 
 import com.starlingbank.company.entities.*;
+import com.starlingbank.externalservices.Course;
 import com.starlingbank.externalservices.CourseService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,6 +16,9 @@ import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 
 class HRApplicationTest {
@@ -26,6 +32,7 @@ class HRApplicationTest {
 
     @BeforeEach
     void setUp() {
+        MockitoAnnotations.initMocks(this);
         hrApplication = new HRApplication(courseService);
     }
 
@@ -96,7 +103,7 @@ class HRApplicationTest {
     }
 
     @Test
-    void whenEmployeeIsGivenHighestSalary_shouldGetUpdatedWithExpectedValue() {
+    void whenGetEmployeesWithHighestSalary_shouldGetExpectedListOfEmployees() {
         //Given
         Salary higherSalary = new Salary(300000, "GBP");
         Programmer jeff = new Programmer("Jeff", "20/11/1984", SALARY_DEFAULT);
@@ -124,6 +131,7 @@ class HRApplicationTest {
         Manager michelle = new Manager("Michelle", "17/01/1964", SALARY_DEFAULT);
         michelle.addNewEmployeeToManage(ada);
 
+        //When & Then
         List<String> expectedCourses = new ArrayList<>();
         expectedCourses.add("first aid");
         ada.setCoursesEnrolledOn(expectedCourses);
@@ -131,9 +139,35 @@ class HRApplicationTest {
         Map<Employee, List<String>> expectedReturnedMapOfEmployees = new HashMap<>();
         expectedReturnedMapOfEmployees.put(ada, expectedCourses);
 
-        //When & Then
+
         assertThat(hr.showWhatCoursesEmployeesAreEnrolledIn(michelle)).isEqualTo(expectedReturnedMapOfEmployees);
     }
+
+
+    @Test
+    void whenEnrollEmployeeToCourse_thenShouldHaveCourseAddedToEmployeeInCoursesAndCourseInEmployeeList(){
+        //Given
+        HRApplication hr = new HRApplication(courseService);
+        Programmer ada = new Programmer("Ada", "10/12/1815", SALARY_DEFAULT);
+        Course firstAid = new Course("first aid");
+
+        //When & Then
+        List<String> expectedCourses = new ArrayList<>();
+        expectedCourses.add("first aid");
+
+
+        when(courseService.showWhatCoursesPersonIsEnrolledIn(any(Employee.class))).thenReturn(expectedCourses); //mock returned list
+
+        hr.enrollEmployeeToCourse(ada, firstAid);
+
+        verify(courseService).enroll(any(Employee.class), any(Course.class)); //check this is executed
+        assertThat(ada.getCoursesEnrolledOn()).isEqualTo(expectedCourses);
+
+    }
+
+
+
+
 
 
 }

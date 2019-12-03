@@ -1,5 +1,6 @@
 package com.starlingbank.company.entities;
 
+import com.starlingbank.externalservices.Course;
 import com.starlingbank.externalservices.CourseService;
 import com.starlingbank.company.services.HRApplication;
 import org.junit.jupiter.api.BeforeEach;
@@ -31,6 +32,7 @@ public class EmployeeTest {
     @Test
     void ifEmployeeEnrollsToCourse_thenShouldShowTheCourseInTheirListOfEnrolledCourses() {
         //Given
+        Course firstAid = new Course("first aid");
         Programmer ada = new Programmer("Ada", "10/12/1815", SALARY_DEFAULT);
         HRApplication hr = new HRApplication(courseService);
 
@@ -39,10 +41,10 @@ public class EmployeeTest {
 
         //When
         when(courseService.showWhatCoursesPersonIsEnrolledIn(ada)).thenReturn(expectedCourses);
-        hr.enrollEmployeeToCourse(ada, 0);
+        hr.enrollEmployeeToCourse(ada, firstAid);
 
         //Then
-        verify(courseService).enroll(ada.getEmployeeId(), 0);
+        verify(courseService).enroll(ada, firstAid);
         assertThat(ada.getCoursesEnrolledOn()).isEqualTo(expectedCourses);
     }
 

@@ -3,6 +3,7 @@ package com.starlingbank.company.services;
 import com.starlingbank.company.entities.Employee;
 import com.starlingbank.company.entities.Manager;
 import com.starlingbank.company.entities.Salary;
+import com.starlingbank.externalservices.Course;
 import com.starlingbank.externalservices.CourseService;
 
 import java.util.ArrayList;
@@ -39,8 +40,8 @@ public class HRApplication {
         return employee.getSalary().getAmount() * employee.getBonusPercentage();
     }
 
-    public void enrollEmployeeToCourse(Employee employee, int courseId) {
-        courseService.enroll(employee.getEmployeeId(), courseId);
+    public void enrollEmployeeToCourse(Employee employee, Course course) {
+        courseService.enroll(employee, course);
 
         List<String> coursesEnrolledIn = new ArrayList<>();
         coursesEnrolledIn = courseService.showWhatCoursesPersonIsEnrolledIn(employee);
@@ -57,7 +58,6 @@ public class HRApplication {
         }
 
         return employeesEnrolledToCourses;
-
     }
 
     public void annualReviewBonusUpdate(Employee employee, double bonusPercentageIncrement) {
