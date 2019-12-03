@@ -3,10 +3,8 @@ package com.starlingbank.externalservices;
 import com.starlingbank.company.entities.Employee;
 import com.starlingbank.persistence.CoursePersistenceService;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
 
 public class CourseService {
     private CoursePersistenceService coursePersistenceService;

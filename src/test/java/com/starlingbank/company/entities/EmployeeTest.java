@@ -29,24 +29,24 @@ public class EmployeeTest {
     }
 
 
-    @Test
-    void ifEmployeeEnrollsToCourse_thenShouldShowTheCourseInTheirListOfEnrolledCourses() {
-        //Given
-        Course firstAid = new Course("first aid");
-        Programmer ada = new Programmer("Ada", "10/12/1815", SALARY_DEFAULT);
-        HRApplication hr = new HRApplication(courseService);
-
-        List<String> expectedCourses = new ArrayList<>();
-        expectedCourses.add("first aid");
-
-        //When
-        when(courseService.showWhatCoursesPersonIsEnrolledIn(ada)).thenReturn(expectedCourses);
-        hr.enrollEmployeeToCourse(ada, firstAid);
-
-        //Then
-        verify(courseService).enroll(ada, firstAid);
-        assertThat(ada.getCoursesEnrolledOn()).isEqualTo(expectedCourses);
-    }
+//    @Test
+//    void ifEmployeeEnrollsToCourse_thenShouldShowTheCourseInTheirListOfEnrolledCourses() {
+//        //Given
+//        Course firstAid = new Course("first aid");
+//        Programmer ada = new Programmer("Ada", "10/12/1815", SALARY_DEFAULT);
+//        HRApplication hr = new HRApplication(courseService);
+//
+//        List<String> expectedCourses = new ArrayList<>();
+//        expectedCourses.add("first aid");
+//
+//        //When
+//        when(courseService.showWhatCoursesPersonIsEnrolledIn(ada)).thenReturn(expectedCourses);
+//        hr.enrollEmployeeToCourse(ada, firstAid);
+//
+//        //Then
+//        verify(courseService).enroll(ada, firstAid);
+//        assertThat(ada.getCoursesEnrolledOn()).isEqualTo(expectedCourses);
+//    }
 
 
 }

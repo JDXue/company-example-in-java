@@ -5,10 +5,8 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/starlingbank/company/services/HRApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/starlingbank/company/services/HRApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/starlingbank/externalservices/CourseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/starlingbank/externalservices/CourseService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/starlingbank/persistence/EmployeePersistenceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/starlingbank/persistence/EmployeePersistenceService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/starlingbank/company/entities/EmployeeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/starlingbank/company/entities/EmployeeTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/starlingbank/persistence/HRApplicationPersistanceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/starlingbank/persistence/HRApplicationPersistanceService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/starlingbank/company/services/HRApplicationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/starlingbank/company/services/HRApplicationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/starlingbank/externalservices/CoursePersistenceServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/starlingbank/externalservices/CoursePersistenceServiceTest.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -70,17 +68,17 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.HRApplicationTest.whenEnrollEmployeeToCourse_thenShouldHaveCourseAddedToEmployeeInCoursesAndCourseInEmployeeList">
-    <configuration name="CoursePersistenceServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.HRApplicationTest">
+    <configuration name="HRApplicationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="companyexampletesting" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.starlingbank.externalservices.*" />
+          <option name="PATTERN" value="com.starlingbank.company.services.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.starlingbank.externalservices" />
-      <option name="MAIN_CLASS_NAME" value="com.starlingbank.externalservices.CoursePersistenceServiceTest" />
+      <option name="PACKAGE_NAME" value="com.starlingbank.company.services" />
+      <option name="MAIN_CLASS_NAME" value="com.starlingbank.company.services.HRApplicationTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -152,11 +150,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.HRApplicationTest" />
         <item itemvalue="JUnit.HRApplicationTest.whenEnrollEmployeeToCourse_thenShouldHaveCourseAddedToEmployeeInCoursesAndCourseInEmployeeList" />
         <item itemvalue="JUnit.HRApplicationTest.whenEnrollEmployeeToCourse_thenShouldHaveCourseAddedToEmployeeInCourses" />
         <item itemvalue="JUnit.HRApplicationTest.whenEnrollEmployeeToCourse_thenShouldHaveCourseInEmployeeList" />
         <item itemvalue="JUnit.HRApplicationTest.ifManagerRequestsCourseEmployeesEnrolledIn_thenShouldReturnMapOfEmployeesAndCourses" />
-        <item itemvalue="JUnit.CoursePersistenceServiceTest" />
       </list>
     </recent_temporary>
   </component>
