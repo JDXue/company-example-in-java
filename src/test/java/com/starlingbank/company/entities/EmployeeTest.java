@@ -1,19 +1,12 @@
 package com.starlingbank.company.entities;
 
-import com.starlingbank.externalservices.Course;
 import com.starlingbank.externalservices.CourseService;
-import com.starlingbank.company.services.HRApplication;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.initMocks;
 
 public class EmployeeTest {

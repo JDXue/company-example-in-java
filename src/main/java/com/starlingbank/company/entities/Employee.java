@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Employee {
-    private static int employeeId;
+    private int employeeId;
     private String name;
     private String dateOfBirth;
     private Salary salary;
@@ -14,8 +14,8 @@ public abstract class Employee {
     private List<String> coursesEnrolledOn;
 
 
-    public Employee(String name, String dateOfBirth, Salary salary) {
-        this.employeeId += 1;
+    public Employee(int employeeId, String name, String dateOfBirth, Salary salary) {
+        this.employeeId = employeeId;
         this.name = name;
         this.dateOfBirth = dateOfBirth;
         this.salary = salary;
@@ -74,7 +74,6 @@ public abstract class Employee {
     public void setCoursesEnrolledOn(List<String> coursesEnrolledOn) {
         this.coursesEnrolledOn = coursesEnrolledOn;
     }
-
 
     @Override
     public String toString() {

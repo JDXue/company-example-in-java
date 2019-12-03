@@ -3,11 +3,9 @@ package com.starlingbank.company.services;
 import com.starlingbank.company.entities.*;
 import com.starlingbank.externalservices.Course;
 import com.starlingbank.externalservices.CourseService;
-import com.starlingbank.persistence.HRApplicationPersistanceService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import java.util.ArrayList;
@@ -26,7 +24,8 @@ class HRApplicationTest {
 
     private static Salary SALARY_DEFAULT = new Salary(20000, "GBP");
 
-    private HRApplicationPersistanceService hrApplicationPersistance;
+    private HRApplication hrApplication;
+
 
     @Mock
     private CourseService courseService;
@@ -34,16 +33,16 @@ class HRApplicationTest {
     @BeforeEach
     void setUp() {
         MockitoAnnotations.initMocks(this);
-        hrApplicationPersistance = new HRApplicationPersistanceService(courseService);
+        hrApplication = new HRApplication(courseService);
     }
 
     @Test
     void givenManagerWithDefaultSalary_whenCalculateBonus_thenShouldReturnAManagerBonus() {
         //Given
-        Employee employee = new Manager("Bob", "20/12/1984", SALARY_DEFAULT);
+        Employee employee = new Manager(1,"Bob", "20/12/1984", SALARY_DEFAULT);
 
         //When
-        double bonusAmount = hrApplicationPersistance.calculateBonus(employee);
+        double bonusAmount = hrApplication.calculateBonus(employee);
 
         //Then
         double expectedBonus = 6000.0;
@@ -53,10 +52,10 @@ class HRApplicationTest {
     @Test
     void whenProgrammerPassed_shouldGetReturnedProgrammerEmployeeBonus() {
         //Given
-        Employee employee = new Programmer("Jeff", "20/11/1984", SALARY_DEFAULT);
+        Employee employee = new Programmer(1,"Jeff", "20/11/1984", SALARY_DEFAULT);
 
         //When
-        double bonusAmount = hrApplicationPersistance.calculateBonus(employee);
+        double bonusAmount = hrApplication.calculateBonus(employee);
 
         //Then
         double expectedBonus = 4000.0;
@@ -66,10 +65,10 @@ class HRApplicationTest {
     @Test
     void whenEmployeeHasAnnualReview_TheirBonusIsUpdated() {
         //Given
-        Programmer jeff = new Programmer("Jeff", "20/11/1984", SALARY_DEFAULT);
+        Programmer jeff = new Programmer(1,"Jeff", "20/11/1984", SALARY_DEFAULT);
 
         //When
-        hrApplicationPersistance.annualReviewBonusUpdate(jeff, 0.01); //already has 0.2 bonus
+        hrApplication.annualReviewBonusUpdate(jeff, 0.01); //already has 0.2 bonus
 
         //Then
         double expectedBonusPercentage = 0.21;
@@ -79,11 +78,11 @@ class HRApplicationTest {
     @Test
     void whenEmployeeHasAlreadyHadAnnualReview_shouldNotUpdateBonusPercentage() {
         //Given
-        Programmer jeff = new Programmer("Jeff", "20/11/1984", SALARY_DEFAULT);
+        Programmer jeff = new Programmer(1,"Jeff", "20/11/1984", SALARY_DEFAULT);
         jeff.setHasHadAnnualReview(true);
 
         //When
-        hrApplicationPersistance.annualReviewBonusUpdate(jeff, 0.01); //already has 0.2 bonus
+        hrApplication.annualReviewBonusUpdate(jeff, 0.01); //already has 0.2 bonus
 
         //Then
         assertThat(jeff.getBonusPercentage()).isEqualTo(0.2);
@@ -92,11 +91,11 @@ class HRApplicationTest {
     @Test
     void whenEmployeeHasWorkedMoreThanFiftyHours_bonusShouldIncrease() {
         //Given
-        Programmer jeff = new Programmer("Jeff", "20/11/1984", SALARY_DEFAULT);
+        Programmer jeff = new Programmer(1,"Jeff", "20/11/1984", SALARY_DEFAULT);
         jeff.setExtraHoursWorked(50.0);
 
         //When
-        double bonusAmount = hrApplicationPersistance.calculateBonus(jeff);
+        double bonusAmount = hrApplication.calculateBonus(jeff);
 
         //Then
         double expectedBonusAmount = 5000.0;
@@ -107,8 +106,8 @@ class HRApplicationTest {
     void whenGetEmployeesWithHighestSalary_shouldGetExpectedListOfEmployees() {
         //Given
         Salary higherSalary = new Salary(300000, "GBP");
-        Programmer jeff = new Programmer("Jeff", "20/11/1984", SALARY_DEFAULT);
-        Manager bob = new Manager("Bob", "20/12/1984", higherSalary);
+        Programmer jeff = new Programmer(1,"Jeff", "20/11/1984", SALARY_DEFAULT);
+        Manager bob = new Manager(2,"Bob", "20/12/1984", higherSalary);
 
         List<Employee> myEmployees = new ArrayList();
         myEmployees.add(jeff);
@@ -121,14 +120,14 @@ class HRApplicationTest {
         List<Employee> expectedListOfEmployees = new ArrayList<>();
         expectedListOfEmployees.add(bob);
 
-        assertEquals(expectedListOfEmployees, hrApplicationPersistance.getEmployeesWithHighestSalary(myEmployees));
+        assertEquals(expectedListOfEmployees, hrApplication.getEmployeesWithHighestSalary(myEmployees));
     }
 
     @Test
     void ifManagerRequestsCourseEmployeesEnrolledIn_thenShouldReturnMapOfEmployeesAndCourses() {
         //Given
-        Programmer ada = new Programmer("Ada", "10/12/1815", SALARY_DEFAULT);
-        Manager michelle = new Manager("Michelle", "17/01/1964", SALARY_DEFAULT);
+        Programmer ada = new Programmer(1,"Ada", "10/12/1815", SALARY_DEFAULT);
+        Manager michelle = new Manager(2,"Michelle", "17/01/1964", SALARY_DEFAULT);
         michelle.addNewEmployeeToManage(ada);
 
         //When & Then
@@ -140,14 +139,14 @@ class HRApplicationTest {
         expectedReturnedMapOfEmployees.put(ada, expectedCourses);
 
 
-        assertThat(hrApplicationPersistance.showWhatCoursesEmployeesAreEnrolledIn(michelle)).isEqualTo(expectedReturnedMapOfEmployees);
+        assertThat(hrApplication.showWhatCoursesEmployeesAreEnrolledIn(michelle)).isEqualTo(expectedReturnedMapOfEmployees);
     }
 
 
     @Test
     void whenEnrollEmployeeToCourse_thenShouldHaveCourseAddedToEmployeeInCoursesAndCourseInEmployeeList(){
         //Given
-        Programmer ada = new Programmer("Ada", "10/12/1815", SALARY_DEFAULT);
+        Programmer ada = new Programmer(1,"Ada", "10/12/1815", SALARY_DEFAULT);
         Course firstAid = new Course("first aid");
 
         //When & Then
@@ -157,16 +156,12 @@ class HRApplicationTest {
 
         when(courseService.showWhatCoursesPersonIsEnrolledIn(any(Employee.class))).thenReturn(expectedCourses); //mock returned list
 
-        hrApplicationPersistance.enrollEmployeeToCourse(ada, firstAid);
+        hrApplication.enrollEmployeeToCourse(ada, firstAid);
 
         verify(courseService).enroll(any(Employee.class), any(Course.class)); //check this is executed
         assertThat(ada.getCoursesEnrolledOn()).isEqualTo(expectedCourses);
 
     }
-
-
-
-
 
 
 }

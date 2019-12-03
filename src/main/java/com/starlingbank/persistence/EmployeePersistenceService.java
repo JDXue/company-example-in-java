@@ -6,31 +6,78 @@ import com.starlingbank.company.entities.Programmer;
 import com.starlingbank.company.entities.Salary;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class EmployeePersistenceService {
 
-    private List<Employee> employees = new ArrayList<>();
+    private Map<Integer, Employee> employees;
+    private Map<Integer, List<Integer>> teams;
+    private int nextFreeEmployeeId = 0;
 
     public EmployeePersistenceService(){
-        this.employees = employees;
+        this.employees = new HashMap<>();
+        this.teams = new HashMap<>();
     }
 
     public void addNewManager(String name, String dateOfBirth, Salary salary){
-        Manager newManager = new Manager(name, dateOfBirth, salary);
+        int employeeId = generateNextFreeEmployeeId();
+        Manager newManager = new Manager(employeeId, name, dateOfBirth, salary);
         addToEmployees(newManager);
     }
 
     public void addNewProgrammer(String name, String dateOfBirth, Salary salary){
-        Programmer newProgrammer = new Programmer(name, dateOfBirth, salary);
+        int employeeId = generateNextFreeEmployeeId();
+        Programmer newProgrammer = new Programmer(employeeId, name, dateOfBirth, salary);
         addToEmployees(newProgrammer);
     }
 
     public List<Employee> listEmployees(){
+        return new ArrayList<>(employees.values());
+    }
+
+    private Map<Integer, Employee>  getEmployees() {
         return employees;
     }
 
-    public void addToEmployees(Employee employee) {
-        employees.add(employee);
+    private void addToEmployees(Employee employee) {
+        if (employees.containsValue(employee)) {
+            return; //will not add the employee if same instance is included in the
+        }
+        employees.put(employee.getEmployeeId(), employee);
+    }
+
+    private int generateNextFreeEmployeeId(){
+        return nextFreeEmployeeId++;
+    }
+
+
+    public void addEmployeeToTeam(int managerId, int employeeId){
+
+        if (employees.get(managerId) instanceof Manager) {
+            List<Integer> teamMembers = new ArrayList<>();
+
+            if(teams.get(managerId) != null) {
+                teamMembers = teams.get(managerId);
+            }
+
+            teamMembers.add(employeeId);
+            teams.put(managerId, teamMembers);
+
+        } else return;
+
+    }
+
+
+    public List<Integer> getTeam(int managerId) {
+        if (teams.get(managerId) == null){
+            return new ArrayList<>();
+        }
+       return teams.get(managerId);
+    }
+
+    public int getNextFreeEmployeeId() {
+        return nextFreeEmployeeId;
     }
 }

@@ -1,5 +1,6 @@
 package com.starlingbank.persistence;
 
+import com.starlingbank.company.entities.Employee;
 import com.starlingbank.externalservices.Course;
 
 import java.util.ArrayList;
@@ -31,23 +32,23 @@ public class CoursePersistenceService {
         return nextFreeCourseId;
     }
 
-    public int generateNewNextFreeCourseId() {
+    private int generateNewNextFreeCourseId() {
         return nextFreeCourseId++;
     }
 
-    public void enroll(int employeeId, int courseId) {
+    public void enroll(Employee employee, int courseId) {
 
         if (!courses.containsKey(courseId)) {
             throw new IllegalStateException("Course ID " + courseId + " not found");
         }
 
-        if (courseEnrollment.containsKey(employeeId)) {
-            if (courseEnrollment.get(employeeId).contains(courseId)){
+        if (courseEnrollment.containsKey(employee.getEmployeeId())) {
+            if (courseEnrollment.get(employee.getEmployeeId()).contains(courseId)){
                 return;
             }
         }
 
-        List<Integer> employeeCourses = courseEnrollment.computeIfAbsent(employeeId, list -> new ArrayList<>());
+        List<Integer> employeeCourses = courseEnrollment.computeIfAbsent(employee.getEmployeeId(), list -> new ArrayList<>());
         employeeCourses.add(courseId);
     }
 
@@ -55,8 +56,8 @@ public class CoursePersistenceService {
         return new ArrayList<>(courses.values());
     }
 
-    public List<String> showWhatCoursesPersonIsEnrolledIn(int employeeId){
-        List<Integer> employeeCourses = courseEnrollment.get(employeeId);
+    public List<String> showWhatCoursesPersonIsEnrolledIn(Employee employee){
+        List<Integer> employeeCourses = courseEnrollment.get(employee.getEmployeeId());
 
         List<String> collect = employeeCourses
                 .stream()

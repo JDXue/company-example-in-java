@@ -2,11 +2,8 @@ package com.starlingbank.company.services;
 
 import com.starlingbank.company.entities.Employee;
 import com.starlingbank.company.entities.Manager;
-import com.starlingbank.company.entities.Salary;
 import com.starlingbank.externalservices.Course;
 import com.starlingbank.externalservices.CourseService;
-import com.starlingbank.persistence.CoursePersistenceService;
-import com.starlingbank.persistence.HRApplicationPersistanceService;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,51 +11,79 @@ import java.util.List;
 import java.util.Map;
 
 public class HRApplication {
+    private static double EXTRA_HOURS_BONUS_PERCENTAGE = 0.05;
+    private static int MAX_AMOUNT_EXTRA_HOURS = 50;
 
+    private CourseService courseService;
 
-    private HRApplicationPersistanceService hrApplicationPersistanceService;
-
-
-    public HRApplication(HRApplicationPersistanceService hrApplicationPersistanceService) {
-
-        this.hrApplicationPersistanceService = hrApplicationPersistanceService;
+    public HRApplication(CourseService courseService) {
+        this.courseService = courseService;
     }
 
 
     public double calculateBonus(Employee employee) {
-        return hrApplicationPersistanceService.calculateBonus(employee);
+        if (employee.getExtraHoursWorked() >= MAX_AMOUNT_EXTRA_HOURS) {
+            return calculateBonusAmountForExtraHours(employee);
+
+        } else {
+            return calculateBaseBonusAmount(employee);
+        }
     }
 
-    private double calculateBonusAmountForExtraHours(Employee employee) {
-        return hrApplicationPersistanceService.calculateBonusAmountForExtraHours(employee);
+    public double calculateBonusAmountForExtraHours(Employee employee) {
+        return employee.getSalary().getAmount() * employee.getBonusPercentage() + (employee.getSalary().getAmount() * EXTRA_HOURS_BONUS_PERCENTAGE);
     }
 
-    private double calculateBaseBonusAmount(Employee employee) {
-        return hrApplicationPersistanceService.calculateBaseBonusAmount(employee);
+    public double calculateBaseBonusAmount(Employee employee) {
+        return employee.getSalary().getAmount() * employee.getBonusPercentage();
     }
 
     public void enrollEmployeeToCourse(Employee employee, Course course) {
-        hrApplicationPersistanceService.enrollEmployeeToCourse(employee, course);
+        courseService.enroll(employee, course);
+
+        List<String> coursesEnrolledIn = new ArrayList<>();
+        coursesEnrolledIn = courseService.showWhatCoursesPersonIsEnrolledIn(employee);
+
+        employee.setCoursesEnrolledOn(coursesEnrolledIn);
     }
 
-
     public Map<Employee, List<String>> showWhatCoursesEmployeesAreEnrolledIn(Manager manager) {
-        return hrApplicationPersistanceService.showWhatCoursesEmployeesAreEnrolledIn(manager);
+        Map<Employee, List<String>> employeesEnrolledToCourses = new HashMap<>();
+
+        for (Employee employee : manager.getEmployeesManaging()) {
+            employeesEnrolledToCourses.put(employee, employee.getCoursesEnrolledOn());
+        }
+
+        return employeesEnrolledToCourses;
     }
 
     public void annualReviewBonusUpdate(Employee employee, double bonusPercentageIncrement) {
-        hrApplicationPersistanceService.annualReviewBonusUpdate(employee, bonusPercentageIncrement);
+        if (employee.hasHadAnnualReview()) {
+            return;
+        }
+
+        employee.setHasHadAnnualReview(true);
+        employee.setBonusPercentage(employee.getBonusPercentage() + bonusPercentageIncrement);
     }
 
     public List<Employee> getEmployeesWithHighestSalary(List<Employee> listOfEmployees) {
-        return hrApplicationPersistanceService.getEmployeesWithHighestSalary(listOfEmployees);
+        double highestSalaryFound = 0.0;
+        List<Employee> employeesWithHighestSalary = new ArrayList<>();
+
+        for (Employee employee : listOfEmployees) {
+            if (employee.getSalary().getAmount() > highestSalaryFound) {
+                highestSalaryFound = employee.getSalary().getAmount();
+            }
+        }
+
+        for (Employee employee : listOfEmployees) {
+            if (employee.getSalary().getAmount() == highestSalaryFound) {
+                employeesWithHighestSalary.add(employee);
+            }
+        }
+
+        return employeesWithHighestSalary;
+
     }
 
 }
-
-
-//calculateManagerBonus(com.starlingbank.company.entities.Manager parameter) {
-//    getManagerBonus(new com.starlingbank.company.entities.Manager { getBonus() {parameter.getBonus();});
-//}
-
-

@@ -18,8 +18,8 @@ public class ManagerTest {
     @BeforeEach
     void setUp() {
         salary = new Salary(20000, "GBP");
-        jeff = new Programmer("Jeff", "20/11/1984", salary);
-        bob = new Manager("Bob", "20/12/1984", salary);
+        jeff = new Programmer(1,"Jeff", "20/11/1984", salary);
+        bob = new Manager(2,"Bob", "20/12/1984", salary);
     }
 
     @Test

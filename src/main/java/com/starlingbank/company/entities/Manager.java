@@ -5,8 +5,8 @@ import java.util.ArrayList;
 public class Manager extends Employee {
     private ArrayList<Employee> employeesManaging; //always want the manager to manage no employees at the beginning
 
-    public Manager(String name, String dateOfBirth, Salary salary){
-        super(name, dateOfBirth, salary);
+    public Manager(int employeeId, String name, String dateOfBirth, Salary salary){
+        super(employeeId, name, dateOfBirth, salary);
         bonusPercentage = 0.3;
         employeesManaging = new ArrayList<>();
     }
@@ -23,8 +23,6 @@ public class Manager extends Employee {
         } else {
             employeesManaging.add(employee);
         }
-
-
     }
 
     public ArrayList<Employee> getEmployeesManaging() {

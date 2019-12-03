@@ -14,7 +14,7 @@ public class CourseService {
     }
 
     public void enroll(Employee employee, Course course) {
-        coursePersistenceService.enroll(employee.getEmployeeId(), course.getId());
+        coursePersistenceService.enroll(employee, course.getId());
     }
 
     public void addCourse(Course newCourse) {
@@ -26,6 +26,6 @@ public class CourseService {
     }
 
     public List<String> showWhatCoursesPersonIsEnrolledIn(Employee person){
-        return coursePersistenceService.showWhatCoursesPersonIsEnrolledIn(person.getEmployeeId());
+        return coursePersistenceService.showWhatCoursesPersonIsEnrolledIn(person);
     }
 }
