@@ -16,14 +16,14 @@ public class Manager extends Employee {
         System.out.println("I am managing a cool application");
     }
 
-
-    public void addNewEmployeeToManage(Employee employee){
-        if (employeesManaging.contains(employee)) {
-            throw new IllegalStateException(getName() + " is already managing " + employee.getName());
-        } else {
-            employeesManaging.add(employee);
-        }
-    }
+//
+//    public void addNewEmployeeToManage(Employee employee){
+//        if (employeesManaging.contains(employee)) {
+//            throw new IllegalStateException(getName() + " is already managing " + employee.getName());
+//        } else {
+//            employeesManaging.add(employee);
+//        }
+//    }
 
     public ArrayList<Employee> getEmployeesManaging() {
         return employeesManaging;

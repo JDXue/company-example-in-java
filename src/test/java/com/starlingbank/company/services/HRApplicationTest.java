@@ -123,24 +123,24 @@ class HRApplicationTest {
         assertEquals(expectedListOfEmployees, hrApplication.getEmployeesWithHighestSalary(myEmployees));
     }
 
-    @Test
-    void ifManagerRequestsCourseEmployeesEnrolledIn_thenShouldReturnMapOfEmployeesAndCourses() {
-        //Given
-        Programmer ada = new Programmer(1,"Ada", "10/12/1815", SALARY_DEFAULT);
-        Manager michelle = new Manager(2,"Michelle", "17/01/1964", SALARY_DEFAULT);
-        michelle.addNewEmployeeToManage(ada);
-
-        //When & Then
-        List<String> expectedCourses = new ArrayList<>();
-        expectedCourses.add("first aid");
-        ada.setCoursesEnrolledOn(expectedCourses);
-
-        Map<Employee, List<String>> expectedReturnedMapOfEmployees = new HashMap<>();
-        expectedReturnedMapOfEmployees.put(ada, expectedCourses);
-
-
-        assertThat(hrApplication.showWhatCoursesEmployeesAreEnrolledIn(michelle)).isEqualTo(expectedReturnedMapOfEmployees);
-    }
+//    @Test
+//    void ifManagerRequestsCourseEmployeesEnrolledIn_thenShouldReturnMapOfEmployeesAndCourses() {
+//        //Given
+//        Programmer ada = new Programmer(1,"Ada", "10/12/1815", SALARY_DEFAULT);
+//        Manager michelle = new Manager(2,"Michelle", "17/01/1964", SALARY_DEFAULT);
+//        michelle.addNewEmployeeToManage(ada);
+//
+//        //When & Then
+//        List<String> expectedCourses = new ArrayList<>();
+//        expectedCourses.add("first aid");
+//        ada.setCoursesEnrolledOn(expectedCourses);
+//
+//        Map<Employee, List<String>> expectedReturnedMapOfEmployees = new HashMap<>();
+//        expectedReturnedMapOfEmployees.put(ada, expectedCourses);
+//
+//
+//        assertThat(hrApplication.showWhatCoursesEmployeesAreEnrolledIn(michelle)).isEqualTo(expectedReturnedMapOfEmployees);
+//    }
 
 
     @Test

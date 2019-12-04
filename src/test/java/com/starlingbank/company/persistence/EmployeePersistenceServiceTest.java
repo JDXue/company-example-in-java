@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class EmployeePersistenceServiceTest {
 
@@ -67,6 +68,8 @@ public class EmployeePersistenceServiceTest {
 
     @Test
     void whenAddedMoreThanOneEmployee_thenEmployeesShouldEachHaveUniqueId(){
+        //Need to  make sure that the employee instances all have different ids
+
         //Given
         Salary salary = new Salary(33000, "GBP");
 
@@ -76,8 +79,10 @@ public class EmployeePersistenceServiceTest {
         employeePersistenceService.addNewProgrammer("Ada","1982-08-18", salary);
 
         //Then
-        assertThat(employeePersistenceService.listEmployees()).containsOnlyOnce();
-//        assertThat(employeePersistenceService.getEmployees().keySet().c);
+        int employeeId1 = employeePersistenceService.listEmployees().get(0).getEmployeeId();
+        int employeeId2 = employeePersistenceService.listEmployees().get(1).getEmployeeId();
+        assertThat(employeeId1).isNotEqualTo(employeeId2);
+
     }
 
     @Test
@@ -90,11 +95,70 @@ public class EmployeePersistenceServiceTest {
 
         //When
 //        employeePersistenceService.getEmployees();
-        employeePersistenceService.addEmployeeToTeam(1,2);
+        employeePersistenceService.addEmployeeToTeam(0,1);
 
         //Then
-        List<Integer> employeesToManage = employeePersistenceService.getTeam(1);
-        assertThat(employeesToManage.contains(2));
+        List<Integer> employeesToManage = employeePersistenceService.getTeam(0);
+        assertThat(employeesToManage).contains(1);
+    }
+
+    @Test
+    void whenManagerAddsMultipleEmployeesToTeam_thenShouldReturnExpectedEmployees(){
+        //Given
+        Salary salary = new Salary(33000, "GBP");
+
+        employeePersistenceService.addNewManager("Alice","1982-08-18", salary);
+        employeePersistenceService.addNewProgrammer("Ada","1982-08-18", salary);
+        employeePersistenceService.addNewProgrammer("Grace", "1982-08-18", salary);
+
+        //When
+        employeePersistenceService.addEmployeeToTeam(0,1);
+        employeePersistenceService.addEmployeeToTeam(0,2);
+
+        //Then
+        assertThat(employeePersistenceService.getTeam(0)).containsExactly(1,2);
+
+    }
+
+    @Test
+    void whenManagerAddsSameEmployeeToTeam_shouldOnlyAddEmployeeOnce(){
+        //Given
+        Salary salary = new Salary(33000, "GBP");
+        employeePersistenceService.addNewManager("Alice","1982-08-18", salary);
+        employeePersistenceService.addNewProgrammer("Ada","1982-08-18", salary);
+
+        //When
+        employeePersistenceService.addEmployeeToTeam(0,1);
+        employeePersistenceService.addEmployeeToTeam(0,1);
+
+        //Then
+        assertThat(employeePersistenceService.getTeam(0)).containsOnlyOnce(1);
+
+    }
+
+    @Test
+    void whenProgrammerTriesToAddEmployeeToTeamAsManager_thenShouldThrowException(){
+        //Given
+        Salary salary = new Salary(33000, "GBP");
+        employeePersistenceService.addNewProgrammer("Alice","1982-08-18", salary);
+        employeePersistenceService.addNewProgrammer("Ada","1982-08-18", salary);
+
+        //Then
+        assertThatThrownBy(() -> employeePersistenceService.addEmployeeToTeam(0,1))
+                .isInstanceOf(IllegalStateException.class)
+                .hasMessageContaining("You do not have permission to be the owner of a team");
+
+    }
+
+    @Test
+    void whenGetTeamWithManagerWithNoTeam_thenShouldReturnEmptyArray(){
+        //Given
+        Salary salary = new Salary(33000, "GBP");
+        employeePersistenceService.addNewManager("Alice","1982-08-18", salary);
+
+        //When & Then
+        assertThat(employeePersistenceService.getTeam(0)).isEmpty();
+
     }
 
 

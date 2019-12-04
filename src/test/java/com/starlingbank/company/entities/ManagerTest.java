@@ -22,29 +22,29 @@ public class ManagerTest {
         bob = new Manager(2,"Bob", "20/12/1984", salary);
     }
 
-    @Test
-    void whenAddNewEmployeeToManage_thenShouldHaveEmployeeInManagingList() {
-        //Given
-
-        //When
-        bob.addNewEmployeeToManage(jeff);
-
-        List<Employee> expectedEmployees = new ArrayList<>();
-        expectedEmployees.add(jeff);
-
-        //Then
-        assertThat(bob.getEmployeesManaging()).isEqualTo(expectedEmployees);
-    }
-
-    @Test
-    void whenEmployeeIsAddedTwiceTeEmployeeManagerList_thenShouldThrowException() {
-        //Given
-        bob.addNewEmployeeToManage(jeff);
-
-        //Then
-        assertThatThrownBy(() -> bob.addNewEmployeeToManage(jeff))
-                .isInstanceOf(IllegalStateException.class)
-                .hasMessageContaining("Bob is already managing Jeff");
-    }
+//    @Test
+//    void whenAddNewEmployeeToManage_thenShouldHaveEmployeeInManagingList() {
+//        //Given
+//
+//        //When
+//        bob.addNewEmployeeToManage(jeff);
+//
+//        List<Employee> expectedEmployees = new ArrayList<>();
+//        expectedEmployees.add(jeff);
+//
+//        //Then
+//        assertThat(bob.getEmployeesManaging()).isEqualTo(expectedEmployees);
+//    }
+//
+//    @Test
+//    void whenEmployeeIsAddedTwiceTeEmployeeManagerList_thenShouldThrowException() {
+//        //Given
+//        bob.addNewEmployeeToManage(jeff);
+//
+//        //Then
+//        assertThatThrownBy(() -> bob.addNewEmployeeToManage(jeff))
+//                .isInstanceOf(IllegalStateException.class)
+//                .hasMessageContaining("Bob is already managing Jeff");
+//    }
 
 }

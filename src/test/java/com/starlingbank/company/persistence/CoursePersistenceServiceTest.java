@@ -63,26 +63,26 @@ public class CoursePersistenceServiceTest {
     }
 
 
-//    @Test
-//    void ifPersonEnrollsOnCourseAgain_thenShouldThrowException(){
-//        //Given
-//        Course firstAid = new Course("firstAid");
-//        coursePersistenceService.addCourse(firstAid);
-//        coursePersistenceService.enroll(bob, 0);
-//
-//        //When
-//        coursePersistenceService.enroll(bob, 0);
-//
-//
-//
-//        //Then
-//        List <Course> expectedCourses = new ArrayList<>();
-//        expectedCourses.add(firstAid);
-//
-//        assertThat(coursePersistenceService.listCourses()).isEqualTo(expectedCourses);
-//
-//
-//    }
+    @Test
+    void ifPersonEnrollsOnCourseAgain_thenShouldNotAddToCourseMoreThanOnce(){
+        //Given
+        Course firstAid = new Course("firstAid");
+        coursePersistenceService.addCourse(firstAid);
+        coursePersistenceService.enroll(bob, 0);
+
+        //When
+        coursePersistenceService.enroll(bob, 0);
+
+
+
+        //Then
+        List <Course> expectedCourses = new ArrayList<>();
+        expectedCourses.add(firstAid);
+
+        assertThat(coursePersistenceService.listCourses()).isEqualTo(expectedCourses);
+
+
+    }
 
     @Test
     void whenGetCourses_thenShouldHaveListOfCourses(){

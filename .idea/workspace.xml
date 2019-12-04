@@ -3,26 +3,22 @@
   <component name="ChangeListManager">
     <list default="true" id="29fe327a-03e1-47ca-88b6-66fb8c76717a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/starlingbank/company/entities/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/starlingbank/company/entities/Employee.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/starlingbank/company/entities/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/starlingbank/company/entities/Manager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/starlingbank/company/entities/Programmer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/starlingbank/company/entities/Programmer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/starlingbank/company/services/HRApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/starlingbank/company/services/HRApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/starlingbank/externalservices/CourseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/starlingbank/externalservices/CourseService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/starlingbank/persistence/CoursePersistenceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/starlingbank/persistence/CoursePersistenceService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/starlingbank/persistence/EmployeePersistenceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/starlingbank/persistence/EmployeePersistenceService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/starlingbank/persistence/HRApplicationPersistanceService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/starlingbank/company/entities/EmployeeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/starlingbank/company/entities/EmployeeTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/starlingbank/company/entities/ManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/starlingbank/company/entities/ManagerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/starlingbank/company/entities/SalaryTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/starlingbank/company/persistence/CoursePersistenceServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/starlingbank/company/persistence/CoursePersistenceServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/starlingbank/company/persistence/EmployeePersistenceServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/starlingbank/company/persistence/EmployeePersistenceServiceTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/starlingbank/company/services/HRApplicationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/starlingbank/company/services/HRApplicationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/starlingbank/externalservices/CoursePersistenceServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/starlingbank/company/persistence/CoursePersistenceServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Main.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageViewManager">
+    <option name="myElementSize" value="69" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -78,39 +74,30 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.EmployeePersistenceServiceTest.whenAddedMoreThanOneEmployee_thenEmployeesShouldEachHaveUniqueId">
-    <configuration name="CoursePersistenceServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.EmployeePersistenceServiceTest.whenGetTeamWithManagerWithNoTeam_thenShouldReturnEmptyArray">
+    <configuration name="CoursePersistenceServiceTest" type="JUnit" factoryName="JUnit">
       <module name="companyexampletesting" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.starlingbank.company.persistence.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
       <option name="PACKAGE_NAME" value="com.starlingbank.company.persistence" />
       <option name="MAIN_CLASS_NAME" value="com.starlingbank.company.persistence.CoursePersistenceServiceTest" />
+      <option name="METHOD_NAME" value="" />
       <option name="TEST_OBJECT" value="class" />
+      <option name="PARAMETERS" value="" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CoursePersistenceServiceTest.whenShowWhatCoursesEmployeesAreEnrolledIn_thenGetArrayOfCoursesTheyAreIn" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="EmployeePersistenceServiceTest" type="JUnit" factoryName="JUnit">
       <module name="companyexampletesting" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.starlingbank.company.persistence.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
       <option name="PACKAGE_NAME" value="com.starlingbank.company.persistence" />
-      <option name="MAIN_CLASS_NAME" value="com.starlingbank.company.persistence.CoursePersistenceServiceTest" />
-      <option name="METHOD_NAME" value="whenShowWhatCoursesEmployeesAreEnrolledIn_thenGetArrayOfCoursesTheyAreIn" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="MAIN_CLASS_NAME" value="com.starlingbank.company.persistence.EmployeePersistenceServiceTest" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="PARAMETERS" value="" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="EmployeePersistenceServiceTest.whenAddEmployeeToManage_shouldHaveEmployeeInManagerList" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="EmployeePersistenceServiceTest.whenGetTeamWithManagerWithNoTeam_thenShouldReturnEmptyArray" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="companyexampletesting" />
       <extension name="coverage">
         <pattern>
@@ -120,51 +107,51 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.starlingbank.company.persistence" />
       <option name="MAIN_CLASS_NAME" value="com.starlingbank.company.persistence.EmployeePersistenceServiceTest" />
-      <option name="METHOD_NAME" value="whenAddEmployeeToManage_shouldHaveEmployeeInManagerList" />
+      <option name="METHOD_NAME" value="whenGetTeamWithManagerWithNoTeam_thenShouldReturnEmptyArray" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="EmployeePersistenceServiceTest.whenAddedMoreThanOneEmployee_thenEmployeesShouldEachHaveUniqueId" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="HRApplicationTest" type="JUnit" factoryName="JUnit">
+      <module name="companyexampletesting" />
+      <option name="PACKAGE_NAME" value="com.starlingbank.company.services" />
+      <option name="MAIN_CLASS_NAME" value="com.starlingbank.company.services.HRApplicationTest" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="PARAMETERS" value="" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ManagerTest" type="JUnit" factoryName="JUnit" temporary="true">
       <module name="companyexampletesting" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.starlingbank.company.persistence.*" />
+          <option name="PATTERN" value="com.starlingbank.company.services.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.starlingbank.company.persistence" />
-      <option name="MAIN_CLASS_NAME" value="com.starlingbank.company.persistence.EmployeePersistenceServiceTest" />
-      <option name="METHOD_NAME" value="whenAddedMoreThanOneEmployee_thenEmployeesShouldEachHaveUniqueId" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="PACKAGE_NAME" value="com.starlingbank.company.entities" />
+      <option name="MAIN_CLASS_NAME" value="com.starlingbank.company.entities.ManagerTest" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="PARAMETERS" value="" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="EmployeePersistenceServiceTest.whenAddedSameEmployeeMoreThanOnce_thenEmployeeShouldOnlyBeAddedOnce" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="companyexampletesting" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.starlingbank.company.persistence.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.starlingbank.company.persistence" />
-      <option name="MAIN_CLASS_NAME" value="com.starlingbank.company.persistence.EmployeePersistenceServiceTest" />
-      <option name="METHOD_NAME" value="whenAddedSameEmployeeMoreThanOnce_thenEmployeeShouldOnlyBeAddedOnce" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+    <list>
+      <item itemvalue="JUnit.CoursePersistenceServiceTest" />
+      <item itemvalue="JUnit.EmployeePersistenceServiceTest" />
+      <item itemvalue="JUnit.HRApplicationTest" />
+      <item itemvalue="JUnit.ManagerTest" />
+      <item itemvalue="JUnit.EmployeePersistenceServiceTest.whenGetTeamWithManagerWithNoTeam_thenShouldReturnEmptyArray" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.EmployeePersistenceServiceTest.whenAddedMoreThanOneEmployee_thenEmployeesShouldEachHaveUniqueId" />
-        <item itemvalue="JUnit.EmployeePersistenceServiceTest.whenAddedSameEmployeeMoreThanOnce_thenEmployeeShouldOnlyBeAddedOnce" />
-        <item itemvalue="JUnit.EmployeePersistenceServiceTest.whenAddEmployeeToManage_shouldHaveEmployeeInManagerList" />
-        <item itemvalue="JUnit.CoursePersistenceServiceTest" />
-        <item itemvalue="JUnit.CoursePersistenceServiceTest.whenShowWhatCoursesEmployeesAreEnrolledIn_thenGetArrayOfCoursesTheyAreIn" />
+        <item itemvalue="JUnit.EmployeePersistenceServiceTest.whenGetTeamWithManagerWithNoTeam_thenShouldReturnEmptyArray" />
+        <item itemvalue="JUnit.ManagerTest" />
       </list>
     </recent_temporary>
   </component>
@@ -192,73 +179,18 @@
       </map>
     </option>
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/com/starlingbank/company/persistence/EmployeePersistenceServiceTest.java</url>
-          <line>70</line>
-          <option name="timeStamp" value="43" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/com/starlingbank/company/persistence/EmployeePersistenceServiceTest.java</url>
-          <line>74</line>
-          <option name="timeStamp" value="44" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/com/starlingbank/company/persistence/EmployeePersistenceServiceTest.java</url>
-          <line>75</line>
-          <option name="timeStamp" value="45" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/com/starlingbank/company/persistence/EmployeePersistenceServiceTest.java</url>
-          <line>78</line>
-          <option name="timeStamp" value="46" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/starlingbank/persistence/EmployeePersistenceService.java</url>
-          <line>30</line>
-          <option name="timeStamp" value="50" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/starlingbank/persistence/EmployeePersistenceService.java</url>
-          <line>32</line>
-          <option name="timeStamp" value="51" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/starlingbank/persistence/EmployeePersistenceService.java</url>
-          <line>31</line>
-          <option name="timeStamp" value="52" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/starlingbank/persistence/EmployeePersistenceService.java</url>
-          <line>44</line>
-          <option name="timeStamp" value="54" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/starlingbank/persistence/EmployeePersistenceService.java</url>
-          <line>47</line>
-          <option name="timeStamp" value="55" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/starlingbank/persistence/EmployeePersistenceService.java</url>
-          <line>45</line>
-          <option name="timeStamp" value="56" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/com/starlingbank/persistence/EmployeePersistenceService.java</url>
-          <line>50</line>
-          <properties class="com.starlingbank.persistence.EmployeePersistenceService" method="generateNextFreeEmployeeId">
-            <option name="EMULATED" value="true" />
-          </properties>
-          <option name="timeStamp" value="47" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/companyexampletesting$CourseServiceTest.ic" NAME="CourseServiceTest Coverage Results" MODIFIED="1574959813006" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>com.starlingbank.externalservices.*</FILTER>
     </SUITE>
+    <SUITE FILE_PATH="coverage/companyexampletesting$HRApplicationTest.ic" NAME="HRApplicationTest Coverage Results" MODIFIED="1575455153867" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/companyexampletesting$EmployeePersistenceServiceTest_whenProgrammerTriesToAddEmployeeToTeamAsManager_thenShouldThrowException.ic" NAME="EmployeePersistenceServiceTest.whenProgrammerTriesToAddEmployeeToTeamAsManager_thenShouldThrowException Coverage Results" MODIFIED="1575453783060" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.starlingbank.company.persistence.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/companyexampletesting$CoursePersistenceServiceTest.ic" NAME="CoursePersistenceServiceTest Coverage Results" MODIFIED="1575455545125" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/companyexampletesting$CoursePersistenceServiceTest_ifPersonEnrollsOnCourseAgain_thenShouldThrowException.ic" NAME="CoursePersistenceServiceTest.ifPersonEnrollsOnCourseAgain_thenShouldThrowException Coverage Results" MODIFIED="1575454677582" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.starlingbank.company.persistence.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/companyexampletesting$EmployeePersistenceServiceTest.ic" NAME="EmployeePersistenceServiceTest Coverage Results" MODIFIED="1575455569672" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

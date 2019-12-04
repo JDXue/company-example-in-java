@@ -59,13 +59,22 @@ public class EmployeePersistenceService {
             List<Integer> teamMembers = new ArrayList<>();
 
             if(teams.get(managerId) != null) {
+
+                //if employee is already in the team they should not be added more thn once
+                if (getTeam(managerId).contains(employeeId)){
+                    return;
+                }
+
                 teamMembers = teams.get(managerId);
             }
 
             teamMembers.add(employeeId);
             teams.put(managerId, teamMembers);
 
-        } else return;
+        } else {
+
+            throw new IllegalStateException("You do not have permission to be the owner of a team");
+        }
 
     }
 
