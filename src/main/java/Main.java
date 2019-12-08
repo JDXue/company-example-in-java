@@ -1,45 +1,63 @@
 import com.starlingbank.company.entities.*;
+import com.starlingbank.persistence.CoursePersistenceService;
+import com.starlingbank.persistence.DatabaseCoursePersistenceService;
+import com.starlingbank.persistence.DatabaseEmployeePersistenceService;
+import com.starlingbank.persistence.EmployeePersistenceService;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
 public class Main {
     public static void main(String[] args){
-        Salary newSalary = new Salary(20000, "GBP");
-//        com.starlingbank.company.entities.Employee e1 = new com.starlingbank.company.entities.Employee("bob", "12/12/1988", newSalary);
-//
-////        System.out.println("Hi I am " + e1.getName() + ", I was born " + e1.getDateOfBirth() + " my salary is " + e1.getSalary());
+        EmployeePersistenceService databaseEmployeePersistenceService = new DatabaseEmployeePersistenceService();
+        CoursePersistenceService databaseCoursePersistenceService = new DatabaseCoursePersistenceService();
+        List<Employee> listOfEmployees = databaseEmployeePersistenceService.listEmployees();
+
+        System.out.println(listOfEmployees);
+
+//        databaseEmployeePersistenceService.addNewProgrammer("Ada", "1992-12-04",null);
+//        databaseEmployeePersistenceService.addNewProgrammer("Ellen", "1992-12-04",null);
+//        databaseEmployeePersistenceService.addNewManager("Grace", "1980-12-04",null);
+//        databaseEmployeePersistenceService.addNewManager("Joanne", "1992-12-04",null);
 
 
-//        Manager bob = new Manager("Bob", "20/12/1984", newSalary);
-////        System.out.println("Hi I am " + m1.getName() + " I was born " + m1.getDateOfBirth());
+//        List<Employee> listOfEmployeesAfterAdding = databaseEmployeePersistenceService.listEmployees();
 //
-//        System.out.println(bob);
+//        System.out.println(listOfEmployeesAfterAdding);
+
+//        databaseCoursePersistenceService.addCourse("java");
+//        databaseCoursePersistenceService.addCourse("javascript");
+//        databaseCoursePersistenceService.addCourse("first aid");
 
 
 
-//
-//
-//        Programmer jeff = new Programmer("Jeff", "20/11/1984", newSalary);
-//        System.out.println(jeff);
-//
-//        jeff.programApplication();
-//
-//            List<Employee> myEmployees = new ArrayList();
-//            myEmployees.add(jeff);
-//            myEmployees.add(bob);
-//
-//            Company myCompany = new Company(myEmployees);
-//
-//            System.out.println(myCompany);
+//        List<Course> courses = databaseCoursePersistenceService.listCourses();
 
-//        CourseService courseService = new CourseService();
-//
-//            HRApplication bonus = new HRApplication(courseService);
-//
-//            bonus.calculateBonus(bob);
-//            bonus.calculateBonus(jeff);
 
+//        System.out.println(courses);
+//
+//        databaseCoursePersistenceService.enroll(23,2);
+//        databaseCoursePersistenceService.enroll(23,1);
+//        databaseCoursePersistenceService.enroll(26,1);
+
+
+//        List<String> coursesEnrolledOn = databaseCoursePersistenceService.showWhatCoursesPersonIsEnrolledIn(23);
+
+
+
+//        System.out.println(coursesEnrolledOn);
+
+//        Employee employee = databaseEmployeePersistenceService.getEmployeeFromEmployees(23);
+//        System.out.println(employee);
+
+
+//        databaseEmployeePersistenceService.addEmployeeToTeam(26,23);
+
+//        List<Integer> teamIds = databaseEmployeePersistenceService.getTeam(26);
+//        System.out.println(teamIds);
+
+//        System.out.println(databaseEmployeePersistenceService.getTeamMembers(26));
+//        System.out.println(databaseEmployeePersistenceService.getEmployeesWithHighestSalary());
+        System.out.println(databaseEmployeePersistenceService.getOldestEmployee());
     }
 }

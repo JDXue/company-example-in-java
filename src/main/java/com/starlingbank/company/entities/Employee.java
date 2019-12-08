@@ -11,7 +11,7 @@ public abstract class Employee {
     protected double bonusPercentage;
     private boolean hasHadAnnualReview;
     private double extraHoursWorked;
-    private List<String> coursesEnrolledOn;
+
 
 
     public Employee(int employeeId, String name, String dateOfBirth, Salary salary) {
@@ -22,7 +22,6 @@ public abstract class Employee {
         this.bonusPercentage = 0.0;
         this.hasHadAnnualReview = false;
         this.extraHoursWorked = 0.0;
-        this.coursesEnrolledOn = new ArrayList<>();
     }
 
     public int getEmployeeId() { return employeeId; }
@@ -67,13 +66,6 @@ public abstract class Employee {
         this.extraHoursWorked = extraHoursWorked;
     }
 
-    public List<String> getCoursesEnrolledOn() {
-        return coursesEnrolledOn;
-    }
-
-    public void setCoursesEnrolledOn(List<String> coursesEnrolledOn) {
-        this.coursesEnrolledOn = coursesEnrolledOn;
-    }
 
     @Override
     public String toString() {

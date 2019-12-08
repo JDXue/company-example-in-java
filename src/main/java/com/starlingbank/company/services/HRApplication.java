@@ -1,23 +1,23 @@
 package com.starlingbank.company.services;
 
 import com.starlingbank.company.entities.Employee;
-import com.starlingbank.company.entities.Manager;
 import com.starlingbank.externalservices.Course;
 import com.starlingbank.externalservices.CourseService;
+import com.starlingbank.persistence.InMemoryEmployeePersistenceService;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class HRApplication {
     private static double EXTRA_HOURS_BONUS_PERCENTAGE = 0.05;
     private static int MAX_AMOUNT_EXTRA_HOURS = 50;
 
     private CourseService courseService;
+    private InMemoryEmployeePersistenceService employeePersistenceService;
 
-    public HRApplication(CourseService courseService) {
+    public HRApplication(CourseService courseService, InMemoryEmployeePersistenceService employeePersistenceService) {
         this.courseService = courseService;
+        this.employeePersistenceService = employeePersistenceService;
     }
 
 
@@ -39,29 +39,13 @@ public class HRApplication {
     }
 
     public void enrollEmployeeToCourse(Employee employee, Course course) {
-        courseService.enroll(employee, course);
-
-        List<String> coursesEnrolledIn = new ArrayList<>();
-        coursesEnrolledIn = courseService.showWhatCoursesPersonIsEnrolledIn(employee);
-
-        employee.setCoursesEnrolledOn(coursesEnrolledIn);
-    }
-
-    public Map<Employee, List<String>> showWhatCoursesEmployeesAreEnrolledIn(Manager manager) {
-        Map<Employee, List<String>> employeesEnrolledToCourses = new HashMap<>();
-
-        for (Employee employee : manager.getEmployeesManaging()) {
-            employeesEnrolledToCourses.put(employee, employee.getCoursesEnrolledOn());
-        }
-
-        return employeesEnrolledToCourses;
+        courseService.enroll(employee.getEmployeeId(), course.getId());
     }
 
     public void annualReviewBonusUpdate(Employee employee, double bonusPercentageIncrement) {
         if (employee.hasHadAnnualReview()) {
             return;
         }
-
         employee.setHasHadAnnualReview(true);
         employee.setBonusPercentage(employee.getBonusPercentage() + bonusPercentageIncrement);
     }
@@ -84,6 +68,19 @@ public class HRApplication {
 
         return employeesWithHighestSalary;
 
+    }
+
+    //shows list of courses names employees are enrolled in for given team
+    //needs testing
+    public List<String> showWhatCoursesMyEmployeesAreEnrolledIn(int managerId) {
+        List<String> employeesEnrolledToCourses = new ArrayList<>();
+
+        for (Employee employee : employeePersistenceService.getTeamMembers(managerId)) {
+            List<String> courseNames = courseService.showWhatCoursesPersonIsEnrolledIn(employee);
+            employeesEnrolledToCourses.addAll(courseNames);
+        }
+
+        return employeesEnrolledToCourses;
     }
 
 }

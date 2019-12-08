@@ -1,23 +1,23 @@
 package com.starlingbank.externalservices;
 
 import com.starlingbank.company.entities.Employee;
-import com.starlingbank.persistence.CoursePersistenceService;
+import com.starlingbank.persistence.InMemoryCoursePersistenceService;
 
 import java.util.List;
 
 
 public class CourseService {
-    private CoursePersistenceService coursePersistenceService;
+    private InMemoryCoursePersistenceService coursePersistenceService;
 
-    public CourseService(CoursePersistenceService coursePersistenceService) {
+    public CourseService(InMemoryCoursePersistenceService coursePersistenceService) {
         this.coursePersistenceService = coursePersistenceService;
     }
 
-    public void enroll(Employee employee, Course course) {
-        coursePersistenceService.enroll(employee, course.getId());
+    public void enroll(int employeeId, int courseId) {
+        coursePersistenceService.enroll(employeeId, courseId);
     }
 
-    public void addCourse(Course newCourse) {
+    public void addCourse(String newCourse) {
         coursePersistenceService.addCourse(newCourse);
     }
 
@@ -26,6 +26,11 @@ public class CourseService {
     }
 
     public List<String> showWhatCoursesPersonIsEnrolledIn(Employee person){
-        return coursePersistenceService.showWhatCoursesPersonIsEnrolledIn(person);
+        return coursePersistenceService.showWhatCoursesPersonIsEnrolledIn(person.getEmployeeId());
     }
+
+    //new method for getting courses for employees of manager
+//    public Map<Integer, List<Integer>> getCourseEnrollment(){
+//        coursePersistenceService.
+//    }
 }

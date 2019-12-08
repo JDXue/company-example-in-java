@@ -4,23 +4,22 @@ import com.starlingbank.company.entities.Employee;
 import com.starlingbank.company.entities.Manager;
 import com.starlingbank.company.entities.Programmer;
 import com.starlingbank.company.entities.Salary;
-import com.starlingbank.persistence.EmployeePersistenceService;
+import com.starlingbank.persistence.InMemoryEmployeePersistenceService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-public class EmployeePersistenceServiceTest {
+public class InMemoryEmployeePersistenceServiceTest {
 
-    private EmployeePersistenceService employeePersistenceService;
+    private InMemoryEmployeePersistenceService employeePersistenceService;
 
     @BeforeEach
     void setUp(){
-        employeePersistenceService = new EmployeePersistenceService();
+        employeePersistenceService = new InMemoryEmployeePersistenceService();
     }
 
 
@@ -161,6 +160,34 @@ public class EmployeePersistenceServiceTest {
 
     }
 
+    @Test
+    void givenUnknownEmployeeWhenAddingEmployeeToTeamThenShouldThrowException() {
+        // Given
+        Salary salary = new Salary(33000, "GBP");
+        employeePersistenceService.addNewManager("Alice","1982-08-18", salary);
+
+        // When
+
+        // Then
+        assertThatThrownBy(() -> employeePersistenceService.addEmployeeToTeam(0,29589))
+            .isInstanceOf(IllegalStateException.class)
+            .hasMessageContaining("This employee does not exist");
+
+        assertThat(employeePersistenceService.getTeam(0)).doesNotContain(29589);
+
+    }
+
+    @Test
+    void whenGetEmployeeFromEmployees_thenShouldReturnExpectedObject(){
+        // Given
+        Salary salary = new Salary(33000, "GBP");
+        employeePersistenceService.addNewManager("Alice","1982-08-18", salary);
+
+        //When & Then
+        assertThat(employeePersistenceService.getEmployeeFromEmployees(0)).isInstanceOf(Employee.class);
+        assertThat(employeePersistenceService.getEmployeeFromEmployees(0).getName()).isEqualTo("Alice");
+
+    }
 
 
 }

@@ -3,15 +3,14 @@ package com.starlingbank.company.services;
 import com.starlingbank.company.entities.*;
 import com.starlingbank.externalservices.Course;
 import com.starlingbank.externalservices.CourseService;
+import com.starlingbank.persistence.InMemoryEmployeePersistenceService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -29,11 +28,13 @@ class HRApplicationTest {
 
     @Mock
     private CourseService courseService;
+    @Mock
+    private InMemoryEmployeePersistenceService employeePersistenceService;
 
     @BeforeEach
     void setUp() {
         MockitoAnnotations.initMocks(this);
-        hrApplication = new HRApplication(courseService);
+        hrApplication = new HRApplication(courseService, employeePersistenceService);
     }
 
     @Test
@@ -123,31 +124,39 @@ class HRApplicationTest {
         assertEquals(expectedListOfEmployees, hrApplication.getEmployeesWithHighestSalary(myEmployees));
     }
 
-//    @Test
-//    void ifManagerRequestsCourseEmployeesEnrolledIn_thenShouldReturnMapOfEmployeesAndCourses() {
-//        //Given
-//        Programmer ada = new Programmer(1,"Ada", "10/12/1815", SALARY_DEFAULT);
-//        Manager michelle = new Manager(2,"Michelle", "17/01/1964", SALARY_DEFAULT);
-//        michelle.addNewEmployeeToManage(ada);
-//
-//        //When & Then
-//        List<String> expectedCourses = new ArrayList<>();
-//        expectedCourses.add("first aid");
-//        ada.setCoursesEnrolledOn(expectedCourses);
-//
-//        Map<Employee, List<String>> expectedReturnedMapOfEmployees = new HashMap<>();
-//        expectedReturnedMapOfEmployees.put(ada, expectedCourses);
-//
-//
-//        assertThat(hrApplication.showWhatCoursesEmployeesAreEnrolledIn(michelle)).isEqualTo(expectedReturnedMapOfEmployees);
-//    }
+    @Test
+    void ifManagerRequestsCourseEmployeesEnrolledIn_thenShouldReturnMapOfEmployeesAndCourses() {
+        //Given
+        Programmer jeff = new Programmer(1,"Jeff", "20/11/1984", SALARY_DEFAULT);
+        Programmer alice = new Programmer(2,"Alice", "20/11/1984", SALARY_DEFAULT);
+        Programmer ada = new Programmer(3,"Ada", "20/11/1984", SALARY_DEFAULT);
+
+        List<Employee> team = new ArrayList<>();
+        team.add(jeff);
+        team.add(alice);
+        team.add(ada);
+
+        List<String> courses = new ArrayList<>();
+        courses.add("first aid");
+
+        when(employeePersistenceService.getTeamMembers(0)).thenReturn(team);
+        when(courseService.showWhatCoursesPersonIsEnrolledIn(any(Employee.class))).thenReturn(courses);
+
+        //When
+        List<String> totalCourseLists = hrApplication.showWhatCoursesMyEmployeesAreEnrolledIn(0);
+
+        //Then
+        assertThat(totalCourseLists).hasSize(3);
+        assertThat(totalCourseLists).containsOnly("first aid");
+
+    }
 
 
     @Test
-    void whenEnrollEmployeeToCourse_thenShouldHaveCourseAddedToEmployeeInCoursesAndCourseInEmployeeList(){
+    void whenEnrollEmployeeToCourse_thenShouldHaveCourseAddedToEmployeeInCourses(){
         //Given
         Programmer ada = new Programmer(1,"Ada", "10/12/1815", SALARY_DEFAULT);
-        Course firstAid = new Course("first aid");
+        Course firstAid = new Course(   1,"first aid");
 
         //When & Then
         List<String> expectedCourses = new ArrayList<>();
@@ -158,8 +167,7 @@ class HRApplicationTest {
 
         hrApplication.enrollEmployeeToCourse(ada, firstAid);
 
-        verify(courseService).enroll(any(Employee.class), any(Course.class)); //check this is executed
-        assertThat(ada.getCoursesEnrolledOn()).isEqualTo(expectedCourses);
+        verify(courseService).enroll(any(Integer.class), any(Integer.class)); //check this is executed
 
     }
 
