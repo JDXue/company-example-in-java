@@ -121,7 +121,7 @@ class HRApplicationTest {
         List<Employee> expectedListOfEmployees = new ArrayList<>();
         expectedListOfEmployees.add(bob);
 
-        assertEquals(expectedListOfEmployees, hrApplication.getEmployeesWithHighestSalary(myEmployees));
+        assertEquals(expectedListOfEmployees, hrApplication.getEmployeeWithHighestSalary(null));
     }
 
     @Test

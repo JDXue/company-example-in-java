@@ -2,25 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="29fe327a-03e1-47ca-88b6-66fb8c76717a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/starlingbank/persistence/Database.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/starlingbank/persistence/DatabaseCoursePersistenceService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/starlingbank/persistence/DatabaseEmployeePersistenceService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/starlingbank/persistence/InMemoryCoursePersistenceService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/starlingbank/persistence/InMemoryEmployeePersistenceService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/starlingbank/externalservices/CourseServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/resources/AppResourceConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/resources/EmployeeRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/resources/Employees.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/resources/SalaryRequest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/starlingbank/company/entities/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/starlingbank/company/entities/Employee.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/starlingbank/company/services/HRApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/starlingbank/company/services/HRApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/starlingbank/externalservices/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/starlingbank/externalservices/Course.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/starlingbank/externalservices/CourseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/starlingbank/externalservices/CourseService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/starlingbank/persistence/CoursePersistenceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/starlingbank/persistence/CoursePersistenceService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/starlingbank/persistence/DatabaseCoursePersistenceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/starlingbank/persistence/DatabaseCoursePersistenceService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/starlingbank/persistence/DatabaseEmployeePersistenceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/starlingbank/persistence/DatabaseEmployeePersistenceService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/starlingbank/persistence/EmployeePersistenceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/starlingbank/persistence/EmployeePersistenceService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/starlingbank/company/persistence/CoursePersistenceServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/starlingbank/company/persistence/InMemoryCoursePersistenceServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/starlingbank/company/persistence/EmployeePersistenceServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/starlingbank/company/persistence/InMemoryEmployeePersistenceServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/starlingbank/persistence/InMemoryEmployeePersistenceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/starlingbank/persistence/InMemoryEmployeePersistenceService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/starlingbank/company/services/HRApplicationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/starlingbank/company/services/HRApplicationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Main.class" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -66,11 +63,12 @@
       <recent name="com.starlingbank.company" />
       <recent name="com.starling.companyexampletesting" />
     </key>
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="resources" />
+      <recent name="com.starlingbank.externalservices" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/java" />
-    </key>
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="com.starlingbank.externalservices" />
     </key>
   </component>
   <component name="RunDashboard">

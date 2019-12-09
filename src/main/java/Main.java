@@ -13,7 +13,7 @@ public class Main {
         CoursePersistenceService databaseCoursePersistenceService = new DatabaseCoursePersistenceService();
         List<Employee> listOfEmployees = databaseEmployeePersistenceService.listEmployees();
 
-        System.out.println(listOfEmployees);
+//        System.out.println(listOfEmployees);
 
 //        databaseEmployeePersistenceService.addNewProgrammer("Ada", "1992-12-04",null);
 //        databaseEmployeePersistenceService.addNewProgrammer("Ellen", "1992-12-04",null);
@@ -30,7 +30,6 @@ public class Main {
 //        databaseCoursePersistenceService.addCourse("first aid");
 
 
-
 //        List<Course> courses = databaseCoursePersistenceService.listCourses();
 
 
@@ -42,7 +41,6 @@ public class Main {
 
 
 //        List<String> coursesEnrolledOn = databaseCoursePersistenceService.showWhatCoursesPersonIsEnrolledIn(23);
-
 
 
 //        System.out.println(coursesEnrolledOn);
@@ -57,7 +55,28 @@ public class Main {
 //        System.out.println(teamIds);
 
 //        System.out.println(databaseEmployeePersistenceService.getTeamMembers(26));
-//        System.out.println(databaseEmployeePersistenceService.getEmployeesWithHighestSalary());
-        System.out.println(databaseEmployeePersistenceService.getOldestEmployee());
+//        System.out.println(databaseEmployeePersistenceService.getEmployeeWithHighestSalary());
+//        System.out.println(databaseEmployeePersistenceService.getOldestEmployee());
+//        System.out.println(databaseCoursePersistenceService.getEmployeeEnrolledInMostCourses());
     }
+
+//    public static void main(String[] args) {
+//        Server server = new Server(8080); // Port 8080
+//        // startup code
+//        try {
+//            server.setHandler(getRESTEasyHandler());
+//            server.start();
+//            server.join();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
+//
+//    private static Handler getRESTEasyHandler() {
+//        ServletContextHandler handler = new ServletContextHandler(ServletContextHandler.NO_SESSIONS);
+//        ServletHolder servlet = handler.addServlet(HttpServletDispatcher.class, "/");
+//        servlet.setInitParameter("javax.ws.rs.Application",
+//                AppResourceConfig.class.getCanonicalName());
+//        return handler;
+//    }
 }

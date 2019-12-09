@@ -116,7 +116,7 @@ public class InMemoryEmployeePersistenceService implements EmployeePersistenceSe
     }
 
     @Override
-    public List<Employee> getEmployeesWithHighestSalary() {
+    public Employee getEmployeeWithHighestSalary() {
         return null;
     }
 
@@ -124,4 +124,19 @@ public class InMemoryEmployeePersistenceService implements EmployeePersistenceSe
     public Employee getOldestEmployee() {
         return null;
     }
+
+
+
+
+    public int getNextFreeEmployeeId() {
+        return nextFreeEmployeeId;
+    }
+
+
+
+
+
+
+
+
 }

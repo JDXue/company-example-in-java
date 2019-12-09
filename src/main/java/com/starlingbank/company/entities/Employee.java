@@ -1,13 +1,10 @@
 package com.starlingbank.company.entities;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public abstract class Employee {
     private int employeeId;
     private String name;
     private String dateOfBirth;
-    private Salary salary;
+    private Salary salaryId;
     protected double bonusPercentage;
     private boolean hasHadAnnualReview;
     private double extraHoursWorked;
@@ -18,7 +15,7 @@ public abstract class Employee {
         this.employeeId = employeeId;
         this.name = name;
         this.dateOfBirth = dateOfBirth;
-        this.salary = salary;
+        this.salaryId = salary;
         this.bonusPercentage = 0.0;
         this.hasHadAnnualReview = false;
         this.extraHoursWorked = 0.0;
@@ -34,13 +31,10 @@ public abstract class Employee {
         return dateOfBirth;
     }
 
-    public Salary getSalary() {
-        return salary;
+    public Salary getSalaryId() {
+        return salaryId;
     }
 
-    public void setSalary(Salary salary) {
-        this.salary = salary;
-    }
 
     public double getBonusPercentage() {
         return bonusPercentage;
@@ -69,7 +63,7 @@ public abstract class Employee {
 
     @Override
     public String toString() {
-        return employeeId + " " + name + ": " + " Born: " + dateOfBirth + " Salary: " + salary + " Bonus of: " + bonusPercentage;
+        return employeeId + " " + name + ": " + " Born: " + dateOfBirth + " Salary: " + salaryId + " Bonus of: " + bonusPercentage;
     }
 
 

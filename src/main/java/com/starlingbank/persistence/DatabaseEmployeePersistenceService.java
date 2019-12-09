@@ -55,7 +55,15 @@ public class DatabaseEmployeePersistenceService implements EmployeePersistenceSe
     @Override
     public List<Employee> listEmployees() {
         List<Employee> employeesList = new ArrayList<>();
-        String query = "SELECT id, name, date_of_birth, employee_type FROM employee";
+        String query = "SELECT employee.id, employee.name, employee.date_of_birth, employee.employee_type, salary.amount, salary.currency\n" +
+                "FROM employee, salary\n" +
+                "WHERE salary_id IN (\n" +
+                "    SELECT id FROM salary\n" +
+                "    WHERE amount IN (\n" +
+                "        SELECT MAX(amount)\n" +
+                "        FROM salary\n" +
+                "    )\n" +
+                ");";
 
         try (Connection conn = Database.getNewConnection();
              PreparedStatement preparedStatement = conn.prepareStatement(query)) {
@@ -66,6 +74,8 @@ public class DatabaseEmployeePersistenceService implements EmployeePersistenceSe
                 String name = resultSet.getString("name");
                 String employeeType = resultSet.getString("employee_type");
                 String dateOfBirth = resultSet.getString("date_of_birth");
+                int salaryAmount = resultSet.getInt("amount");
+                String salaryCurrencyType = resultSet.getString("currency");
 
 
                 switch(employeeType){
@@ -76,7 +86,6 @@ public class DatabaseEmployeePersistenceService implements EmployeePersistenceSe
                                     name,
                                     dateOfBirth,
                                     null
-
                             ));
                         break;
                     case "MANAGER":
@@ -86,7 +95,6 @@ public class DatabaseEmployeePersistenceService implements EmployeePersistenceSe
                                         name,
                                         dateOfBirth,
                                         null
-
                                 )
                         );
                         break;
@@ -216,7 +224,9 @@ public class DatabaseEmployeePersistenceService implements EmployeePersistenceSe
     @Override
     public Employee getEmployeeFromEmployees(int employeeId) {
         String employeeIdStr = String.valueOf(employeeId);
-        String query = "SELECT * FROM employee WHERE id=" + employeeIdStr;
+        String query = "SELECT * FROM employee, salary" +
+                "WHERE salary.id=employee.salary_id AND " +
+                "employee.id=" + employeeIdStr;
 
         try (Connection conn = Database.getNewConnection();
               PreparedStatement preparedStatement = conn.prepareStatement(query)) {
@@ -250,18 +260,19 @@ public class DatabaseEmployeePersistenceService implements EmployeePersistenceSe
     }
 
     @Override
-    public List<Employee> getEmployeesWithHighestSalary() {
-
-            List<Employee> employeesList = new ArrayList<>();
+    public Employee getEmployeeWithHighestSalary() {
             //selects all rows from employee that have salary id of the highest salary in salary table
-            String query = "SELECT * FROM employee\n" +
-                            "WHERE salary IN (\n" +
-                            "    SELECT id FROM salary\n" +
-                            "    WHERE amount IN (\n" +
-                            "        SELECT MAX(amount)\n" +
-                            "        FROM salary\n" +
-                            "    )\n" +
-                            ")";
+            String query = "SELECT employee.id, employee.name, employee.date_of_birth, employee.employee_type, salary.amount, salary.currency\n" +
+                    "FROM employee, salary\n" +
+                    "WHERE employee.salary_id IN (\n" +
+                    "    SELECT id FROM salary\n" +
+                    "    WHERE amount IN (\n" +
+                    "        SELECT MAX(amount)\n" +
+                    "        FROM salary\n" +
+                    "    )\n" +
+                    ") AND\n" +
+                    "\n" +
+                    "salary.id=employee.salary_id;";
 
             try (Connection conn = Database.getNewConnection();
                  PreparedStatement preparedStatement = conn.prepareStatement(query)) {
@@ -272,46 +283,37 @@ public class DatabaseEmployeePersistenceService implements EmployeePersistenceSe
                     String name = resultSet.getString("name");
                     String employeeType = resultSet.getString("employee_type");
                     String dateOfBirth = resultSet.getString("date_of_birth");
-
+                    int salaryAmount = resultSet.getInt("amount");
+                    String salaryCurrencyType = resultSet.getString("currency");
 
                     switch(employeeType){
                         case "PROGRAMMER":
-                            employeesList.add(
-                                    new Programmer(
-                                            id,
-                                            name,
-                                            dateOfBirth,
-                                            null
-                                    ));
-                            break;
+                            return new Programmer(id,name,dateOfBirth,null);
                         case "MANAGER":
-                            employeesList.add(
-                                    new Manager(
-                                            id,
-                                            name,
-                                            dateOfBirth,
-                                            null
-
-                                    )
-                            );
-                            break;
-                        default: {
-                            throw new IllegalStateException("Employee type not recognised, employee type found: " + employeeType);
-                        }
+                            return new Manager(id,name,dateOfBirth,null);
+                        default:
+                            throw new IllegalStateException("Could not identify this type of employee, type found: " + employeeType);
                     }
 
                 }
             } catch (SQLException e) {
                 throw new IllegalStateException("Cannot access employee in database", e);
             }
-
-            return employeesList;
+            return null;
     }
 
     @Override
     public Employee getOldestEmployee() {
-        String query = "SELECT * FROM employee\n" +
-                "ORDER BY date_of_birth LIMIT 1";
+        String query = "SELECT employee.id, employee.name, employee.date_of_birth, employee.employee_type, salary.amount, salary.currency \n" +
+                "FROM employee\n" +
+                "WHERE employee.salary_id IN (\n" +
+                "    SELECT id FROM salary\n" +
+                "        WHERE amount IN (\n" +
+                "            SELECT MAX(amount)\n" +
+                "            FROM salary\n" +
+                "        )\n" +
+                "    )\n" +
+                "    ORDER BY date_of_birth LIMIT 1;";
 
         try (Connection conn = Database.getNewConnection();
              PreparedStatement preparedStatement = conn.prepareStatement(query)) {
@@ -322,12 +324,13 @@ public class DatabaseEmployeePersistenceService implements EmployeePersistenceSe
                 String name = resultSet.getString("name");
                 String employeeType = resultSet.getString("employee_type");
                 String dateOfBirth = resultSet.getString("date_of_birth");
+                int salaryId= resultSet.getInt("amount");
 
                 switch(employeeType){
                     case "PROGRAMMER":
-                        return new Programmer(id,name,dateOfBirth,null);
+                        return new Programmer(id, name, dateOfBirth, null);
                     case "MANAGER":
-                        return new Manager(id,name,dateOfBirth,null);
+                        return new Manager(id, name, dateOfBirth, null);
                     default:
                         throw new IllegalStateException("Could not identify this type of employee, type found: " + employeeType);
                 }
@@ -338,4 +341,6 @@ public class DatabaseEmployeePersistenceService implements EmployeePersistenceSe
         }
         return null;
     }
+
+
 }

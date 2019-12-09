@@ -11,5 +11,6 @@ public interface CoursePersistenceService {
     void enroll(int employeeId, int courseId);
     List<Course> listCourses();
     List<String> showWhatCoursesPersonIsEnrolledIn(int employeeId);
+    Employee getEmployeeEnrolledInMostCourses();
 
 }

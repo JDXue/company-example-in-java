@@ -1,6 +1,8 @@
 package com.starlingbank.persistence;
 
 import com.starlingbank.company.entities.Employee;
+import com.starlingbank.company.entities.Manager;
+import com.starlingbank.company.entities.Programmer;
 import com.starlingbank.externalservices.Course;
 
 import java.sql.Connection;
@@ -112,5 +114,44 @@ public class DatabaseCoursePersistenceService implements CoursePersistenceServic
         return coursesEnrolledIn;
 
     }
+
+
+    @Override
+    public Employee getEmployeeEnrolledInMostCourses(){
+        String query = "SELECT * FROM employee\n" +
+                "WHERE id IN (\n" +
+                "    SELECT employee_id FROM course_employee\n" +
+                "    GROUP BY employee_id\n" +
+                "    ORDER BY COUNT(*) DESC\n" +
+                "    LIMIT 1\n" +
+                ")";
+
+        try (Connection conn = Database.getNewConnection();
+             PreparedStatement preparedStatement = conn.prepareStatement(query)) {
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String name = resultSet.getString("name");
+                String employeeType = resultSet.getString("employee_type");
+                String dateOfBirth = resultSet.getString("date_of_birth");
+
+                switch(employeeType){
+                    case "PROGRAMMER":
+                        return new Programmer(id,name,dateOfBirth,null);
+                    case "MANAGER":
+                        return new Manager(id,name,dateOfBirth,null);
+                    default:
+                        throw new IllegalStateException("Could not identify this type of employee, type found: " + employeeType);
+                }
+
+            }
+        } catch (SQLException e) {
+            throw new IllegalStateException("Cannot access employee in database", e);
+        }
+        return null;
+    }
+
+
 
 }

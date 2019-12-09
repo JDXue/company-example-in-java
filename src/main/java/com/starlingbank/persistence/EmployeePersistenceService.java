@@ -13,7 +13,7 @@ public interface EmployeePersistenceService {
      List<Integer> getTeam(int managerId);
      List<Employee> getTeamMembers(int managerId);
      Employee getEmployeeFromEmployees(int employeeId);
-     List<Employee> getEmployeesWithHighestSalary();
      Employee getOldestEmployee();
-     Employee getEmployeeEnrolledInMostCourses();
+     Employee getEmployeeWithHighestSalary();
+
 }
