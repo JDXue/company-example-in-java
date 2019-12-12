@@ -1,18 +1,18 @@
-import com.starlingbank.company.entities.*;
-import com.starlingbank.persistence.CoursePersistenceService;
-import com.starlingbank.persistence.DatabaseCoursePersistenceService;
-import com.starlingbank.persistence.DatabaseEmployeePersistenceService;
-import com.starlingbank.persistence.EmployeePersistenceService;
-
-import java.util.List;
+import org.eclipse.jetty.server.Handler;
+import org.eclipse.jetty.server.Server;
+import org.eclipse.jetty.servlet.ServletContextHandler;
+import org.eclipse.jetty.servlet.ServletHolder;
+import org.jboss.resteasy.plugins.guice.GuiceResteasyBootstrapServletContextListener;
+import org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher;
+import resources.AppResourceConfig;
 
 
 public class Main {
-    public static void main(String[] args){
-        EmployeePersistenceService databaseEmployeePersistenceService = new DatabaseEmployeePersistenceService();
-        CoursePersistenceService databaseCoursePersistenceService = new DatabaseCoursePersistenceService();
-        List<Employee> listOfEmployees = databaseEmployeePersistenceService.listEmployees();
-
+//    public static void main(String[] args){
+//        EmployeePersistenceService databaseEmployeePersistenceService = new DatabaseEmployeePersistenceService();
+//        CoursePersistenceService databaseCoursePersistenceService = new DatabaseCoursePersistenceService();
+//        List<Employee> listOfEmployees = databaseEmployeePersistenceService.listEmployees();
+//
 //        System.out.println(listOfEmployees);
 
 //        databaseEmployeePersistenceService.addNewProgrammer("Ada", "1992-12-04",null);
@@ -49,7 +49,7 @@ public class Main {
 //        System.out.println(employee);
 
 
-//        databaseEmployeePersistenceService.addEmployeeToTeam(26,23);
+//        databaseEmployeePersistenceService.addEmployeeToTeam(26,24);
 
 //        List<Integer> teamIds = databaseEmployeePersistenceService.getTeam(26);
 //        System.out.println(teamIds);
@@ -58,25 +58,28 @@ public class Main {
 //        System.out.println(databaseEmployeePersistenceService.getEmployeeWithHighestSalary());
 //        System.out.println(databaseEmployeePersistenceService.getOldestEmployee());
 //        System.out.println(databaseCoursePersistenceService.getEmployeeEnrolledInMostCourses());
+//    }
+
+    public static void main(String[] args) {
+        Server server = new Server(8080); // Port 8080
+        // startup code
+        try {
+            server.setHandler(getRESTEasyHandler());
+            server.start();
+            server.join();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-//    public static void main(String[] args) {
-//        Server server = new Server(8080); // Port 8080
-//        // startup code
-//        try {
-//            server.setHandler(getRESTEasyHandler());
-//            server.start();
-//            server.join();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
-//
-//    private static Handler getRESTEasyHandler() {
-//        ServletContextHandler handler = new ServletContextHandler(ServletContextHandler.NO_SESSIONS);
-//        ServletHolder servlet = handler.addServlet(HttpServletDispatcher.class, "/");
+    private static Handler getRESTEasyHandler() {
+        ServletContextHandler handler = new ServletContextHandler(ServletContextHandler.NO_SESSIONS);
+        handler.setInitParameter("resteasy.guice.modules", CompanyModule.class.getCanonicalName());
+        handler.addEventListener(new GuiceResteasyBootstrapServletContextListener());
+
+        ServletHolder servlet = handler.addServlet(HttpServletDispatcher.class, "/");
 //        servlet.setInitParameter("javax.ws.rs.Application",
 //                AppResourceConfig.class.getCanonicalName());
-//        return handler;
-//    }
+        return handler;
+    }
 }

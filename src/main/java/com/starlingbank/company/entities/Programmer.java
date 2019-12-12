@@ -5,7 +5,11 @@ public class Programmer extends Employee {
     public Programmer(int employeeId, String name, String dateOfBirth, Salary salary){
         super(employeeId, name, dateOfBirth, salary);
         bonusPercentage = 0.2;
+    }
 
+    public Programmer(int employeeId, String name, String dateOfBirth, int salary){
+        super(employeeId, name, dateOfBirth, salary);
+        bonusPercentage = 0.2;
     }
 
 

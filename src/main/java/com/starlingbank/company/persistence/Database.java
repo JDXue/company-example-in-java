@@ -1,4 +1,4 @@
-package com.starlingbank.persistence;
+package com.starlingbank.company.persistence;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

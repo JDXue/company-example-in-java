@@ -1,4 +1,4 @@
-package com.starlingbank.persistence;
+package com.starlingbank.company.persistence;
 
 import com.starlingbank.company.entities.Employee;
 import com.starlingbank.externalservices.Course;

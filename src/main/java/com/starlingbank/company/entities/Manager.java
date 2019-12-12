@@ -5,12 +5,17 @@ import java.util.ArrayList;
 public class Manager extends Employee {
     private ArrayList<Employee> employeesManaging; //always want the manager to manage no employees at the beginning
 
+    public Manager(int employeeId, String name, String dateOfBirth, int salaryId){
+        super(employeeId, name, dateOfBirth, salaryId);
+        bonusPercentage = 0.3;
+        employeesManaging = new ArrayList<>();
+    }
+
     public Manager(int employeeId, String name, String dateOfBirth, Salary salary){
         super(employeeId, name, dateOfBirth, salary);
         bonusPercentage = 0.3;
         employeesManaging = new ArrayList<>();
     }
-
 
     public void manageProgram(){
         System.out.println("I am managing a cool application");

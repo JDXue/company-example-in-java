@@ -4,18 +4,29 @@ public abstract class Employee {
     private int employeeId;
     private String name;
     private String dateOfBirth;
-    private Salary salaryId;
+
+    private int salaryId; //salary id made available for using database employee service
+    private Salary salary;
+
     protected double bonusPercentage;
     private boolean hasHadAnnualReview;
     private double extraHoursWorked;
-
-
 
     public Employee(int employeeId, String name, String dateOfBirth, Salary salary) {
         this.employeeId = employeeId;
         this.name = name;
         this.dateOfBirth = dateOfBirth;
-        this.salaryId = salary;
+        this.salary = salary;
+        this.bonusPercentage = 0.0;
+        this.hasHadAnnualReview = false;
+        this.extraHoursWorked = 0.0;
+    }
+
+    public Employee(int employeeId, String name, String dateOfBirth, int salaryId) {
+        this.employeeId = employeeId;
+        this.name = name;
+        this.dateOfBirth = dateOfBirth;
+        this.salaryId = salaryId;
         this.bonusPercentage = 0.0;
         this.hasHadAnnualReview = false;
         this.extraHoursWorked = 0.0;
@@ -31,8 +42,12 @@ public abstract class Employee {
         return dateOfBirth;
     }
 
-    public Salary getSalaryId() {
+    public int getSalaryId() {
         return salaryId;
+    }
+
+    public Salary getSalaryObject(){
+        return salary;
     }
 
 

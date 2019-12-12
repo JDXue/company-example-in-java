@@ -1,7 +1,7 @@
 package com.starlingbank.externalservices;
 
 import com.starlingbank.company.entities.Employee;
-import com.starlingbank.persistence.InMemoryCoursePersistenceService;
+import com.starlingbank.company.persistence.InMemoryCoursePersistenceService;
 
 import java.util.List;
 

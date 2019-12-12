@@ -3,7 +3,6 @@ package com.starlingbank.company.persistence;
 import com.starlingbank.company.entities.Manager;
 import com.starlingbank.company.entities.Salary;
 import com.starlingbank.externalservices.Course;
-import com.starlingbank.persistence.InMemoryCoursePersistenceService;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -14,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.Matchers.any;
 
 public class InMemoryCoursePersistenceServiceTest {
-    private Salary SALARY_DEFAULT = new Salary(20000, "GBP");
+    private final Salary SALARY_DEFAULT = new Salary(20000, "GBP");
     private Manager bob = new Manager(2,"Bob", "20/12/1984", SALARY_DEFAULT);
     private InMemoryCoursePersistenceService coursePersistenceService = new InMemoryCoursePersistenceService();
 

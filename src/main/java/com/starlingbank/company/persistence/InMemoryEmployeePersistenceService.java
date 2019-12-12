@@ -1,17 +1,18 @@
-package com.starlingbank.persistence;
+package com.starlingbank.company.persistence;
 
 import com.starlingbank.company.entities.Employee;
 import com.starlingbank.company.entities.Manager;
 import com.starlingbank.company.entities.Programmer;
 import com.starlingbank.company.entities.Salary;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class InMemoryEmployeePersistenceService implements EmployeePersistenceService {
+public class InMemoryEmployeePersistenceService {
 
     private Map<Integer, Employee> employees;
     private Map<Integer, List<Integer>> teams;
@@ -23,20 +24,20 @@ public class InMemoryEmployeePersistenceService implements EmployeePersistenceSe
         this.teams = new HashMap<>();
     }
 
-    @Override
+//    @Override
     public void addNewManager(String name, String dateOfBirth, Salary salary){
         int employeeId = generateNextFreeEmployeeId();
         Manager newManager = new Manager(employeeId, name, dateOfBirth, salary);
         addToEmployees(newManager);
     }
-    @Override
+//    @Override
     public void addNewProgrammer(String name, String dateOfBirth, Salary salary){
         int employeeId = generateNextFreeEmployeeId();
         Programmer newProgrammer = new Programmer(employeeId, name, dateOfBirth, salary);
         addToEmployees(newProgrammer);
     }
 
-    @Override
+//    @Override
     public List<Employee> listEmployees(){
         return new ArrayList<>(employees.values());
     }
@@ -52,7 +53,7 @@ public class InMemoryEmployeePersistenceService implements EmployeePersistenceSe
         return nextFreeEmployeeId++;
     }
 
-    @Override
+//    @Override
     public void addEmployeeToTeam(int managerId, int employeeId){
 
         if (employees.get(managerId) instanceof Manager) {
@@ -64,8 +65,6 @@ public class InMemoryEmployeePersistenceService implements EmployeePersistenceSe
                 if (getTeam(managerId).contains(employeeId)){
                     return;
                 }
-
-
 
                 teamMembers = teams.get(managerId);
             }
@@ -87,7 +86,7 @@ public class InMemoryEmployeePersistenceService implements EmployeePersistenceSe
     }
 
 
-    @Override
+//    @Override
     public List<Integer> getTeam(int managerId) {
         if (teams.get(managerId) == null){
             return new ArrayList<>();
@@ -95,7 +94,7 @@ public class InMemoryEmployeePersistenceService implements EmployeePersistenceSe
        return teams.get(managerId);
     }
 
-    @Override
+//    @Override
     public List<Employee> getTeamMembers(int managerId) {
 
         List<Integer> teamMemberIds = teams.get(managerId);
@@ -106,7 +105,7 @@ public class InMemoryEmployeePersistenceService implements EmployeePersistenceSe
                 .collect(Collectors.toList());
     }
 
-    @Override
+//    @Override
     public Employee getEmployeeFromEmployees(int employeeId){
         if (employees.containsKey(employeeId)) {
             return employees.get(employeeId);
@@ -115,22 +114,52 @@ public class InMemoryEmployeePersistenceService implements EmployeePersistenceSe
         }
     }
 
-    @Override
+//    @Override
     public Employee getEmployeeWithHighestSalary() {
+        double highestSalaryFound = 0.0;
+
+        for(Employee employee : this.employees.values()){
+            if(employee.getSalaryObject().getAmount() > highestSalaryFound) {
+                highestSalaryFound = employee.getSalaryObject().getAmount();
+            }
+        }
+
+        for(Employee employee : this.employees.values()){
+            if(employee.getSalaryObject().getAmount() == highestSalaryFound){
+                return employee;
+            }
+        }
+
         return null;
     }
 
-    @Override
+//    @Override
     public Employee getOldestEmployee() {
+        LocalDate oldestDateFound =  LocalDate.now();
+
+
+        for(Employee employee : this.employees.values()){
+            if(LocalDate.parse(employee.getDateOfBirth()).isBefore(oldestDateFound)) {
+                oldestDateFound = LocalDate.parse(employee.getDateOfBirth());
+            }
+        }
+
+        for(Employee employee : this.employees.values()){
+            if(LocalDate.parse(employee.getDateOfBirth()).equals(oldestDateFound)){
+                return employee;
+            }
+        }
+
         return null;
+
     }
 
 
 
 
-    public int getNextFreeEmployeeId() {
-        return nextFreeEmployeeId;
-    }
+//    public int getNextFreeEmployeeId() {
+//        return nextFreeEmployeeId;
+//    }
 
 
 

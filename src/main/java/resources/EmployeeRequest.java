@@ -8,35 +8,41 @@ import java.time.LocalDate;
 
 public class EmployeeRequest {
     private String name;
-    private LocalDate dateOfBirth;
-    private SalaryRequest salaryRequest;
+    private String dateOfBirth;
+    private int salaryId;
+    private String employeeType;
 
     public EmployeeRequest(@JsonProperty("name") String name,
-                           @JsonProperty("dateOfBirth") LocalDate dateOfBirth,
-                           @JsonProperty("salary") SalaryRequest salaryRequest) {
+                           @JsonProperty("dateOfBirth") String dateOfBirth,
+                           @JsonProperty("salaryId") int salaryId,
+                           @JsonProperty("employeeType") String employeeType) {
         this.name = name;
         this.dateOfBirth = dateOfBirth;
-        this.salaryRequest = salaryRequest;
+        this.salaryId = salaryId;
+        this.employeeType = employeeType;
     }
 
     public String getName() {
         return name;
     }
 
-    public LocalDate getDateOfBirth() {
+    public String getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public SalaryRequest getSalaryRequest() {
-        return salaryRequest;
+    public int getSalaryId(){
+        return salaryId;
     }
+
+    public String getEmployeeType() { return employeeType; }
 
     @Override
     public String toString() {
         return "EmployeeRequest{" +
                 "name='" + name + '\'' +
-                ", dateOfBirth=" + dateOfBirth +
-                ", salaryRequest=" + salaryRequest +
+                ", dateOfBirth='" + dateOfBirth + '\'' +
+                ", salaryId=" + salaryId +
+                ", employeeType='" + employeeType + '\'' +
                 '}';
     }
 }

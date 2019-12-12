@@ -3,7 +3,7 @@ package com.starlingbank.company.services;
 import com.starlingbank.company.entities.*;
 import com.starlingbank.externalservices.Course;
 import com.starlingbank.externalservices.CourseService;
-import com.starlingbank.persistence.InMemoryEmployeePersistenceService;
+import com.starlingbank.company.persistence.InMemoryEmployeePersistenceService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -103,26 +103,7 @@ class HRApplicationTest {
         assertEquals(expectedBonusAmount, bonusAmount);
     }
 
-    @Test
-    void whenGetEmployeesWithHighestSalary_shouldGetExpectedListOfEmployees() {
-        //Given
-        Salary higherSalary = new Salary(300000, "GBP");
-        Programmer jeff = new Programmer(1,"Jeff", "20/11/1984", SALARY_DEFAULT);
-        Manager bob = new Manager(2,"Bob", "20/12/1984", higherSalary);
 
-        List<Employee> myEmployees = new ArrayList();
-        myEmployees.add(jeff);
-        myEmployees.add(bob);
-
-        //When
-
-
-        //Then
-        List<Employee> expectedListOfEmployees = new ArrayList<>();
-        expectedListOfEmployees.add(bob);
-
-        assertEquals(expectedListOfEmployees, hrApplication.getEmployeeWithHighestSalary(null));
-    }
 
     @Test
     void ifManagerRequestsCourseEmployeesEnrolledIn_thenShouldReturnMapOfEmployeesAndCourses() {

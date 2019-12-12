@@ -1,13 +1,11 @@
-package com.starlingbank.persistence;
+package com.starlingbank.company.persistence;
 
 import com.starlingbank.company.entities.Employee;
 import com.starlingbank.company.entities.Manager;
 import com.starlingbank.company.entities.Programmer;
 import com.starlingbank.company.entities.Salary;
-import com.starlingbank.externalservices.CourseService;
 
 import java.sql.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +15,7 @@ public class DatabaseEmployeePersistenceService implements EmployeePersistenceSe
     }
 
     @Override
-    public void addNewManager(String name, String dateOfBirth, Salary salary) {
+    public void addNewManager(String name, String dateOfBirth, int salaryId) {
         String statement = "INSERT INTO employee (name, date_of_birth, employee_type)\n" +
                 "    VALUES(?, ?, 'MANAGER')";
         try (Connection conn = Database.getNewConnection();
@@ -35,7 +33,7 @@ public class DatabaseEmployeePersistenceService implements EmployeePersistenceSe
     }
 
     @Override
-    public void addNewProgrammer(String name, String dateOfBirth, Salary salary) {
+    public void addNewProgrammer(String name, String dateOfBirth, int salaryId) {
         String statement = "INSERT INTO employee (name, date_of_birth, employee_type)\n" +
                 "    VALUES(?, ?, 'PROGRAMMER')";
         try (Connection conn = Database.getNewConnection();
@@ -55,15 +53,9 @@ public class DatabaseEmployeePersistenceService implements EmployeePersistenceSe
     @Override
     public List<Employee> listEmployees() {
         List<Employee> employeesList = new ArrayList<>();
-        String query = "SELECT employee.id, employee.name, employee.date_of_birth, employee.employee_type, salary.amount, salary.currency\n" +
-                "FROM employee, salary\n" +
-                "WHERE salary_id IN (\n" +
-                "    SELECT id FROM salary\n" +
-                "    WHERE amount IN (\n" +
-                "        SELECT MAX(amount)\n" +
-                "        FROM salary\n" +
-                "    )\n" +
-                ");";
+        String query = "SELECT id, name, employee_type, date_of_birth, salary_id " +
+                "FROM employee;" ;
+
 
         try (Connection conn = Database.getNewConnection();
              PreparedStatement preparedStatement = conn.prepareStatement(query)) {
@@ -74,8 +66,7 @@ public class DatabaseEmployeePersistenceService implements EmployeePersistenceSe
                 String name = resultSet.getString("name");
                 String employeeType = resultSet.getString("employee_type");
                 String dateOfBirth = resultSet.getString("date_of_birth");
-                int salaryAmount = resultSet.getInt("amount");
-                String salaryCurrencyType = resultSet.getString("currency");
+                int salaryId = resultSet.getInt("salary_id");
 
 
                 switch(employeeType){
@@ -85,7 +76,7 @@ public class DatabaseEmployeePersistenceService implements EmployeePersistenceSe
                                     id,
                                     name,
                                     dateOfBirth,
-                                    null
+                                    salaryId
                             ));
                         break;
                     case "MANAGER":
@@ -94,7 +85,7 @@ public class DatabaseEmployeePersistenceService implements EmployeePersistenceSe
                                         id,
                                         name,
                                         dateOfBirth,
-                                        null
+                                        salaryId
                                 )
                         );
                         break;
@@ -122,16 +113,17 @@ public class DatabaseEmployeePersistenceService implements EmployeePersistenceSe
     public void addEmployeeToTeam(int managerId, int employeeId) {
         //check if managerId is valid manager
         List<Employee> employeesList = new ArrayList<>();
-        String query = "SELECT employee_type FROM employee WHERE id=" + managerId;
+        String query = "SELECT employee_type FROM employee WHERE id= ?";
 
         try (Connection conn = Database.getNewConnection();
              PreparedStatement preparedStatement = conn.prepareStatement(query)) {
+            preparedStatement.setInt(1,managerId);
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while(resultSet.next()){
                 String employeeType = resultSet.getString("employee_type");
                 if(employeeType.equals("MANAGER")){
-                    String addEmployeeStatement = " INSERT INTO team (manager_id, employee_id)\n" +
+                    String addEmployeeStatement = " INSERT INTO team (manager_id, employee_id) " +
                             " VALUES (?, ?)";
                     PreparedStatement nextPreparedStatement = conn.prepareStatement((addEmployeeStatement));
                     nextPreparedStatement.setInt(1,managerId);
@@ -152,10 +144,11 @@ public class DatabaseEmployeePersistenceService implements EmployeePersistenceSe
     public List<Integer> getTeam(int managerId) {
         List<Integer> teamIds = new ArrayList<>();
         //select employee id where employee is part of manager team
-        String query = "SELECT employee_id FROM team WHERE manager_id=" + managerId;
+        String query = "SELECT employee_id FROM team WHERE manager_id=?";
 
         try (Connection conn = Database.getNewConnection();
              PreparedStatement preparedStatement = conn.prepareStatement(query)) {
+            preparedStatement.setInt(1,managerId);
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while(resultSet.next()) {
@@ -174,10 +167,14 @@ public class DatabaseEmployeePersistenceService implements EmployeePersistenceSe
     @Override
     public List<Employee> getTeamMembers(int managerId) {
         List<Employee> employeesList = new ArrayList<>();
-        String query = "SELECT * FROM employee INNER JOIN team ON team.employee_id=employee.id WHERE manager_id="+ managerId;
+        String query = "SELECT id, name, employee_type, date_of_birth, salary_id FROM employee " +
+                "INNER JOIN team ON team.employee_id=employee.id " +
+                "WHERE manager_id=?";
 
         try (Connection conn = Database.getNewConnection();
              PreparedStatement preparedStatement = conn.prepareStatement(query)) {
+
+            preparedStatement.setInt(1,managerId);
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while(resultSet.next()) {
@@ -185,6 +182,7 @@ public class DatabaseEmployeePersistenceService implements EmployeePersistenceSe
                 String name = resultSet.getString("name");
                 String employeeType = resultSet.getString("employee_type");
                 String dateOfBirth = resultSet.getString("date_of_birth");
+                int salaryId = resultSet.getInt("salary_id");
 
 
                 switch(employeeType){
@@ -194,7 +192,7 @@ public class DatabaseEmployeePersistenceService implements EmployeePersistenceSe
                                         id,
                                         name,
                                         dateOfBirth,
-                                        null
+                                        salaryId
                                 ));
                         break;
                     case "MANAGER":
@@ -203,7 +201,7 @@ public class DatabaseEmployeePersistenceService implements EmployeePersistenceSe
                                         id,
                                         name,
                                         dateOfBirth,
-                                        null
+                                        salaryId
 
                                 )
                         );
@@ -223,27 +221,29 @@ public class DatabaseEmployeePersistenceService implements EmployeePersistenceSe
 
     @Override
     public Employee getEmployeeFromEmployees(int employeeId) {
-        String employeeIdStr = String.valueOf(employeeId);
-        String query = "SELECT * FROM employee, salary" +
-                "WHERE salary.id=employee.salary_id AND " +
-                "employee.id=" + employeeIdStr;
+
+        String query = "SELECT id, name, employee_type, date_of_birth, salary_id FROM employee " +
+                "WHERE employee.id=?";
 
         try (Connection conn = Database.getNewConnection();
               PreparedStatement preparedStatement = conn.prepareStatement(query)) {
+
+            preparedStatement.setInt(1,employeeId);
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while(resultSet.next()) {
                 String name = resultSet.getString("name");
                 String employeeType = resultSet.getString("employee_type");
                 String dateOfBirth = resultSet.getString("date_of_birth");
+                int salaryId = resultSet.getInt("salary_id");
 
 
                 switch (employeeType) {
                     case "PROGRAMMER":
-                        return new Programmer(employeeId, name, dateOfBirth, null);
+                        return new Programmer(employeeId, name, dateOfBirth, salaryId);
 
                     case "MANAGER":
-                        return new Manager(employeeId, name, dateOfBirth, null);
+                        return new Manager(employeeId, name, dateOfBirth, salaryId);
 
                     default: {
                         throw new IllegalStateException("Employee type not recognised, employee type found: " + employeeType);
@@ -253,7 +253,7 @@ public class DatabaseEmployeePersistenceService implements EmployeePersistenceSe
             }
 
         } catch (SQLException e) {
-            throw new IllegalStateException("Cannot access employee "+ employeeIdStr + " in database", e);
+            throw new IllegalStateException("Cannot access employee "+ employeeId + " in database", e);
         }
 
         return null;
@@ -262,17 +262,15 @@ public class DatabaseEmployeePersistenceService implements EmployeePersistenceSe
     @Override
     public Employee getEmployeeWithHighestSalary() {
             //selects all rows from employee that have salary id of the highest salary in salary table
-            String query = "SELECT employee.id, employee.name, employee.date_of_birth, employee.employee_type, salary.amount, salary.currency\n" +
-                    "FROM employee, salary\n" +
-                    "WHERE employee.salary_id IN (\n" +
-                    "    SELECT id FROM salary\n" +
-                    "    WHERE amount IN (\n" +
-                    "        SELECT MAX(amount)\n" +
-                    "        FROM salary\n" +
-                    "    )\n" +
-                    ") AND\n" +
-                    "\n" +
-                    "salary.id=employee.salary_id;";
+            String query = "SELECT id, name, date_of_birth, employee_type, date_of_birth, salary_id" +
+                    "FROM employee" +
+                    "WHERE employee.salary_id IN ( " +
+                    "    SELECT id FROM salary " +
+                    "    WHERE amount IN ( " +
+                    "        SELECT MAX(amount) " +
+                    "        FROM salary " +
+                    "    ) " +
+                    ") LIMIT 1 " ;
 
             try (Connection conn = Database.getNewConnection();
                  PreparedStatement preparedStatement = conn.prepareStatement(query)) {
@@ -283,14 +281,13 @@ public class DatabaseEmployeePersistenceService implements EmployeePersistenceSe
                     String name = resultSet.getString("name");
                     String employeeType = resultSet.getString("employee_type");
                     String dateOfBirth = resultSet.getString("date_of_birth");
-                    int salaryAmount = resultSet.getInt("amount");
-                    String salaryCurrencyType = resultSet.getString("currency");
+                    int salaryId = resultSet.getInt("salary_id");
 
                     switch(employeeType){
                         case "PROGRAMMER":
-                            return new Programmer(id,name,dateOfBirth,null);
+                            return new Programmer(id,name,dateOfBirth,salaryId);
                         case "MANAGER":
-                            return new Manager(id,name,dateOfBirth,null);
+                            return new Manager(id,name,dateOfBirth,salaryId);
                         default:
                             throw new IllegalStateException("Could not identify this type of employee, type found: " + employeeType);
                     }
@@ -304,16 +301,9 @@ public class DatabaseEmployeePersistenceService implements EmployeePersistenceSe
 
     @Override
     public Employee getOldestEmployee() {
-        String query = "SELECT employee.id, employee.name, employee.date_of_birth, employee.employee_type, salary.amount, salary.currency \n" +
-                "FROM employee\n" +
-                "WHERE employee.salary_id IN (\n" +
-                "    SELECT id FROM salary\n" +
-                "        WHERE amount IN (\n" +
-                "            SELECT MAX(amount)\n" +
-                "            FROM salary\n" +
-                "        )\n" +
-                "    )\n" +
-                "    ORDER BY date_of_birth LIMIT 1;";
+        String query = "SELECT employee.id, employee.name, employee.date_of_birth, employee.employee_type, employee.salary_id " +
+                "FROM employee " +
+                "ORDER BY date_of_birth LIMIT 1;";
 
         try (Connection conn = Database.getNewConnection();
              PreparedStatement preparedStatement = conn.prepareStatement(query)) {
@@ -324,13 +314,13 @@ public class DatabaseEmployeePersistenceService implements EmployeePersistenceSe
                 String name = resultSet.getString("name");
                 String employeeType = resultSet.getString("employee_type");
                 String dateOfBirth = resultSet.getString("date_of_birth");
-                int salaryId= resultSet.getInt("amount");
+                int salaryId= resultSet.getInt("salary_id");
 
                 switch(employeeType){
                     case "PROGRAMMER":
-                        return new Programmer(id, name, dateOfBirth, null);
+                        return new Programmer(id, name, dateOfBirth, salaryId);
                     case "MANAGER":
-                        return new Manager(id, name, dateOfBirth, null);
+                        return new Manager(id, name, dateOfBirth, salaryId);
                     default:
                         throw new IllegalStateException("Could not identify this type of employee, type found: " + employeeType);
                 }
@@ -340,6 +330,39 @@ public class DatabaseEmployeePersistenceService implements EmployeePersistenceSe
             throw new IllegalStateException("Cannot access employee in database", e);
         }
         return null;
+    }
+
+
+    public void removeEmployeeFromTeam(int managerId, int employeeId){
+        String query = "DELETE FROM team" +
+                "WHERE manager_id = ? AND employee_id = ?;";
+
+        try (Connection conn = Database.getNewConnection();
+             PreparedStatement preparedStatement = conn.prepareStatement(query)) {
+            ResultSet resultSet = preparedStatement.executeQuery();
+            preparedStatement.setInt(1,managerId);
+            preparedStatement.setInt(2,employeeId);
+
+        } catch (SQLException e) {
+            throw new IllegalStateException("Cannot delete employee from team in database", e);
+        }
+    }
+
+    public void changeEmployeeName(int employeeId, String newName){
+        String query = "UPDATE employees" +
+                "SET name= ?" +
+                "WHERE id= ?;";
+
+        try (Connection conn = Database.getNewConnection();
+             PreparedStatement preparedStatement = conn.prepareStatement(query)) {
+            ResultSet resultSet = preparedStatement.executeQuery();
+            preparedStatement.setString(1,newName);
+            preparedStatement.setInt(2,employeeId);
+
+        } catch (SQLException e) {
+            throw new IllegalStateException("Cannot access employee in database", e);
+        }
+
     }
 
 

@@ -4,7 +4,6 @@ import com.starlingbank.company.entities.Employee;
 import com.starlingbank.company.entities.Manager;
 import com.starlingbank.company.entities.Programmer;
 import com.starlingbank.company.entities.Salary;
-import com.starlingbank.persistence.InMemoryEmployeePersistenceService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -16,6 +15,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 public class InMemoryEmployeePersistenceServiceTest {
 
     private InMemoryEmployeePersistenceService employeePersistenceService;
+    private final Salary SALARY_DEFAULT = new Salary(20000, "GBP");
 
     @BeforeEach
     void setUp(){
@@ -26,10 +26,9 @@ public class InMemoryEmployeePersistenceServiceTest {
     @Test
     void whenAddNewManager_shouldHaveNewManagerInEmployeesMap(){
         //Given
-        Salary salary = new Salary(33000, "GBP");
 
         //When
-        employeePersistenceService.addNewManager("Alice","1982-08-18", salary);
+        employeePersistenceService.addNewManager("Alice","1982-08-18", SALARY_DEFAULT);
 
         //Then
         assertThat(employeePersistenceService.listEmployees().get(0)).isInstanceOf(Manager.class);
@@ -39,11 +38,10 @@ public class InMemoryEmployeePersistenceServiceTest {
     @Test
     void whenAddNewProgrammer_shouldHaveNewProgrammerInEmployeesMap(){
         //Given
-        Salary salary = new Salary(33000, "GBP");
 
 
         //When
-        employeePersistenceService.addNewProgrammer("Ada","1982-08-18", salary);
+        employeePersistenceService.addNewProgrammer("Ada","1982-08-18", SALARY_DEFAULT);
 
         //Then
         assertThat(employeePersistenceService.listEmployees().get(0)).isInstanceOf(Programmer.class);
@@ -53,12 +51,12 @@ public class InMemoryEmployeePersistenceServiceTest {
 //    @Test
 //    void whenAddedSameEmployeeMoreThanOnce_thenEmployeeShouldOnlyBeAddedOnce(){
 //        //Given
-//        Salary salary = new Salary(33000, "GBP");
+//        Salary SALARY_DEFAULT = new Salary(33000, "GBP");
 //
 //
 //        //When
-//        employeePersistenceService.addNewProgrammer("Ada","1982-08-18", salary);
-//        employeePersistenceService.addNewProgrammer("Ada","1982-08-18", salary);
+//        employeePersistenceService.addNewProgrammer("Ada","1982-08-18", SALARY_DEFAULT);
+//        employeePersistenceService.addNewProgrammer("Ada","1982-08-18", SALARY_DEFAULT);
 //
 //        //Then
 //        assertThat(employeePersistenceService.listEmployees().size()).isEqualTo(1);
@@ -70,12 +68,11 @@ public class InMemoryEmployeePersistenceServiceTest {
         //Need to  make sure that the employee instances all have different ids
 
         //Given
-        Salary salary = new Salary(33000, "GBP");
 
 
         //When
-        employeePersistenceService.addNewProgrammer("Ada","1982-08-18", salary);
-        employeePersistenceService.addNewProgrammer("Ada","1982-08-18", salary);
+        employeePersistenceService.addNewProgrammer("Ada","1982-08-18", SALARY_DEFAULT);
+        employeePersistenceService.addNewProgrammer("Ada","1982-08-18", SALARY_DEFAULT);
 
         //Then
         int employeeId1 = employeePersistenceService.listEmployees().get(0).getEmployeeId();
@@ -87,10 +84,9 @@ public class InMemoryEmployeePersistenceServiceTest {
     @Test
     void whenAddEmployeeToManage_shouldHaveEmployeeInManagerList(){
         //Given
-        Salary salary = new Salary(33000, "GBP");
 
-        employeePersistenceService.addNewManager("Alice","1982-08-18", salary);
-        employeePersistenceService.addNewProgrammer("Ada","1982-08-18", salary);
+        employeePersistenceService.addNewManager("Alice","1982-08-18", SALARY_DEFAULT);
+        employeePersistenceService.addNewProgrammer("Ada","1982-08-18", SALARY_DEFAULT);
 
         //When
 //        employeePersistenceService.getEmployees();
@@ -104,11 +100,10 @@ public class InMemoryEmployeePersistenceServiceTest {
     @Test
     void whenManagerAddsMultipleEmployeesToTeam_thenShouldReturnExpectedEmployees(){
         //Given
-        Salary salary = new Salary(33000, "GBP");
 
-        employeePersistenceService.addNewManager("Alice","1982-08-18", salary);
-        employeePersistenceService.addNewProgrammer("Ada","1982-08-18", salary);
-        employeePersistenceService.addNewProgrammer("Grace", "1982-08-18", salary);
+        employeePersistenceService.addNewManager("Alice","1982-08-18", SALARY_DEFAULT);
+        employeePersistenceService.addNewProgrammer("Ada","1982-08-18", SALARY_DEFAULT);
+        employeePersistenceService.addNewProgrammer("Grace", "1982-08-18", SALARY_DEFAULT);
 
         //When
         employeePersistenceService.addEmployeeToTeam(0,1);
@@ -122,9 +117,8 @@ public class InMemoryEmployeePersistenceServiceTest {
     @Test
     void whenManagerAddsSameEmployeeToTeam_shouldOnlyAddEmployeeOnce(){
         //Given
-        Salary salary = new Salary(33000, "GBP");
-        employeePersistenceService.addNewManager("Alice","1982-08-18", salary);
-        employeePersistenceService.addNewProgrammer("Ada","1982-08-18", salary);
+        employeePersistenceService.addNewManager("Alice","1982-08-18", SALARY_DEFAULT);
+        employeePersistenceService.addNewProgrammer("Ada","1982-08-18", SALARY_DEFAULT);
 
         //When
         employeePersistenceService.addEmployeeToTeam(0,1);
@@ -138,9 +132,8 @@ public class InMemoryEmployeePersistenceServiceTest {
     @Test
     void whenProgrammerTriesToAddEmployeeToTeamAsManager_thenShouldThrowException(){
         //Given
-        Salary salary = new Salary(33000, "GBP");
-        employeePersistenceService.addNewProgrammer("Alice","1982-08-18", salary);
-        employeePersistenceService.addNewProgrammer("Ada","1982-08-18", salary);
+        employeePersistenceService.addNewProgrammer("Alice","1982-08-18", SALARY_DEFAULT);
+        employeePersistenceService.addNewProgrammer("Ada","1982-08-18", SALARY_DEFAULT);
 
         //Then
         assertThatThrownBy(() -> employeePersistenceService.addEmployeeToTeam(0,1))
@@ -152,8 +145,7 @@ public class InMemoryEmployeePersistenceServiceTest {
     @Test
     void whenGetTeamWithManagerWithNoTeam_thenShouldReturnEmptyArray(){
         //Given
-        Salary salary = new Salary(33000, "GBP");
-        employeePersistenceService.addNewManager("Alice","1982-08-18", salary);
+        employeePersistenceService.addNewManager("Alice","1982-08-18", SALARY_DEFAULT);
 
         //When & Then
         assertThat(employeePersistenceService.getTeam(0)).isEmpty();
@@ -163,8 +155,7 @@ public class InMemoryEmployeePersistenceServiceTest {
     @Test
     void givenUnknownEmployeeWhenAddingEmployeeToTeamThenShouldThrowException() {
         // Given
-        Salary salary = new Salary(33000, "GBP");
-        employeePersistenceService.addNewManager("Alice","1982-08-18", salary);
+        employeePersistenceService.addNewManager("Alice","1982-08-18", SALARY_DEFAULT);
 
         // When
 
@@ -180,13 +171,42 @@ public class InMemoryEmployeePersistenceServiceTest {
     @Test
     void whenGetEmployeeFromEmployees_thenShouldReturnExpectedObject(){
         // Given
-        Salary salary = new Salary(33000, "GBP");
-        employeePersistenceService.addNewManager("Alice","1982-08-18", salary);
+        employeePersistenceService.addNewManager("Alice","1982-08-18", SALARY_DEFAULT);
 
         //When & Then
         assertThat(employeePersistenceService.getEmployeeFromEmployees(0)).isInstanceOf(Employee.class);
         assertThat(employeePersistenceService.getEmployeeFromEmployees(0).getName()).isEqualTo("Alice");
 
+    }
+
+    @Test
+    void whenGetEmployeeWithHighestSalary_thenReturnExpectedObject(){
+        //Given
+        Salary aHigherSalary = new Salary(3000000, "GBP");
+        employeePersistenceService.addNewManager("Alice","1982-08-18", aHigherSalary);
+        employeePersistenceService.addNewProgrammer("Bob","1982-08-18", SALARY_DEFAULT);
+
+        //When
+        Employee employeeWithHighestSalary = employeePersistenceService.getEmployeeWithHighestSalary();
+
+        //Then
+        assertThat(employeeWithHighestSalary).isNotNull();
+        assertThat(employeeWithHighestSalary.getName()).isEqualTo("Alice");
+    }
+
+    @Test
+    void whenGetOldestEmployee_thenShouldReturnExpectedObject(){
+        //Given
+        employeePersistenceService.addNewManager("Alice","1982-08-18", SALARY_DEFAULT);
+        employeePersistenceService.addNewProgrammer("Ada","1815-10-08", SALARY_DEFAULT);
+
+        //When
+        Employee oldestEmployee = employeePersistenceService.getOldestEmployee();
+
+
+        //Then
+        assertThat(oldestEmployee).isNotNull();
+        assertThat(oldestEmployee.getName()).isEqualTo("Alice");
     }
 
 

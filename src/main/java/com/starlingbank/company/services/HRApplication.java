@@ -1,10 +1,9 @@
 package com.starlingbank.company.services;
 
 import com.starlingbank.company.entities.Employee;
-import com.starlingbank.company.entities.Salary;
 import com.starlingbank.externalservices.Course;
 import com.starlingbank.externalservices.CourseService;
-import com.starlingbank.persistence.InMemoryEmployeePersistenceService;
+import com.starlingbank.company.persistence.InMemoryEmployeePersistenceService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,19 +23,19 @@ public class HRApplication {
 
     public double calculateBonus(Employee employee) {
         if (employee.getExtraHoursWorked() >= MAX_AMOUNT_EXTRA_HOURS) {
-            return calculateBonusAmountForExtraHours(employee,null);
+            return calculateBonusAmountForExtraHours(employee);
 
         } else {
-            return calculateBaseBonusAmount(employee,null);
+            return calculateBaseBonusAmount(employee);
         }
     }
 
-    public double calculateBonusAmountForExtraHours(Employee employee, Salary salary) {
-        return salary.getAmount() * employee.getBonusPercentage() + (salary.getAmount() * EXTRA_HOURS_BONUS_PERCENTAGE);
+    public double calculateBonusAmountForExtraHours(Employee employee) {
+        return employee.getSalaryObject().getAmount() * employee.getBonusPercentage() + (employee.getSalaryObject().getAmount() * EXTRA_HOURS_BONUS_PERCENTAGE);
     }
 
-    public double calculateBaseBonusAmount(Employee employee, Salary salary) {
-        return salary.getAmount() * employee.getBonusPercentage();
+    public double calculateBaseBonusAmount(Employee employee) {
+        return employee.getSalaryObject().getAmount() * employee.getBonusPercentage();
     }
 
     public void enrollEmployeeToCourse(Employee employee, Course course) {
@@ -51,29 +50,28 @@ public class HRApplication {
         employee.setBonusPercentage(employee.getBonusPercentage() + bonusPercentageIncrement);
     }
 
-    public Salary getEmployeeWithHighestSalary(List<Salary> listOfSalaries) {
-        double highestSalaryFound = 0.0;
-        String currencyType = "";
-
-        for (Salary salary : listOfSalaries) {
-            if (salary.getAmount() > highestSalaryFound) {
-                highestSalaryFound = salary.getAmount();
-            }
-        }
-
-        for (Salary salary : listOfSalaries) {
-            if (salary.getAmount() == highestSalaryFound) {
-                highestSalaryFound = salary.getAmount();
-                currencyType = salary.getCurrency();
-            }
-        }
-
-        return new Salary(highestSalaryFound, currencyType);
-
-    }
+//    public Salary getEmployeeWithHighestSalary(List<Employee> listOfSalaries) {
+//        double highestSalaryFound = 0.0;
+//        String currencyType = "";
+//
+//        for (Salary salary : listOfSalaries) {
+//            if (salary.getAmount() > highestSalaryFound) {
+//                highestSalaryFound = salary.getAmount();
+//            }
+//        }
+//
+//        for (Salary salary : listOfSalaries) {
+//            if (salary.getAmount() == highestSalaryFound) {
+//                highestSalaryFound = salary.getAmount();
+//                currencyType = salary.getCurrency();
+//            }
+//        }
+//
+//        return new Salary(highestSalaryFound, currencyType);
+//
+//    }
 
     //shows list of courses names employees are enrolled in for given team
-    //needs testing
     public List<String> showWhatCoursesMyEmployeesAreEnrolledIn(int managerId) {
         List<String> employeesEnrolledToCourses = new ArrayList<>();
 
@@ -84,5 +82,7 @@ public class HRApplication {
 
         return employeesEnrolledToCourses;
     }
+
+
 
 }

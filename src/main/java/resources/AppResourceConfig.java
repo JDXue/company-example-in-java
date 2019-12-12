@@ -7,7 +7,7 @@ import java.util.Set;
 public class AppResourceConfig extends Application {
     Set<Class<?>> classes = new HashSet<>();
     public AppResourceConfig() {
-        classes.add(Employees.class);
+        classes.add(EmployeesResources.class);
     }
     public Set<Class<?>> getClasses() {
         return classes;

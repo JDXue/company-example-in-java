@@ -2,7 +2,7 @@ package com.starlingbank.externalservices;
 
 import com.starlingbank.company.entities.Employee;
 import com.starlingbank.company.entities.Manager;
-import com.starlingbank.persistence.InMemoryCoursePersistenceService;
+import com.starlingbank.company.persistence.InMemoryCoursePersistenceService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;

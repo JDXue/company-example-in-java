@@ -1,4 +1,4 @@
-package com.starlingbank.persistence;
+package com.starlingbank.company.persistence;
 
 import com.starlingbank.company.entities.Employee;
 import com.starlingbank.company.entities.Manager;
@@ -135,12 +135,14 @@ public class DatabaseCoursePersistenceService implements CoursePersistenceServic
                 String name = resultSet.getString("name");
                 String employeeType = resultSet.getString("employee_type");
                 String dateOfBirth = resultSet.getString("date_of_birth");
+                int salaryId = resultSet.getInt("salary_id");
+
 
                 switch(employeeType){
                     case "PROGRAMMER":
-                        return new Programmer(id,name,dateOfBirth,null);
+                        return new Programmer(id,name,dateOfBirth,salaryId);
                     case "MANAGER":
-                        return new Manager(id,name,dateOfBirth,null);
+                        return new Manager(id,name,dateOfBirth,salaryId);
                     default:
                         throw new IllegalStateException("Could not identify this type of employee, type found: " + employeeType);
                 }
