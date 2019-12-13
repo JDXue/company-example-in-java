@@ -191,13 +191,13 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Application.Main" />
       <item itemvalue="JUnit.CoursePersistenceServiceTest" />
       <item itemvalue="JUnit.EmployeePersistenceServiceTest" />
       <item itemvalue="JUnit.HRApplicationTest" />
       <item itemvalue="JUnit.com.starlingbank in companyexampletesting" />
       <item itemvalue="JUnit.InMemoryEmployeePersistenceServiceTest.whenGetEmployeeWithHighestSalary_thenReturnExpectedObject" />
       <item itemvalue="JUnit.InMemoryEmployeePersistenceServiceTest.whenGetOldestEmployee_thenShouldReturnExpectedObject" />
-      <item itemvalue="Application.Main" />
       <item itemvalue="JUnit.HRApplicationTest.ifManagerRequestsCourseEmployeesEnrolledIn_thenShouldReturnMapOfEmployeesAndCourses" />
     </list>
     <recent_temporary>

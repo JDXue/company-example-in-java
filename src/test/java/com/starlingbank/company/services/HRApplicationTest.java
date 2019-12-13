@@ -21,7 +21,7 @@ import static org.mockito.Mockito.when;
 
 class HRApplicationTest {
 
-    private static Salary SALARY_DEFAULT = new Salary(20000, "GBP");
+    private static final Salary SALARY_DEFAULT = new Salary(20000, "GBP");
 
     private HRApplication hrApplication;
 
