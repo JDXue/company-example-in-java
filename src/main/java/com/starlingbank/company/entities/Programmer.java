@@ -2,10 +2,14 @@ package com.starlingbank.company.entities;
 
 public class Programmer extends Employee {
 
-    public Programmer(String name, String dateOfBirth, Salary salary){
-        super(name, dateOfBirth, salary);
+    public Programmer(int employeeId, String name, String dateOfBirth, Salary salary){
+        super(employeeId, name, dateOfBirth, salary);
         bonusPercentage = 0.2;
+    }
 
+    public Programmer(int employeeId, String name, String dateOfBirth, int salary){
+        super(employeeId, name, dateOfBirth, salary);
+        bonusPercentage = 0.2;
     }
 
 

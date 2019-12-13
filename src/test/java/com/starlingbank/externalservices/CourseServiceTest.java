@@ -1,142 +1,72 @@
 package com.starlingbank.externalservices;
 
+import com.starlingbank.company.entities.Employee;
 import com.starlingbank.company.entities.Manager;
-import com.starlingbank.company.entities.Salary;
+import com.starlingbank.company.persistence.InMemoryCoursePersistenceService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.*;
 
 public class CourseServiceTest {
+    @Mock
+    private InMemoryCoursePersistenceService coursePersistenceService;
 
     private CourseService courseService;
 
-    private Salary salary;
-    private Manager bob;
-
     @BeforeEach
-    void setUp() {
-        courseService = new CourseService();
-
-        salary = new Salary(20000, "GBP");
-        bob = new Manager("Bob", "20/12/1984", salary);
-
+    void setUp(){
+        MockitoAnnotations.initMocks(this);
+        this.courseService = new CourseService(coursePersistenceService);
     }
 
+    @Test
+    void whenCallEnroll_thenShouldExecuteCoursePersistenceService(){
+        //Given
+        Employee employee = new Manager(1,"Bob", "20/12/1984", null);
+        Course course = new Course(1,"First Aid");
+
+        //When
+        courseService.enroll(employee.getEmployeeId(), course.getId());
+
+        //Then
+        verify(coursePersistenceService, times(1)).enroll(any(Integer.class), any(Integer.class));
+    }
 
     @Test
-    void shouldAddCourseToCourseService() {
+    void whenCallAddCourse_thenShouldExecuteCoursePersistenceService(){
         //Given
 
         //When
-        Course firstAid = new Course("firstAid", courseService.getCourses().size());
-        courseService.addCourse(firstAid);
-//        courseService.enroll("bob", 1);
+        courseService.addCourse("Java");
 
         //Then
-        List<Course> courses = courseService.getCourses();
-        assertThat(courses)
-        .containsExactly(firstAid);
-
+        verify(coursePersistenceService, times(1)).addCourse("Java");
     }
 
     @Test
-    void ifCourseToAddAlreadyInCourses_thenThrowException(){
+    void whenCallGetCourses_thenShouldExecuteCoursePersistenceService(){
         //Given
-        Course firstAid = new Course("firstAid", courseService.getCourses().size());
-        courseService.addCourse(firstAid);
-
-
-        //When & Then
-        assertThatThrownBy(() -> courseService.addCourse(firstAid))
-                .isInstanceOf(IllegalStateException.class)
-                .hasMessageContaining("Course firstAid is already in this course list");
-    }
-
-    @Test
-    void whenCourseNotFound_thenShouldThrowException() {
-        //When & Then
-        assertThatThrownBy(() -> courseService.enroll("alice", 33))
-                .isInstanceOf(IllegalStateException.class)
-                .hasMessageContaining("Course ID 33 not found");
-
-
-    }
-
-    @Test
-    void whenPersonAddedToCourse_thenShouldHavePersonInCourseList(){
-        //Given
-        Course firstAid = new Course("firstAid", courseService.getCourses().size());
-        courseService.addCourse(firstAid);
-        courseService.enroll(bob.getName(), 0);
-
 
         //When
-        List<String> courses = courseService.getCourseEnrollment().get(0);
+        courseService.getCourses();
 
         //Then
-
-        assertThat(courses.contains(bob.getName()));
-
-
-
+        verify(coursePersistenceService, times(1)).listCourses();
     }
 
     @Test
-    void ifPersonEnrollsOnCourseAgain_thenShouldThrowException(){
+    void whenCallShowWhatCoursesPersonIsEnrolledIn_thenShouldExecuteCoursePersistenceService(){
         //Given
-        Course firstAid = new Course("firstAid", courseService.getCourses().size());
-        courseService.addCourse(firstAid);
-        courseService.enroll(bob.getName(), 0);
-
-
-        //Then
-        assertThatThrownBy(() -> courseService.enroll(bob.getName(), 0))
-                .isInstanceOf(IllegalStateException.class)
-                .hasMessageContaining("You have already signed up to this course");
-
-
-    }
-
-    @Test
-    void whenGetCourses_thenShouldHaveListOfCourses(){
-        //Given
-        Course firstAid = new Course("firstAid", courseService.getCourses().size());
-        courseService.addCourse(firstAid);
-
-        List <Course> expectedCourses = new ArrayList<>();
-        expectedCourses.add(firstAid);
-
-        //Then
-        assertThat(courseService.getCourses()).isEqualTo(expectedCourses);
-
-    }
-
-    @Test
-    void whenShowWhatCoursesPersonIsEnrolledIn_thenGetArrayOfCoursesTheyAreIn(){
-        //Given
-        Course firstAid = new Course("firstAid", courseService.getCourses().size());
-        courseService.addCourse(firstAid);
-        courseService.enroll(bob.getName(), 0);
+        Employee employee = new Manager(1,"Bob", "20/12/1984", null);
 
         //When
-        List <String> expectedCourses = new ArrayList<>();
-        expectedCourses.add(firstAid.getName());
+        courseService.showWhatCoursesPersonIsEnrolledIn(employee);
 
         //Then
-        assertThat(courseService.showWhatCoursesPersonIsEnrolledIn(bob)).isEqualTo(expectedCourses);
-
+        verify(coursePersistenceService, times(1)).showWhatCoursesPersonIsEnrolledIn(employee.getEmployeeId());
     }
-
-
-
-
-
-
-
-
 }
