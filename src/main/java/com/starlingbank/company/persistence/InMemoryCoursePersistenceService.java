@@ -56,14 +56,17 @@ public class InMemoryCoursePersistenceService {
         return new ArrayList<>(courses.values());
     }
 
-    public List<String> showWhatCoursesPersonIsEnrolledIn(int employeeId){
+    public List<Course> showWhatCoursesPersonIsEnrolledIn(int employeeId){
         List<Integer> employeeCourses = courseEnrollment.get(employeeId);
 
-        List<String> collect = employeeCourses
+        List<Course> collect = employeeCourses
                 .stream()
                 .map(courseId -> courses.get(courseId))
-                .map(Course::getName)
                 .collect(Collectors.toList());
+
+//        List<Course> collect = new ArrayList<>();
+
+//       employeeCourses.forEach(courseId -> collect.add(courses.get(courseId)));
 
         return collect;
     }

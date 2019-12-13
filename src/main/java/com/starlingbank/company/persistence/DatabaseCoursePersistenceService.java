@@ -89,11 +89,11 @@ public class DatabaseCoursePersistenceService implements CoursePersistenceServic
     }
 
     @Override
-    public List<String> showWhatCoursesPersonIsEnrolledIn(int employeeId){
-        List<String> coursesEnrolledIn = new ArrayList<>();
+    public List<Course> showWhatCoursesPersonIsEnrolledIn(int employeeId){
+        List<Course> coursesEnrolledIn = new ArrayList<>();
 
         String employeeIdString = String.valueOf(employeeId);
-        String query = "SELECT course_name " +
+        String query = "SELECT id, course_name " +
                 "FROM course " +
                 "INNER JOIN course_employee ON course.id=course_employee.course_id " +
                 "WHERE employee_id=" + employeeIdString;
@@ -103,8 +103,10 @@ public class DatabaseCoursePersistenceService implements CoursePersistenceServic
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
+                int courseId = resultSet.getInt("id");
                 String courseName = resultSet.getString("course_name");
-                coursesEnrolledIn.add(courseName);
+
+                coursesEnrolledIn.add(new Course(courseId, courseName));
             }
 
         } catch (SQLException e) {
@@ -118,12 +120,12 @@ public class DatabaseCoursePersistenceService implements CoursePersistenceServic
 
     @Override
     public Employee getEmployeeEnrolledInMostCourses(){
-        String query = "SELECT * FROM employee\n" +
-                "WHERE id IN (\n" +
-                "    SELECT employee_id FROM course_employee\n" +
-                "    GROUP BY employee_id\n" +
-                "    ORDER BY COUNT(*) DESC\n" +
-                "    LIMIT 1\n" +
+        String query = "SELECT * FROM employee " +
+                "WHERE id IN ( " +
+                "    SELECT employee_id FROM course_employee " +
+                "    GROUP BY employee_id " +
+                "    ORDER BY COUNT(*) DESC " +
+                "    LIMIT 1 " +
                 ")";
 
         try (Connection conn = Database.getNewConnection();
@@ -153,6 +155,7 @@ public class DatabaseCoursePersistenceService implements CoursePersistenceServic
         }
         return null;
     }
+
 
 
 

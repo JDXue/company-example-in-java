@@ -10,7 +10,7 @@ public interface CoursePersistenceService {
     void addCourse(String newCourse);
     void enroll(int employeeId, int courseId);
     List<Course> listCourses();
-    List<String> showWhatCoursesPersonIsEnrolledIn(int employeeId);
+    List<Course> showWhatCoursesPersonIsEnrolledIn(int employeeId);
     Employee getEmployeeEnrolledInMostCourses();
 
 }

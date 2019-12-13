@@ -56,12 +56,12 @@ public class DatabaseHRApplication {
 
 
     //shows list of courses names employees are enrolled in for given team
-    public List<String> showWhatCoursesMyEmployeesAreEnrolledIn(int managerId) {
-        List<String> employeesEnrolledToCourses = new ArrayList<>();
+    public List<Course> showWhatCoursesMyEmployeesAreEnrolledIn(int managerId) {
+        List<Course> employeesEnrolledToCourses = new ArrayList<>();
 
         for (Employee employee : databaseEmployeePersistenceService.getTeamMembers(managerId)) {
-            List<String> courseNames = databaseCourseService.showWhatCoursesPersonIsEnrolledIn(employee);
-            employeesEnrolledToCourses.addAll(courseNames);
+            List<Course> courses = databaseCourseService.showWhatCoursesPersonIsEnrolledIn(employee);
+            employeesEnrolledToCourses.addAll(courses);
         }
 
         return employeesEnrolledToCourses;
@@ -104,7 +104,6 @@ public class DatabaseHRApplication {
     }
 
     public void removeTeamMember(int managerId, int employeeId){
-        databaseEmployeePersistenceService.removeEmployeeFromTeam(managerId,employeeId);
     }
 
     public void updateEmployeeName(int employeeId, String payload){

@@ -1,3 +1,4 @@
+import com.starlingbank.company.persistence.DatabaseEmployeePersistenceService;
 import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
@@ -61,6 +62,10 @@ public class Main {
 //    }
 
     public static void main(String[] args) {
+
+//        DatabaseEmployeePersistenceService databaseEmployeePersistenceService = new DatabaseEmployeePersistenceService();
+//        databaseEmployeePersistenceService.removeTeamMember(26,23);
+
         Server server = new Server(8080); // Port 8080
         // startup code
         try {

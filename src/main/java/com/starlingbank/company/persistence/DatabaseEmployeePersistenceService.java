@@ -11,7 +11,7 @@ import java.util.List;
 
 public class DatabaseEmployeePersistenceService implements EmployeePersistenceService {
 
-    public DatabaseEmployeePersistenceService(){
+    public DatabaseEmployeePersistenceService() {
     }
 
     @Override
@@ -54,14 +54,14 @@ public class DatabaseEmployeePersistenceService implements EmployeePersistenceSe
     public List<Employee> listEmployees() {
         List<Employee> employeesList = new ArrayList<>();
         String query = "SELECT id, name, employee_type, date_of_birth, salary_id " +
-                "FROM employee;" ;
+                "FROM employee;";
 
 
         try (Connection conn = Database.getNewConnection();
              PreparedStatement preparedStatement = conn.prepareStatement(query)) {
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            while(resultSet.next()) {
+            while (resultSet.next()) {
                 int id = resultSet.getInt("id");
                 String name = resultSet.getString("name");
                 String employeeType = resultSet.getString("employee_type");
@@ -69,15 +69,15 @@ public class DatabaseEmployeePersistenceService implements EmployeePersistenceSe
                 int salaryId = resultSet.getInt("salary_id");
 
 
-                switch(employeeType){
+                switch (employeeType) {
                     case "PROGRAMMER":
                         employeesList.add(
-                            new Programmer(
-                                    id,
-                                    name,
-                                    dateOfBirth,
-                                    salaryId
-                            ));
+                                new Programmer(
+                                        id,
+                                        name,
+                                        dateOfBirth,
+                                        salaryId
+                                ));
                         break;
                     case "MANAGER":
                         employeesList.add(
@@ -117,24 +117,24 @@ public class DatabaseEmployeePersistenceService implements EmployeePersistenceSe
 
         try (Connection conn = Database.getNewConnection();
              PreparedStatement preparedStatement = conn.prepareStatement(query)) {
-            preparedStatement.setInt(1,managerId);
+            preparedStatement.setInt(1, managerId);
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            while(resultSet.next()){
+            while (resultSet.next()) {
                 String employeeType = resultSet.getString("employee_type");
-                if(employeeType.equals("MANAGER")){
+                if (employeeType.equals("MANAGER")) {
                     String addEmployeeStatement = " INSERT INTO team (manager_id, employee_id) " +
                             " VALUES (?, ?)";
                     PreparedStatement nextPreparedStatement = conn.prepareStatement((addEmployeeStatement));
-                    nextPreparedStatement.setInt(1,managerId);
-                    nextPreparedStatement.setInt(2,employeeId);
+                    nextPreparedStatement.setInt(1, managerId);
+                    nextPreparedStatement.setInt(2, employeeId);
 
                     int affectedRow = nextPreparedStatement.executeUpdate();
 
                 }
             }
 
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             throw new IllegalStateException("could not add this employee of the team", e);
         }
         //add relationship between manager and employee
@@ -148,10 +148,10 @@ public class DatabaseEmployeePersistenceService implements EmployeePersistenceSe
 
         try (Connection conn = Database.getNewConnection();
              PreparedStatement preparedStatement = conn.prepareStatement(query)) {
-            preparedStatement.setInt(1,managerId);
+            preparedStatement.setInt(1, managerId);
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            while(resultSet.next()) {
+            while (resultSet.next()) {
                 Integer employeeId = resultSet.getInt("employee_id");
                 teamIds.add(employeeId);
             }
@@ -174,10 +174,10 @@ public class DatabaseEmployeePersistenceService implements EmployeePersistenceSe
         try (Connection conn = Database.getNewConnection();
              PreparedStatement preparedStatement = conn.prepareStatement(query)) {
 
-            preparedStatement.setInt(1,managerId);
+            preparedStatement.setInt(1, managerId);
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            while(resultSet.next()) {
+            while (resultSet.next()) {
                 int id = resultSet.getInt("id");
                 String name = resultSet.getString("name");
                 String employeeType = resultSet.getString("employee_type");
@@ -185,7 +185,7 @@ public class DatabaseEmployeePersistenceService implements EmployeePersistenceSe
                 int salaryId = resultSet.getInt("salary_id");
 
 
-                switch(employeeType){
+                switch (employeeType) {
                     case "PROGRAMMER":
                         employeesList.add(
                                 new Programmer(
@@ -219,6 +219,16 @@ public class DatabaseEmployeePersistenceService implements EmployeePersistenceSe
         return employeesList;
     }
 
+//    public List<String> showWhatCoursesMyEmployeesAreEnrolledIn(int managerId) {
+//
+//        for (Employee employee : this.getTeamMembers(managerId)) {
+//            List<String> courseNames = databaseCourseService.showWhatCoursesPersonIsEnrolledIn(employee);
+//            employeesEnrolledToCourses.addAll(courseNames);
+//        }
+//
+//        return employeesEnrolledToCourses;
+//    }
+
     @Override
     public Employee getEmployeeFromEmployees(int employeeId) {
 
@@ -226,12 +236,12 @@ public class DatabaseEmployeePersistenceService implements EmployeePersistenceSe
                 "WHERE employee.id=?";
 
         try (Connection conn = Database.getNewConnection();
-              PreparedStatement preparedStatement = conn.prepareStatement(query)) {
+             PreparedStatement preparedStatement = conn.prepareStatement(query)) {
 
-            preparedStatement.setInt(1,employeeId);
+            preparedStatement.setInt(1, employeeId);
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            while(resultSet.next()) {
+            while (resultSet.next()) {
                 String name = resultSet.getString("name");
                 String employeeType = resultSet.getString("employee_type");
                 String dateOfBirth = resultSet.getString("date_of_birth");
@@ -253,7 +263,7 @@ public class DatabaseEmployeePersistenceService implements EmployeePersistenceSe
             }
 
         } catch (SQLException e) {
-            throw new IllegalStateException("Cannot access employee "+ employeeId + " in database", e);
+            throw new IllegalStateException("Cannot access employee " + employeeId + " in database", e);
         }
 
         return null;
@@ -261,42 +271,42 @@ public class DatabaseEmployeePersistenceService implements EmployeePersistenceSe
 
     @Override
     public Employee getEmployeeWithHighestSalary() {
-            //selects all rows from employee that have salary id of the highest salary in salary table
-            String query = "SELECT id, name, date_of_birth, employee_type, date_of_birth, salary_id" +
-                    "FROM employee" +
-                    "WHERE employee.salary_id IN ( " +
-                    "    SELECT id FROM salary " +
-                    "    WHERE amount IN ( " +
-                    "        SELECT MAX(amount) " +
-                    "        FROM salary " +
-                    "    ) " +
-                    ") LIMIT 1 " ;
+        //selects all rows from employee that have salary id of the highest salary in salary table
+        String query = "SELECT id, name, date_of_birth, employee_type, date_of_birth, salary_id" +
+                "FROM employee" +
+                "WHERE employee.salary_id IN ( " +
+                "    SELECT id FROM salary " +
+                "    WHERE amount IN ( " +
+                "        SELECT MAX(amount) " +
+                "        FROM salary " +
+                "    ) " +
+                ") LIMIT 1 ";
 
-            try (Connection conn = Database.getNewConnection();
-                 PreparedStatement preparedStatement = conn.prepareStatement(query)) {
-                ResultSet resultSet = preparedStatement.executeQuery();
+        try (Connection conn = Database.getNewConnection();
+             PreparedStatement preparedStatement = conn.prepareStatement(query)) {
+            ResultSet resultSet = preparedStatement.executeQuery();
 
-                while(resultSet.next()) {
-                    int id = resultSet.getInt("id");
-                    String name = resultSet.getString("name");
-                    String employeeType = resultSet.getString("employee_type");
-                    String dateOfBirth = resultSet.getString("date_of_birth");
-                    int salaryId = resultSet.getInt("salary_id");
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String name = resultSet.getString("name");
+                String employeeType = resultSet.getString("employee_type");
+                String dateOfBirth = resultSet.getString("date_of_birth");
+                int salaryId = resultSet.getInt("salary_id");
 
-                    switch(employeeType){
-                        case "PROGRAMMER":
-                            return new Programmer(id,name,dateOfBirth,salaryId);
-                        case "MANAGER":
-                            return new Manager(id,name,dateOfBirth,salaryId);
-                        default:
-                            throw new IllegalStateException("Could not identify this type of employee, type found: " + employeeType);
-                    }
-
+                switch (employeeType) {
+                    case "PROGRAMMER":
+                        return new Programmer(id, name, dateOfBirth, salaryId);
+                    case "MANAGER":
+                        return new Manager(id, name, dateOfBirth, salaryId);
+                    default:
+                        throw new IllegalStateException("Could not identify this type of employee, type found: " + employeeType);
                 }
-            } catch (SQLException e) {
-                throw new IllegalStateException("Cannot access employee in database", e);
+
             }
-            return null;
+        } catch (SQLException e) {
+            throw new IllegalStateException("Cannot access employee in database", e);
+        }
+        return null;
     }
 
     @Override
@@ -309,14 +319,14 @@ public class DatabaseEmployeePersistenceService implements EmployeePersistenceSe
              PreparedStatement preparedStatement = conn.prepareStatement(query)) {
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            while(resultSet.next()) {
+            while (resultSet.next()) {
                 int id = resultSet.getInt("id");
                 String name = resultSet.getString("name");
                 String employeeType = resultSet.getString("employee_type");
                 String dateOfBirth = resultSet.getString("date_of_birth");
-                int salaryId= resultSet.getInt("salary_id");
+                int salaryId = resultSet.getInt("salary_id");
 
-                switch(employeeType){
+                switch (employeeType) {
                     case "PROGRAMMER":
                         return new Programmer(id, name, dateOfBirth, salaryId);
                     case "MANAGER":
@@ -333,22 +343,9 @@ public class DatabaseEmployeePersistenceService implements EmployeePersistenceSe
     }
 
 
-    public void removeEmployeeFromTeam(int managerId, int employeeId){
-        String query = "DELETE FROM team" +
-                "WHERE manager_id = ? AND employee_id = ?;";
 
-        try (Connection conn = Database.getNewConnection();
-             PreparedStatement preparedStatement = conn.prepareStatement(query)) {
-            ResultSet resultSet = preparedStatement.executeQuery();
-            preparedStatement.setInt(1,managerId);
-            preparedStatement.setInt(2,employeeId);
 
-        } catch (SQLException e) {
-            throw new IllegalStateException("Cannot delete employee from team in database", e);
-        }
-    }
-
-    public void changeEmployeeName(int employeeId, String newName){
+    public void changeEmployeeName(int employeeId, String newName) {
         String query = "UPDATE employees" +
                 "SET name= ?" +
                 "WHERE id= ?;";
@@ -356,8 +353,8 @@ public class DatabaseEmployeePersistenceService implements EmployeePersistenceSe
         try (Connection conn = Database.getNewConnection();
              PreparedStatement preparedStatement = conn.prepareStatement(query)) {
             ResultSet resultSet = preparedStatement.executeQuery();
-            preparedStatement.setString(1,newName);
-            preparedStatement.setInt(2,employeeId);
+            preparedStatement.setString(1, newName);
+            preparedStatement.setInt(2, employeeId);
 
         } catch (SQLException e) {
             throw new IllegalStateException("Cannot access employee in database", e);
@@ -365,5 +362,76 @@ public class DatabaseEmployeePersistenceService implements EmployeePersistenceSe
 
     }
 
+    public List<String> showCoursesTeamIsEnrolledIn(int managerId) {
+        List<String> employeeCourses = new ArrayList<>();
+        String query = "SELECT course_name FROM course" +
+                "WHERE id IN (" +
+                "    SELECT course_id FROM course_employee" +
+                "    WHERE employee_id IN(" +
+                "        SELECT employee_id FROM team" +
+                "        WHERE manager_id = ?" +
+                "    )" +
+                ");";
 
+        try (Connection conn = Database.getNewConnection();
+             PreparedStatement preparedStatement = conn.prepareStatement(query)) {
+            ResultSet resultSet = preparedStatement.executeQuery();
+            preparedStatement.setInt(1, managerId);
+
+            while (resultSet.next()) {
+                String courseName = resultSet.getString("course_name");
+                employeeCourses.add(courseName);
+            }
+
+        } catch (SQLException e) {
+            throw new IllegalStateException("Cannot access employee in database", e);
+        }
+        return employeeCourses;
+    }
+
+    public void removeTeamMember(int managerId, int employeeId) {
+        String statement = "DELETE FROM team " +
+                "WHERE manager_id= ? AND employee_id= ?" ;
+
+        try (Connection conn = Database.getNewConnection();
+             PreparedStatement preparedStatement = conn.prepareStatement(statement)) {
+            preparedStatement.setInt(1, managerId);
+            preparedStatement.setInt(2, employeeId);
+
+            int affectedRows = preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new IllegalStateException("Cannot delete employee from team in database", e);
+        }
+    }
+
+    public void removeEmployee(int employeeId) {
+        String statement = "DELETE FROM employee " +
+                "WHERE employee_id= ?" ;
+
+        try (Connection conn = Database.getNewConnection();
+             PreparedStatement preparedStatement = conn.prepareStatement(statement)) {
+            preparedStatement.setInt(1, employeeId);
+
+            int affectedRows = preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new IllegalStateException("Cannot delete employee in database", e);
+        }
+    }
+
+    public void removeTeam(int managerId) {
+        String statement = "DELETE FROM team " +
+                "WHERE manager_id= ?" ;
+
+        try (Connection conn = Database.getNewConnection();
+             PreparedStatement preparedStatement = conn.prepareStatement(statement)) {
+            preparedStatement.setInt(1, managerId);
+
+            int affectedRows = preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new IllegalStateException("Cannot delete employee from team in database", e);
+        }
+    }
 }

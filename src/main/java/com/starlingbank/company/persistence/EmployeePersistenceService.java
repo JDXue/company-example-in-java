@@ -18,9 +18,9 @@ public interface EmployeePersistenceService {
      Employee getEmployeeWithHighestSalary();
      Employee getOldestEmployee();
 
-//     void removeEmployee();
-//     void removeTeamMember(int maangerId, int employeeId);
-//     void removeTeam();
+     void removeEmployee(int employeeId);
+     void removeTeamMember(int managerId, int employeeId);
+     void removeTeam(int managerId);
 
 
 }

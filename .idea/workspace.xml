@@ -2,34 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="29fe327a-03e1-47ca-88b6-66fb8c76717a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/CompanyModule.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/starlingbank/company/services/DatabaseHRApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/starlingbank/externalservices/DatabaseCourseService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/resources/CourseRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/resources/TeamRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/resources/CourseResources.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/resources/TeamResources.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/starlingbank/company/persistence/DatabaseEmployeePersistenceServiceTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CompanyModule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CompanyModule.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/starlingbank/company/entities/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/starlingbank/company/entities/Employee.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/starlingbank/company/entities/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/starlingbank/company/entities/Manager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/starlingbank/company/entities/Programmer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/starlingbank/company/entities/Programmer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/starlingbank/company/persistence/CoursePersistenceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/starlingbank/company/persistence/CoursePersistenceService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/starlingbank/company/persistence/DatabaseCoursePersistenceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/starlingbank/company/persistence/DatabaseCoursePersistenceService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/starlingbank/company/persistence/DatabaseEmployeePersistenceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/starlingbank/company/persistence/DatabaseEmployeePersistenceService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/starlingbank/company/persistence/EmployeePersistenceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/starlingbank/company/persistence/EmployeePersistenceService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/starlingbank/company/persistence/InMemoryCoursePersistenceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/starlingbank/company/persistence/InMemoryCoursePersistenceService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/starlingbank/company/services/DatabaseHRApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/starlingbank/company/services/DatabaseHRApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/starlingbank/company/services/HRApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/starlingbank/company/services/HRApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/starlingbank/externalservices/CourseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/starlingbank/externalservices/CourseService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/starlingbank/persistence/CompanyPersistenceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/starlingbank/company/persistence/CompanyPersistenceService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/starlingbank/persistence/CoursePersistenceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/starlingbank/company/persistence/CoursePersistenceService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/starlingbank/persistence/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/starlingbank/company/persistence/Database.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/starlingbank/persistence/DatabaseCoursePersistenceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/starlingbank/company/persistence/DatabaseCoursePersistenceService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/starlingbank/persistence/DatabaseEmployeePersistenceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/starlingbank/company/persistence/DatabaseEmployeePersistenceService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/starlingbank/persistence/EmployeePersistenceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/starlingbank/company/persistence/EmployeePersistenceService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/starlingbank/persistence/InMemoryCoursePersistenceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/starlingbank/company/persistence/InMemoryCoursePersistenceService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/starlingbank/persistence/InMemoryEmployeePersistenceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/starlingbank/company/persistence/InMemoryEmployeePersistenceService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/resources/AppResourceConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/resources/AppResourceConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/resources/EmployeeRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/resources/EmployeeRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/resources/Employees.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/resources/EmployeesResources.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/starlingbank/company/persistence/InMemoryCoursePersistenceServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/starlingbank/company/persistence/InMemoryCoursePersistenceServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/starlingbank/company/persistence/InMemoryEmployeePersistenceServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/starlingbank/company/persistence/InMemoryEmployeePersistenceServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/starlingbank/externalservices/DatabaseCourseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/starlingbank/externalservices/DatabaseCourseService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/resources/EmployeesResources.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/resources/EmployeesResources.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/starlingbank/company/services/HRApplicationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/starlingbank/company/services/HRApplicationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/starlingbank/externalservices/CourseServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/starlingbank/externalservices/CourseServiceTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Main.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -139,7 +128,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="HRApplicationTest.givenManagerWithDefaultSalary_whenCalculateBonus_thenShouldReturnAManagerBonus" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="HRApplicationTest.ifManagerRequestsCourseEmployeesEnrolledIn_thenShouldReturnMapOfEmployeesAndCourses" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="companyexampletesting" />
       <extension name="coverage">
         <pattern>
@@ -149,7 +138,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.starlingbank.company.services" />
       <option name="MAIN_CLASS_NAME" value="com.starlingbank.company.services.HRApplicationTest" />
-      <option name="METHOD_NAME" value="givenManagerWithDefaultSalary_whenCalculateBonus_thenShouldReturnAManagerBonus" />
+      <option name="METHOD_NAME" value="ifManagerRequestsCourseEmployeesEnrolledIn_thenShouldReturnMapOfEmployeesAndCourses" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -206,18 +195,18 @@
       <item itemvalue="JUnit.EmployeePersistenceServiceTest" />
       <item itemvalue="JUnit.HRApplicationTest" />
       <item itemvalue="JUnit.com.starlingbank in companyexampletesting" />
-      <item itemvalue="JUnit.HRApplicationTest.givenManagerWithDefaultSalary_whenCalculateBonus_thenShouldReturnAManagerBonus" />
       <item itemvalue="JUnit.InMemoryEmployeePersistenceServiceTest.whenGetEmployeeWithHighestSalary_thenReturnExpectedObject" />
       <item itemvalue="JUnit.InMemoryEmployeePersistenceServiceTest.whenGetOldestEmployee_thenShouldReturnExpectedObject" />
       <item itemvalue="Application.Main" />
+      <item itemvalue="JUnit.HRApplicationTest.ifManagerRequestsCourseEmployeesEnrolledIn_thenShouldReturnMapOfEmployeesAndCourses" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.HRApplicationTest.ifManagerRequestsCourseEmployeesEnrolledIn_thenShouldReturnMapOfEmployeesAndCourses" />
         <item itemvalue="JUnit.InMemoryEmployeePersistenceServiceTest.whenGetOldestEmployee_thenShouldReturnExpectedObject" />
         <item itemvalue="JUnit.InMemoryEmployeePersistenceServiceTest.whenGetEmployeeWithHighestSalary_thenReturnExpectedObject" />
         <item itemvalue="JUnit.com.starlingbank in companyexampletesting" />
-        <item itemvalue="JUnit.HRApplicationTest.givenManagerWithDefaultSalary_whenCalculateBonus_thenShouldReturnAManagerBonus" />
       </list>
     </recent_temporary>
   </component>

@@ -27,7 +27,7 @@ public class DatabaseCourseService {
         return databaseCoursePersistenceService.listCourses();
     }
 
-    public List<String> showWhatCoursesPersonIsEnrolledIn(Employee person){
+    public List<Course> showWhatCoursesPersonIsEnrolledIn(Employee person){
         return databaseCoursePersistenceService.showWhatCoursesPersonIsEnrolledIn(person.getEmployeeId());
     }
 

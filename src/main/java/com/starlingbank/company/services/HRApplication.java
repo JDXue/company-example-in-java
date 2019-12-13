@@ -72,12 +72,12 @@ public class HRApplication {
 //    }
 
     //shows list of courses names employees are enrolled in for given team
-    public List<String> showWhatCoursesMyEmployeesAreEnrolledIn(int managerId) {
-        List<String> employeesEnrolledToCourses = new ArrayList<>();
+    public List<Course> showWhatCoursesMyEmployeesAreEnrolledIn(int managerId) {
+        List<Course> employeesEnrolledToCourses = new ArrayList<>();
 
         for (Employee employee : employeePersistenceService.getTeamMembers(managerId)) {
-            List<String> courseNames = courseService.showWhatCoursesPersonIsEnrolledIn(employee);
-            employeesEnrolledToCourses.addAll(courseNames);
+            List<Course> courses = courseService.showWhatCoursesPersonIsEnrolledIn(employee);
+            employeesEnrolledToCourses.addAll(courses);
         }
 
         return employeesEnrolledToCourses;

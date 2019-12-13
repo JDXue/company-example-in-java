@@ -117,18 +117,18 @@ class HRApplicationTest {
         team.add(alice);
         team.add(ada);
 
-        List<String> courses = new ArrayList<>();
-        courses.add("first aid");
+        List<Course> courses = new ArrayList<>();
+        courses.add(new Course(1,"first aid"));
 
         when(employeePersistenceService.getTeamMembers(0)).thenReturn(team);
         when(courseService.showWhatCoursesPersonIsEnrolledIn(any(Employee.class))).thenReturn(courses);
 
         //When
-        List<String> totalCourseLists = hrApplication.showWhatCoursesMyEmployeesAreEnrolledIn(0);
+        List<Course> totalCourseLists = hrApplication.showWhatCoursesMyEmployeesAreEnrolledIn(0);
 
         //Then
         assertThat(totalCourseLists).hasSize(3);
-        assertThat(totalCourseLists).containsOnly("first aid");
+        assertThat(totalCourseLists.get(1).getName()).isEqualTo("first aid");
 
     }
 
@@ -140,9 +140,8 @@ class HRApplicationTest {
         Course firstAid = new Course(   1,"first aid");
 
         //When & Then
-        List<String> expectedCourses = new ArrayList<>();
-        expectedCourses.add("first aid");
-
+        List<Course> expectedCourses = new ArrayList<>();
+        expectedCourses.add(new Course(1,"first aid"));
 
         when(courseService.showWhatCoursesPersonIsEnrolledIn(any(Employee.class))).thenReturn(expectedCourses); //mock returned list
 
